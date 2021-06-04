@@ -1,2 +1,0 @@
-# derivx
-DerivX Core Library
