@@ -7,4 +7,4 @@ V0.1.1-Beta Build 20210629
 Derivatives Pricing Engine.
 
 ### Contact Information
-QQ: 277195007, WeChat: ustc_xrd, E-mail: xrd@ustc.edu
+QQ: 277195007, WeChat: xrd_ustc, E-mail: xrd@ustc.edu
