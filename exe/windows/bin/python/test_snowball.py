@@ -5,7 +5,7 @@
 # All rights reserved.
 #
 # The project sponsor and lead author is Xu Rendong.
-# E-mail: xrd@ustc.edu, QQ: 277195007, WeChat: ustc_xrd
+# E-mail: xrd@ustc.edu, QQ: 277195007, WeChat: xrd_ustc
 # See the contributors file for names of other contributors.
 #
 # Commercial use of this code in source and binary forms is
@@ -33,6 +33,7 @@ class Config(object):
         self.runs_size = 0 # 模拟路径数量
         self.runs_step = 0 # 价格变动步数
         self.year_days = 0 # 年交易日数量
+        self.notional = 0.0 # 名义本金
         self.start_price = 0.0 # 初始价格
         self.strike_rice = 0.0 # 敲入后执行价格
         self.knock_o_ratio = 0.0 # 敲出比率，非百分比
@@ -51,9 +52,7 @@ class Config(object):
         self.prefix_coupon_use = False # 是否支付 prefix 收益
         self.ukiuko_coupon = 0.0 # 对于无敲出无敲入的情况，客户只要求得到固定收益
         self.ukiuko_coupon_use = False # 是否支付 ukiuko 收益
-        self.calc_price_u = 0.0 # 价格点上界
-        self.calc_price_d = 0.0 # 价格点下界
-        self.calc_price_g = 0.0 # 价格点间隔
+        self.calc_price = np.array([]) # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
         self.run_days = 0 # 运行天数
         self.knock_o_days = np.array([]) # 敲出日期序列
@@ -66,7 +65,7 @@ def FigureResult(config, result):
     figure = plt.figure()
     ax = Axes3D(figure)
     x = np.arange(0, config.runs_step, 1)
-    y = np.arange(config.calc_price_d - config.calc_price_g, config.calc_price_u, config.calc_price_g)
+    y = config.calc_price
     X, Y = np.meshgrid(x, y)
     ax.plot_surface(X, Y, result, rstride = 1, cstride = 1, cmap = plt.get_cmap("rainbow"))
     plt.show()
@@ -77,7 +76,7 @@ def ExportResult(config, result, file_path):
         export_days = 255
         print("提示：Excel 最大 256 列，剩余 %d 列数据未作导出！" % (config.run_days - 255))
     df_result = pd.DataFrame(result[:, config.run_from : (config.run_from + export_days)]).iloc[::-1] # 上下倒下顺序
-    df_result.index = np.arange(config.calc_price_u, config.calc_price_d - config.calc_price_g, -config.calc_price_g)
+    df_result.index = config.calc_price[::-1]
     df_result.columns = ["day_%d" % (days + 1) for days in np.arange(config.run_from, config.run_from + export_days, 1)]
     df_result.to_excel(file_path, sheet_name = "result")
     print("导出结果：%s" % file_path)
@@ -89,6 +88,7 @@ def Test_Snowball():
     config.runs_step = 488 # 价格变动步数
     config.year_days = 244 # 年交易日数量
     
+    config.notional = 100000.0 # 名义本金
     config.start_price = 100.0 # 初始价格
     config.strike_rice = 100.0 # 敲入后执行价格
     config.knock_o_ratio = 1.0 # 敲出比率，非百分比
@@ -120,15 +120,17 @@ def Test_Snowball():
     #config.knock_o_rate = np.array([1.0, 0.995, 0.99, 0.985, 0.98, 0.975, 0.97, 0.965, 0.96, 0.955, 0.95, 0.945, 0.94, 0.935, 0.93, 0.925, 0.92, 0.915, 0.91, 0.905, 0.9, 0.895]) # 敲出观察率
     #config.knock_o_rate = np.array([1.0, 0.99, 0.98, 0.97, 0.96, 0.95, 0.94, 0.93, 0.92, 0.91, 0.9, 0.89, 0.88, 0.87, 0.86, 0.85, 0.84, 0.83, 0.82, 0.81, 0.8, 0.79]) # 敲出观察率
     
-    config.calc_price_u = 105.0 # 价格点上界
-    config.calc_price_d = 65.0 # 价格点下界
-    config.calc_price_g = 1.0 # 价格点间隔
+    calc_price_u = 105.0 # 价格点上界
+    calc_price_d = 65.0 # 价格点下界
+    calc_price_g = 1.0 # 价格点间隔
+    config.calc_price = np.array([65.0, 70.0, 75.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0]) # 计算价格序列
+    #config.calc_price = np.arange(calc_price_d, calc_price_u + calc_price_g, calc_price_g) # 含价格点上下界
     
     config.run_from = 0 # 起始天数，第一天为零
     config.run_days = 1 # 运行天数
     
-    ret_rows = int( ( config.calc_price_u - config.calc_price_d ) / config.calc_price_g ) + 1
     ret_cols = config.runs_step
+    ret_rows = len(config.calc_price)
     
     #print(derivx.Version())
     
@@ -151,9 +153,9 @@ def Test_Snowball():
     snowball.CalcCoupon(coupon)
     print("coupon:", coupon)
     
-    #payoff = np.zeros((ret_rows, ret_cols))
-    #snowball.CalcPayoff(payoff)
-    #FigureResult(config, payoff)
+    payoff = np.zeros((ret_rows, ret_cols))
+    snowball.CalcPayoff(payoff)
+    FigureResult(config, payoff)
     #ExportResult(config, payoff, "/export_payoff.xls")
     
     #greek_flags = {"theta":"t"}
