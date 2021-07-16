@@ -1,0 +1,16 @@
+{
+    "main": "test_derivx.js",
+    "private": false,
+    "dependencies": {
+        "node-addon-api": "^4.0.0"
+    },
+    "scripts": {
+        "test": "node --napi-modules ./test_derivx.js"
+    },
+    "gypfile": false,
+    "name": "derivx",
+    "version": "0.2.0",
+    "description": "Derivatives Pricing Engine",
+    "author": "Xu Rendong",
+    "license": "MIT"
+}
