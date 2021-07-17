@@ -1,16 +1,17 @@
 {
-    "main": "test_derivx.js",
+    "name": "derivx",
+    "version": "0.2.2",
+    "author": "Xu Rendong",
+    "description": "Derivatives Pricing Engine",
+    "license": "MIT",
     "private": false,
+    "main": "./test_derivx.js",
+    "scripts": {
+        "derivx": "node --napi-modules ./test_derivx.js"
+    },
     "dependencies": {
         "node-addon-api": "^4.0.0"
     },
-    "scripts": {
-        "test": "node --napi-modules ./test_derivx.js"
-    },
-    "gypfile": false,
-    "name": "derivx",
-    "version": "0.2.0",
-    "description": "Derivatives Pricing Engine",
-    "author": "Xu Rendong",
-    "license": "MIT"
+    "devDependencies": {
+    }
 }
