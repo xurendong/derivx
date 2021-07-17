@@ -28,6 +28,7 @@ import derivx
 
 def Test_Vanilla():
     vanilla = derivx.Vanilla("European") # American | European
+    print(vanilla.GetMsg())
     result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.085 - 0.03, 0.15, 1.0, True)
     #result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, True)
     #result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, True)
