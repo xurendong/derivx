@@ -19,5 +19,7 @@
 * Be sure to retain the above copyright notice and conditions.
 */
 
-const derivx = require('./derivx');
-console.log(derivx.Version());
+'use strict'
+
+const derivx = require('./derivx')
+console.log(derivx.Version())
