@@ -167,19 +167,19 @@ def Test_Snowball():
     snowball = derivx.Snowball()
     
     if snowball.InitArgs(config.ToArgs()) < 0:
-        print(snowball.GetMsg())
+        print(snowball.GetError())
         return
     
     if snowball.LoadPath("./path_data.path") < 0:
-        print(snowball.GetMsg())
+        print(snowball.GetError())
         print("尝试 生成 路径数据 ...")
         if snowball.InitPath() < 0:
-            print(snowball.GetMsg())
+            print(snowball.GetError())
             return
         else:
             print("生成 路径数据 完成。")
             if snowball.SavePath("./path_data.path") < 0:
-                print(snowball.GetMsg())
+                print(snowball.GetError())
                 return
             else:
                 print("保存 路径数据 完成。")
@@ -187,13 +187,13 @@ def Test_Snowball():
         print("加载 路径数据 完成。")
     
     #if snowball.InitPath() < 0:
-    #    print(snowball.GetMsg())
+    #    print(snowball.GetError())
     #    return
     #if snowball.SavePath("./path_data.path") < 0:
-    #    print(snowball.GetMsg())
+    #    print(snowball.GetError())
     #    return
     #if snowball.LoadPath("./path_data.path") < 0:
-    #    print(snowball.GetMsg())
+    #    print(snowball.GetError())
     #    return
     
     coupon = np.zeros(1)
