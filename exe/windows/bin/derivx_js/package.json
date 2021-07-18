@@ -7,10 +7,10 @@
     "private": false,
     "main": "./test_derivx.js",
     "scripts": {
-        "derivx": "node --napi-modules ./test_derivx.js"
+        "derivx": "node ./test_derivx.js"
     },
     "dependencies": {
-        "node-addon-api": "^4.0.0"
+        "numjs": "git+https://github.com/nicolaspanel/numjs.git"
     },
     "devDependencies": {
     }
