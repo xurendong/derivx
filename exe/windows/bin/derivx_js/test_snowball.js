@@ -71,7 +71,7 @@ function Test_Snowball() {
     config.notional = 100000.0 // 名义本金
     config.start_price = 100.0 // 初始价格
     config.strike_rice = 100.0 // 敲入后执行价格
-    config.knock_o_ratio = 1.02 // 敲出比率，非百分比
+    config.knock_o_ratio = 1.0 // 敲出比率，非百分比
     config.knock_i_ratio = 0.7 // 敲入比率，非百分比
     config.knock_o_steps = 0.0 // 敲出比例逐月递减率
     config.knock_i_valid = true // 是否有下方敲入障碍
@@ -150,6 +150,10 @@ function Test_Snowball() {
     //    console.log(snowball.GetError())
     //    return
     //}
+    
+    let coupon = nj.zeros([1]).tolist()
+    snowball.CalcCoupon(coupon)
+    console.log("coupon:", coupon)
     
 }
 
