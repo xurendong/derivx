@@ -155,6 +155,18 @@ function Test_Snowball() {
     snowball.CalcCoupon(coupon)
     console.log("coupon:", coupon)
     
+    //let payoff = nj.zeros([ret_rows, ret_cols]).tolist()
+    //snowball.CalcPayoff(payoff)
+    //console.log("payoff:", payoff)
+    
+    //let greek_flags = {"theta":"t"}
+    //let greek_flags = {"delta":"d", "gamma":"g", "vega":"v", "theta":"t", "rho":"r"}
+    //for(let [name, flag] of Object.entries(greek_flags)) {
+    //    let result = nj.zeros([ret_rows, ret_cols]).tolist()
+    //    snowball.CalcGreeks(flag, result)
+    //    console.log("result:", result)
+    //}
+    
 }
 
 Test_Snowball()
