@@ -34,6 +34,7 @@ import derivx
 class Config(object):
     def __init__(self):
         self.runs_seed = False # 动态路径种子
+        self.dual_smooth = True # 对偶平滑路径 # InitPath
         self.runs_size = 0 # 模拟路径数量
         self.runs_step = 0 # 价格变动步数
         self.year_days = 0 # 年交易日数量
@@ -101,6 +102,7 @@ def MakeStepDown(duration, observe_start, default_ratio, stepdown_start, stepdow
 def Test_Snowball():
     config = Config()
     config.runs_seed = False # 动态路径种子
+    config.dual_smooth = True # 对偶平滑路径
     config.runs_size = 100000 # 模拟路径数量
     config.runs_step = 488 # 价格变动步数
     config.year_days = 244 # 年交易日数量

@@ -28,6 +28,7 @@ const derivx = require('./derivx')
 class Config {
     constructor() {
         this.runs_seed = false // 动态路径种子
+        this.dual_smooth = true // 对偶平滑路径 # InitPath
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
@@ -64,6 +65,7 @@ class Config {
 function Test_Snowball() {
     let config = new Config()
     config.runs_seed = false // 动态路径种子
+    config.dual_smooth = true // 对偶平滑路径
     config.runs_size = 100000 // 模拟路径数量
     config.runs_step = 488 // 价格变动步数
     config.year_days = 244 // 年交易日数量
