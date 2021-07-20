@@ -21,6 +21,10 @@
 # Be sure to retain the above copyright notice and conditions.
 
 import derivx
+#from derivx_36 import derivx
+#from derivx_37 import derivx
+#from derivx_38 import derivx
+#from derivx_39 import derivx
 
 if __name__ == "__main__":
     print(derivx.Version())

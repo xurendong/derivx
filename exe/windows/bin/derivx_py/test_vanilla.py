@@ -25,6 +25,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 import derivx
+#from derivx_36 import derivx
+#from derivx_37 import derivx
+#from derivx_38 import derivx
+#from derivx_39 import derivx
 
 def Test_Vanilla():
     vanilla = derivx.Vanilla("European") # American | European
