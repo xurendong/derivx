@@ -7,34 +7,34 @@ V0.2.3-Beta Build 20210721
 Derivatives Pricing Engine.
 
 ### Install
-###### C++:
+##### C++:
 ```bash
 ```
 
-###### Python:
+##### Python:
 ```bash
 pip install derivx
 ```
 
-###### JavaScript:
+##### JavaScript:
 ```bash
 npm install derivx
 ```
 
 ### Usage
-###### C++:
+##### C++:
 ```c++
 
 ```
 
-###### Python:
+##### Python:
 ```python
 import derivx
 print(derivx.Version())
 ```
 For more usages please refer to test files in derivx_py folder.
 
-###### JavaScript:
+##### JavaScript:
 ```javascript
 const derivx = require('derivx')
 console.log(derivx.Version())

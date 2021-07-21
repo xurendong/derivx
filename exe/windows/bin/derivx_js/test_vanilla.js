@@ -27,6 +27,9 @@ function Test_Vanilla() {
     let result = 0.0
     let vanilla = new derivx.Vanilla("European") // American | European
     
+    // CalcPayoff(model, s, k, r, q, sigma, t, is_call)
+    // CalcGreeks(model, greek, s, k, r, q, sigma, t, is_call, is_futures, is_foreign)
+    
     //result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.085 - 0.03, 0.15, 1.0, true)
     result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, true)
     //result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, true)

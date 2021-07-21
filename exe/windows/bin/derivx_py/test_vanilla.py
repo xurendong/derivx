@@ -29,6 +29,9 @@ import derivx
 def Test_Vanilla():
     vanilla = derivx.Vanilla("European") # American | European
     
+    # CalcPayoff(model, s, k, r, q, sigma, t, is_call)
+    # CalcGreeks(model, greek, s, k, r, q, sigma, t, is_call, is_futures, is_foreign)
+    
     result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.08 - 0.03, 0.15, 1.0, True)
     #result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, True)
     #result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, True)
