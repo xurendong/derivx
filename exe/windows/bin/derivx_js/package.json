@@ -1,9 +1,9 @@
 {
     "name": "derivx",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "author": "Xu Rendong",
     "description": "Derivatives Pricing Engine",
-    "license": "MIT",
+    "license": "BSD",
     "private": false,
     "main": "./test_derivx.js",
     "scripts": {

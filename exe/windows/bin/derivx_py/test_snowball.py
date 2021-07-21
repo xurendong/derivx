@@ -26,10 +26,6 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 import derivx
-#from derivx_36 import derivx
-#from derivx_37 import derivx
-#from derivx_38 import derivx
-#from derivx_39 import derivx
 
 class Config(object):
     def __init__(self):

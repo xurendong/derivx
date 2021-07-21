@@ -25,15 +25,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 import derivx
-#from derivx_36 import derivx
-#from derivx_37 import derivx
-#from derivx_38 import derivx
-#from derivx_39 import derivx
 
 def Test_Vanilla():
     vanilla = derivx.Vanilla("European") # American | European
     
-    result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.085 - 0.03, 0.15, 1.0, True)
+    result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.08 - 0.03, 0.15, 1.0, True)
     #result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, True)
     #result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, True)
     #result = vanilla.CalcGreeks("bs", "g", 49, 50, 0.05, 0.0, 0.2, 0.3846)
@@ -42,7 +38,7 @@ def Test_Vanilla():
     #result = vanilla.CalcGreeks("bs", "r", 49, 50, 0.05, 0.0, 0.2, 0.3846, True, False, False)
     print(result)
     
-    result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.085 + 0.03, 0.15, 1.0, False)
+    result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.08 + 0.03, 0.22, 1.0, False)
     #result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, False)
     #result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, False)
     #result = vanilla.CalcGreeks("bs", "g", 49, 50, 0.05, 0.0, 0.2, 0.3846)
