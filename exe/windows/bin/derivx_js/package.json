@@ -1,14 +1,15 @@
 {
     "name": "derivx",
-    "version": "0.2.3",
+    "version": "0.2.3-1",
     "description": "Derivatives Pricing Engine",
     "private": false,
     "license": "BSD",
-    "author": "Xu Rendong <xrd@ustc.edu> (https://github.com/xurendong/derivx)",
+    "author": "Xu Rendong <xrd@ustc.edu> (https://github.com/xurendong)",
     "homepage": "https://github.com/xurendong/derivx",
-    "main": "./test_derivx.js",
+    "main": "./derivx.node",
     "scripts": {
-        "derivx": "node ./test_derivx.js"
+        "build": "npm pack",
+        "derivx": "node ./derivx.node"
     },
     "repository": {
         "type": "git",
@@ -26,7 +27,7 @@
         "autocall"
     ],
     "files": [
-        "derivx.node",
+        "index.node",
         "changes.txt",
         "library.txt",
         "license.txt",

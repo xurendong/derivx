@@ -23,7 +23,7 @@
 
 const nj = require('numjs')
 
-const derivx = require('derivx/derivx')
+const derivx = require('derivx')
 
 class Config {
     constructor() {
