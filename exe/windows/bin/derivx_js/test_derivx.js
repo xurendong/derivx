@@ -21,5 +21,5 @@
 
 'use strict'
 
-const derivx = require('./derivx')
+const derivx = require('derivx/derivx')
 console.log(derivx.Version())

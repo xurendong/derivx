@@ -1,13 +1,40 @@
 {
     "name": "derivx",
     "version": "0.2.3",
-    "author": "Xu Rendong",
     "description": "Derivatives Pricing Engine",
-    "license": "BSD",
     "private": false,
+    "license": "BSD",
+    "author": "Xu Rendong <xrd@ustc.edu> (https://github.com/xurendong/derivx)",
+    "homepage": "https://github.com/xurendong/derivx",
     "main": "./test_derivx.js",
     "scripts": {
         "derivx": "node ./test_derivx.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xurendong/derivx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/xurendong/derivx/issues"
+    },
+    "keywords": [
+        "options",
+        "futures",
+        "derivatives",
+        "derivatives-pricing",
+        "vanilla",
+        "autocall"
+    ],
+    "files": [
+        "derivx.node",
+        "changes.txt",
+        "library.txt",
+        "license.txt",
+        "readme.md"
+    ],
+    "engines": {
+        "node": ">=10.16.0 <=16.x.x",
+        "npm": ">=6.0.0"
     },
     "dependencies": {
         "numjs": "git+https://github.com/nicolaspanel/numjs.git"

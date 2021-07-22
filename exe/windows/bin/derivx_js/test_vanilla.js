@@ -21,7 +21,7 @@
 
 'use strict'
 
-const derivx = require('./derivx')
+const derivx = require('derivx/derivx')
 
 function Test_Vanilla() {
     let result = 0.0

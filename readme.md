@@ -36,7 +36,7 @@ For more usages please refer to test files in derivx_py folder.
 
 ##### JavaScript:
 ```javascript
-const derivx = require('derivx')
+const derivx = require('derivx/derivx')
 console.log(derivx.Version())
 ```
 For more usages please refer to test files in derivx_js folder.
