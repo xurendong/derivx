@@ -32,14 +32,22 @@ npm install derivx
 import derivx
 print(derivx.Version())
 ```
-For more usages please refer to test files in derivx_py folder.
+For more usages please refer to test files in [derivx_py](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py) folder.
+DerivX is not dependent on numpy, pandas and matplotlib, but if you want to run tests, you'd better install them with:
+```bash
+pip install numpy pandas matplotlib
+```
 
 ##### JavaScript:
 ```javascript
 const derivx = require('derivx')
 console.log(derivx.Version())
 ```
-For more usages please refer to test files in derivx_js folder.
+For more usages please refer to test files in [derivx_js](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js) folder.
+DerivX is not dependent on numjs, but if you want to run tests, you'd better install it with:
+```bash
+npm install git+https://github.com/nicolaspanel/numjs.git
+```
 
 ### Contact Information
 QQ: 277195007, WeChat: xrd_ustc, E-mail: xrd@ustc.edu
