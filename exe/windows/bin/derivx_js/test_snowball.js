@@ -22,15 +22,16 @@
 'use strict'
 
 const nj = require('numjs')
+const util = require('util');
 
 const derivx = require('derivx')
 
 class Config {
     constructor() {
         this.runs_seed = false // 动态路径种子
-        this.dual_smooth = true // 对偶平滑路径 # InitPath
-        this.runs_size = 0 // 模拟路径数量
-        this.runs_step = 0 // 价格变动步数
+        this.dual_smooth = true // 对偶平滑路径 // InitPath
+        this.runs_size = 0 // 模拟路径数量 // InitPath
+        this.runs_step = 0 // 价格变动步数 // InitPath
         this.year_days = 0 // 年交易日数量
         this.notional = 0.0 // 名义本金
         this.start_price = 0.0 // 初始价格
@@ -65,9 +66,9 @@ class Config {
 function Test_Snowball() {
     let config = new Config()
     config.runs_seed = false // 动态路径种子
-    config.dual_smooth = true // 对偶平滑路径
-    config.runs_size = 100000 // 模拟路径数量
-    config.runs_step = 488 // 价格变动步数
+    config.dual_smooth = true // 对偶平滑路径 // InitPath
+    config.runs_size = 100000 // 模拟路径数量 // InitPath
+    config.runs_step = 488 // 价格变动步数 // InitPath
     config.year_days = 244 // 年交易日数量
     
     config.notional = 100000.0 // 名义本金
@@ -121,7 +122,10 @@ function Test_Snowball() {
         return
     }
     
-    if(snowball.LoadPath("./path_data.path") < 0) {
+    // 最好将影响路径数据的参数都包含在文件名中，避免导入的路径数据与所设参数不一致
+    let path_file = util.format("./path_data_%d_%d_%d_%f_%f_%f_%f.path", 
+        config.dual_smooth, config.runs_size, config.runs_step, config.sigma, config.risk_free_rate, config.basis_rate, config.price_limit_ratio)
+    if(snowball.LoadPath(path_file) < 0) {
         console.log(snowball.GetError())
         console.log("尝试 生成 路径数据 ...")
         if(snowball.InitPath() < 0) {
@@ -129,7 +133,7 @@ function Test_Snowball() {
             return
         } else {
             console.log("生成 路径数据 完成。")
-            if(snowball.SavePath("./path_data.path") < 0) {
+            if(snowball.SavePath(path_file) < 0) {
                 console.log(snowball.GetError())
                 return
             } else {
