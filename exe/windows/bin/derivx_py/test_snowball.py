@@ -50,6 +50,7 @@ class Config(object):
         self.margin_rate = 0.0 # 保证金比例
         self.margin_interest = 0.0 # 保证金利率
         self.price_limit_ratio = 0.0 # 涨跌停限制幅度 # InitPath
+        self.price_limit_style = 0 # 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
         self.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
         self.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率
         self.prefix_coupon_use = False # 是否支付 prefix 收益
@@ -119,6 +120,7 @@ def Test_Snowball():
     config.margin_rate = 1.0 # 保证金比例
     config.margin_interest = 0.03 # 保证金利率
     config.price_limit_ratio = 0.1 # 涨跌停限制幅度 # InitPath
+    config.price_limit_style = 0 # 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
     
     config.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
     config.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率
@@ -173,8 +175,9 @@ def Test_Snowball():
         return
     
     # 最好将影响路径数据的参数都包含在文件名中，避免导入的路径数据与所设参数不一致
-    path_file = "./path_data_%d_%d_%d_%d_%d_%.3f_%.3f_%.3f_%.3f.path" % \
-        (config.path_seed, config.dual_smooth, config.runs_size, config.runs_step, config.year_days, config.sigma, config.risk_free_rate, config.basis_rate, config.price_limit_ratio)
+    path_file = "./path_data_%d_%d_%d_%d_%d_%.3f_%.3f_%.3f_%.3f_%d.path" % \
+        (config.path_seed, config.dual_smooth, config.runs_size, config.runs_step, config.year_days, 
+         config.sigma, config.risk_free_rate, config.basis_rate, config.price_limit_ratio, config.price_limit_style)
     if snowball.LoadPath(path_file) < 0:
         print(snowball.GetError())
         print("尝试 生成 路径数据 ...")

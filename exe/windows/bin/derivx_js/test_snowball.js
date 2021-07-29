@@ -49,6 +49,7 @@ class Config {
         this.margin_rate = 0.0 // 保证金比例
         this.margin_interest = 0.0 // 保证金利率
         this.price_limit_ratio = 0.0 // 涨跌停限制幅度 // InitPath
+        this.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
         this.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
         this.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率
         this.prefix_coupon_use = false // 是否支付 prefix 收益
@@ -87,6 +88,7 @@ function Test_Snowball() {
     config.margin_rate = 1.0 // 保证金比例
     config.margin_interest = 0.03 // 保证金利率
     config.price_limit_ratio = 0.1 // 涨跌停限制幅度 // InitPath
+    config.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
     
     config.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
     config.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率
@@ -123,8 +125,9 @@ function Test_Snowball() {
     }
     
     // 最好将影响路径数据的参数都包含在文件名中，避免导入的路径数据与所设参数不一致
-    let path_file = util.format("./path_data_%d_%d_%d_%d_%d_%f_%f_%f_%f.path", 
-        config.path_seed, config.dual_smooth, config.runs_size, config.runs_step, config.year_days, config.sigma, config.risk_free_rate, config.basis_rate, config.price_limit_ratio)
+    let path_file = util.format("./path_data_%d_%d_%d_%d_%d_%f_%f_%f_%f_%d.path", 
+        config.path_seed, config.dual_smooth, config.runs_size, config.runs_step, config.year_days, 
+        config.sigma, config.risk_free_rate, config.basis_rate, config.price_limit_ratio, config.price_limit_style)
     if(snowball.LoadPath(path_file) < 0) {
         console.log(snowball.GetError())
         console.log("尝试 生成 路径数据 ...")
