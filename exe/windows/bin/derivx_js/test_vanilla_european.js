@@ -27,11 +27,11 @@ function Test_Vanilla_European() {
     let result = 0.0
     let vanilla = new derivx.Vanilla("European")
     
-    // CalcPayoff(model, s, k, r, q, sigma, t, is_call)
+    // CalcPrice(model, s, k, r, q, sigma, t, is_call)
     // CalcGreeks(model, greek, s, k, r, q, sigma, t, is_call, is_futures, is_foreign)
     
-    //result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.085 - 0.03, 0.15, 1.0, true)
-    result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, true)
+    //result = vanilla.CalcPrice("bs", 100.0, 100.0, 0.03, 0.085 - 0.03, 0.15, 1.0, true)
+    result = vanilla.CalcPrice("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, true)
     //result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, true)
     //result = vanilla.CalcGreeks("bs", "g", 49, 50, 0.05, 0.0, 0.2, 0.3846)
     //result = vanilla.CalcGreeks("bs", "v", 49, 50, 0.05, 0.0, 0.2, 0.3846)
@@ -39,8 +39,8 @@ function Test_Vanilla_European() {
     //result = vanilla.CalcGreeks("bs", "r", 49, 50, 0.05, 0.0, 0.2, 0.3846, true, false, false)
     console.log(result)
     
-    //result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.085 + 0.03, 0.15, 1.0, false)
-    result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, false)
+    //result = vanilla.CalcPrice("bs", 100.0, 100.0, 0.03, 0.085 + 0.03, 0.15, 1.0, false)
+    result = vanilla.CalcPrice("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, false)
     //result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, false)
     //result = vanilla.CalcGreeks("bs", "g", 49, 50, 0.05, 0.0, 0.2, 0.3846)
     //result = vanilla.CalcGreeks("bs", "v", 49, 50, 0.05, 0.0, 0.2, 0.3846)

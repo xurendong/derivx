@@ -25,11 +25,11 @@ import derivx
 def Test_Vanilla_European():
     vanilla = derivx.Vanilla("European")
     
-    # CalcPayoff(model, s, k, r, q, sigma, t, is_call)
+    # CalcPrice(model, s, k, r, q, sigma, t, is_call)
     # CalcGreeks(model, greek, s, k, r, q, sigma, t, is_call, is_futures, is_foreign)
     
-    result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.08 - 0.03, 0.15, 1.0, True)
-    #result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, True)
+    result = vanilla.CalcPrice("bs", 100.0, 100.0, 0.03, 0.08 - 0.03, 0.15, 1.0, True)
+    #result = vanilla.CalcPrice("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, True)
     #result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, True)
     #result = vanilla.CalcGreeks("bs", "g", 49, 50, 0.05, 0.0, 0.2, 0.3846)
     #result = vanilla.CalcGreeks("bs", "v", 49, 50, 0.05, 0.0, 0.2, 0.3846)
@@ -37,8 +37,8 @@ def Test_Vanilla_European():
     #result = vanilla.CalcGreeks("bs", "r", 49, 50, 0.05, 0.0, 0.2, 0.3846, True, False, False)
     print(result)
     
-    result = vanilla.CalcPayoff("bs", 100.0, 100.0, 0.03, 0.08 + 0.03, 0.22, 1.0, False)
-    #result = vanilla.CalcPayoff("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, False)
+    result = vanilla.CalcPrice("bs", 100.0, 100.0, 0.03, 0.08 + 0.03, 0.22, 1.0, False)
+    #result = vanilla.CalcPrice("bs", 42, 40, 0.1, 0.0, 0.2, 0.5, False)
     #result = vanilla.CalcGreeks("bs", "d", 49, 50, 0.05, 0.0, 0.2, 0.3846, False)
     #result = vanilla.CalcGreeks("bs", "g", 49, 50, 0.05, 0.0, 0.2, 0.3846)
     #result = vanilla.CalcGreeks("bs", "v", 49, 50, 0.05, 0.0, 0.2, 0.3846)
