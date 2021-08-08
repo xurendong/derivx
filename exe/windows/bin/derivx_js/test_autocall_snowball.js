@@ -28,28 +28,32 @@ const derivx = require('derivx')
 
 class Config {
     constructor() {
-        this.path_seed = 5489 // 路径生成种子，< 0 每次变化，>= 0 用户指定 // InitPath
+        this.rand_rows = 0 // 随机数据行数 // InitRand
+        this.rand_cols = 0 // 随机数据列数 // InitRand
+        this.rand_seed = 0 // 随机数据种子 // InitRand
+        
         this.dual_smooth = true // 对偶平滑路径 // InitPath
         this.runs_size = 0 // 模拟路径数量 // InitPath
         this.runs_step = 0 // 价格变动步数 // InitPath
         this.year_days = 0 // 年交易日数量 // InitPath
+        this.sigma = 0.0 // 波动率 // InitPath
+        this.risk_free_rate = 0.0 // 无风险利率 // InitPath
+        this.basis_rate = 0.0 // 股息或贴水 // InitPath
+        this.price_limit_ratio = 0.0 // 涨跌停限制幅度 // InitPath
+        this.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
+        
         this.notional = 0.0 // 名义本金
         this.start_price = 0.0 // 初始价格
-        this.strike_rice = 0.0 // 敲入后执行价格
+        this.strike_price = 0.0 // 敲入后执行价格
         this.knock_o_ratio = 0.0 // 敲出比率，非百分比
         this.knock_i_ratio = 0.0 // 敲入比率，非百分比
         this.knock_o_steps = 0.0 // 敲出比例逐月递减率
         this.knock_i_valid = true // 是否有下方敲入障碍
         this.knock_i_occur = false // 是否已经发生敲入
-        this.knock_i_margin_call = true // 是否追加保证金
-        this.sigma = 0.0 // 波动率 // InitPath
-        this.risk_free_rate = 0.0 // 无风险利率 // InitPath
-        this.basis_rate = 0.0 // 股息或贴水 // InitPath
+        this.knock_i_margin_call = true // 是否敲入后可追加保证金
         this.coupon_rate = 0.0 // 客户年化收益率
         this.margin_rate = 0.0 // 保证金比例
         this.margin_interest = 0.0 // 保证金利率
-        this.price_limit_ratio = 0.0 // 涨跌停限制幅度 // InitPath
-        this.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
         this.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
         this.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率
         this.prefix_coupon_use = false // 是否支付 prefix 收益
@@ -66,29 +70,32 @@ class Config {
 
 function Test_Autocall_Snowball() {
     let config = new Config()
-    config.path_seed = 5489 // 路径生成种子，< 0 每次变化，>= 0 用户指定 // InitPath
+    config.rand_rows = 50000 // 随机数据行数 // InitRand
+    config.rand_cols = 500 // 随机数据列数 // InitRand
+    config.rand_seed = 5489 // 随机数据种子 // InitRand
+    
     config.dual_smooth = true // 对偶平滑路径 // InitPath
     config.runs_size = 100000 // 模拟路径数量 // InitPath
     config.runs_step = 488 // 价格变动步数 // InitPath
     config.year_days = 244 // 年交易日数量 // InitPath
+    config.sigma = 0.16 // 波动率 // InitPath
+    config.risk_free_rate = 0.03 // 无风险利率 // InitPath
+    config.basis_rate = 0.05 // 股息或贴水 // InitPath
+    config.price_limit_ratio = 0.1 // 涨跌停限制幅度 // InitPath
+    config.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
     
     config.notional = 100000.0 // 名义本金
     config.start_price = 100.0 // 初始价格
-    config.strike_rice = 100.0 // 敲入后执行价格
+    config.strike_price = 100.0 // 敲入后执行价格
     config.knock_o_ratio = 1.0 // 敲出比率，非百分比
     config.knock_i_ratio = 0.7 // 敲入比率，非百分比
     config.knock_o_steps = 0.0 // 敲出比例逐月递减率
     config.knock_i_valid = true // 是否有下方敲入障碍
     config.knock_i_occur = false // 是否已经发生敲入
     config.knock_i_margin_call = true // 是否敲入后可追加保证金
-    config.sigma = 0.16 // 波动率 // InitPath
-    config.risk_free_rate = 0.03 // 无风险利率 // InitPath
-    config.basis_rate = 0.05 // 股息或贴水 // InitPath
     config.coupon_rate = 0.11 // 客户年化收益率
     config.margin_rate = 1.0 // 保证金比例
     config.margin_interest = 0.03 // 保证金利率
-    config.price_limit_ratio = 0.1 // 涨跌停限制幅度 // InitPath
-    config.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
     
     config.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
     config.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率
@@ -124,38 +131,36 @@ function Test_Autocall_Snowball() {
         return
     }
     
-    // 最好将影响路径数据的参数都包含在文件名中，避免导入的路径数据与所设参数不一致
-    let path_file = util.format("./path_data_%d_%d_%d_%d_%d_%f_%f_%f_%f_%d.path", 
-        config.path_seed, config.dual_smooth, config.runs_size, config.runs_step, config.year_days, 
-        config.sigma, config.risk_free_rate, config.basis_rate, config.price_limit_ratio, config.price_limit_style)
-    if(snowball.LoadPath(path_file) < 0) {
+    if(snowball.InitRand() < 0) {
         console.log(snowball.GetError())
-        console.log("尝试 生成 路径数据 ...")
-        if(snowball.InitPath() < 0) {
-            console.log(snowball.GetError())
-            return
-        } else {
-            console.log("生成 路径数据 完成。")
-            if(snowball.SavePath(path_file) < 0) {
-                console.log(snowball.GetError())
-                return
-            } else {
-                console.log("保存 路径数据 完成。")
-            }
-        }
-    } else {
-        console.log("加载 路径数据 完成。")
+        return
     }
+    // 除非电脑性能较差，否则不推荐使用 SaveRand() 和 LoadRand() 了
+    // 最好将影响随机数据的参数都包含在文件名中，避免导入的随机数据与所设参数不一致
+    //let rand_file = util.format("./rand_data_%d_%d_%d.rand", config.rand_rows, config.rand_cols, config.rand_seed)
+    //if(snowball.SaveRand(rand_file) < 0) {
+    //    console.log(snowball.GetError())
+    //    return
+    //}
+    //if(snowball.LoadRand(rand_file) < 0) {
+    //    console.log(snowball.GetError())
+    //    return
+    //}
     
-    //if(snowball.InitPath() < 0) {
+    if(snowball.InitPath() < 0) {
+        console.log(snowball.GetError())
+        return
+    }
+    // 除非电脑性能较差，否则不推荐使用 SavePath() 和 LoadPath() 了
+    // 最好将影响路径数据的参数都包含在文件名中，避免导入的路径数据与所设参数不一致
+    //let path_file = util.format("./path_data_%d_%d_%d_%d_%f_%f_%f_%f_%d.path", 
+    //    config.dual_smooth, config.runs_size, config.runs_step, config.year_days, 
+    //    config.sigma, config.risk_free_rate, config.basis_rate, config.price_limit_ratio, config.price_limit_style)
+    //if(snowball.SavePath(path_file) < 0) {
     //    console.log(snowball.GetError())
     //    return
     //}
-    //if(snowball.SavePath("./path_data.path") < 0) {
-    //    console.log(snowball.GetError())
-    //    return
-    //}
-    //if(snowball.LoadPath("./path_data.path") < 0) {
+    //if(snowball.LoadPath(path_file) < 0) {
     //    console.log(snowball.GetError())
     //    return
     //}
@@ -175,7 +180,6 @@ function Test_Autocall_Snowball() {
     //    snowball.CalcGreeks(flag, result)
     //    console.log("result:", result)
     //}
-    
 }
 
 Test_Autocall_Snowball()
