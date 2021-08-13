@@ -21,11 +21,18 @@
 
 'use strict'
 
+const nj = require('numjs')
+
 const derivx = require('derivx')
 
 function Test_Vanilla_American() {
     let result = 0.0
     let vanilla = new derivx.Vanilla("European")
+    
+    // CalcPrice(model, s, k, r, q, sigma, t, is_call)
+    // CalcGreeks(model, greek, s, k, r, q, sigma, t, is_call, is_futures, is_foreign)
+    // CalcGreeksSurface(surface, model, greek, s, k, r, q, sigma, t, is_call, is_futures, is_foreign)
+    
     console.log(vanilla.GetError())
 }
 
