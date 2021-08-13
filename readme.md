@@ -70,7 +70,7 @@ npm install git+https://github.com/nicolaspanel/numjs.git
 + InitRand: 461ms - 550ms
 + InitPath: 1575ms - 1961ms
 
-Autocall Snowball:
+&nbsp;&nbsp;&nbsp;Autocall Snowball:
 
 + CalcCoupon: 468ms - 564ms (there is still 200ms optimization space)
 + CalcPayoff: 965ms - 983ms per price
