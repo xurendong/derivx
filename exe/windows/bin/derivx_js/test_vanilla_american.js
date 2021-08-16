@@ -27,7 +27,7 @@ const derivx = require('derivx')
 
 function Test_Vanilla_American() {
     let result = 0.0
-    let vanilla = new derivx.Vanilla("European")
+    let vanilla = new derivx.Vanilla("American")
     
     // CalcPrice(model, s, k, r, q, sigma, t, is_call)
     // CalcGreeks(model, greek, s, k, r, q, sigma, t, is_call, is_futures, is_foreign)
