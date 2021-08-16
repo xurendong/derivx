@@ -25,7 +25,7 @@ const derivx = require('derivx')
 
 function Test_Vanilla_American() {
     let result = 0.0
-    let vanilla = new derivx.Vanilla("European")
+    let vanilla = new derivx.Vanilla("American")
     console.log(vanilla.GetError())
 }
 
