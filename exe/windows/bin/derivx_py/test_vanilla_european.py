@@ -39,6 +39,98 @@ def FigureResult(array_s, array_t, result):
     plt.ylabel('Price')
     plt.show()
 
+def CalcPrice_Spread_Bull_Call(vanilla, model, s, k_l_c_l, k_h_c_s, r, q, sigma, t):
+    price_low_call_long = vanilla.CalcPrice(model, s, k_l_c_l, r, q, sigma, t, True)
+    price_high_call_short = -vanilla.CalcPrice(model, s, k_h_c_s, r, q, sigma, t, True) # -
+    return price_low_call_long + price_high_call_short
+
+def CalcPrice_Spread_Bull_Put(vanilla, model, s, k_l_p_l, k_h_p_s, r, q, sigma, t):
+    price_low_put_long = vanilla.CalcPrice(model, s, k_l_p_l, r, q, sigma, t, False)
+    price_high_put_short = -vanilla.CalcPrice(model, s, k_h_p_s, r, q, sigma, t, False) # -
+    return price_low_put_long + price_high_put_short
+
+def CalcPrice_Spread_Bear_Call(vanilla, model, s, k_l_c_s, k_h_c_l, r, q, sigma, t):
+    price_low_call_short = -vanilla.CalcPrice(model, s, k_l_c_s, r, q, sigma, t, True) # -
+    price_high_call_long = vanilla.CalcPrice(model, s, k_h_c_l, r, q, sigma, t, True)
+    return price_low_call_short + price_high_call_long
+
+def CalcPrice_Spread_Bear_Put(vanilla, model, s, k_l_p_s, k_h_p_l, r, q, sigma, t):
+    price_low_put_short = -vanilla.CalcPrice(model, s, k_l_p_s, r, q, sigma, t, False) # -
+    price_high_put_long = vanilla.CalcPrice(model, s, k_h_p_l, r, q, sigma, t, False)
+    return price_low_put_short + price_high_put_long
+
+def CalcPrice_Spread_Butterfly_Call(vanilla, model, s, k_l_c_l, k_m_c_s, k_h_c_l, r, q, sigma, t):
+    price_low_call_long = vanilla.CalcPrice(model, s, k_l_c_l, r, q, sigma, t, True)
+    price_middle_call_short = -vanilla.CalcPrice(model, s, k_m_c_s, r, q, sigma, t, True) * 2 # - # * 2
+    price_high_call_long = vanilla.CalcPrice(model, s, k_h_c_l, r, q, sigma, t, True)
+    return price_low_call_long + price_middle_call_short + price_high_call_long
+
+def CalcPrice_Spread_Butterfly_Put(vanilla, model, s, k_l_p_l, k_m_p_s, k_h_p_l, r, q, sigma, t):
+    price_low_put_long = vanilla.CalcPrice(model, s, k_l_p_l, r, q, sigma, t, False)
+    price_middle_put_short = -vanilla.CalcPrice(model, s, k_m_p_s, r, q, sigma, t, False) * 2 # - # * 2
+    price_high_put_long = vanilla.CalcPrice(model, s, k_h_p_l, r, q, sigma, t, False)
+    return price_low_put_long + price_middle_put_short + price_high_put_long
+
+def CalcPrice_Spread_Box_Bull_Call_Bear_Put(vanilla, model, s, k_l_cp_ls, k_h_cp_sl, r, q, sigma, t):
+    price_bull_call = CalcPrice_Spread_Bull_Call(vanilla, model, s, k_l_cp_ls, k_h_cp_sl, r, q, sigma, t)
+    price_bear_put = CalcPrice_Spread_Bear_Put(vanilla, model, s, k_l_cp_ls, k_h_cp_sl, r, q, sigma, t)
+    return price_bull_call + price_bear_put
+
+def CalcPrice_Spread_Box_Bull_Put_Bear_Call(vanilla, model, s, k_l_pc_ls, k_h_pc_sl, r, q, sigma, t):
+    price_bull_put = CalcPrice_Spread_Bull_Put(vanilla, model, s, k_l_pc_ls, k_h_pc_sl, r, q, sigma, t)
+    price_bear_call = CalcPrice_Spread_Bear_Call(vanilla, model, s, k_l_pc_ls, k_h_pc_sl, r, q, sigma, t)
+    return price_bull_put + price_bear_call
+
+def CalcGreeks_Spread_Bull_Call(vanilla, model, greek, s, k_l_c_l, k_h_c_s, r, q, sigma, t):
+    if model == "bs":
+        if greek == "d":
+            delta_low_call_long = vanilla.CalcGreeks(model, greek, s, k_l_c_l, r, q, sigma, t, True)
+            delta_high_call_short = -vanilla.CalcGreeks(model, greek, s, k_h_c_s, r, q, sigma, t, True) # -
+            return delta_low_call_long + delta_high_call_short
+        elif greek == "g":
+            gamma_low_call_long = vanilla.CalcGreeks(model, greek, s, k_l_c_l, r, q, sigma, t)
+            gamma_high_call_short = -vanilla.CalcGreeks(model, greek, s, k_h_c_s, r, q, sigma, t) # -
+            return gamma_low_call_long + gamma_high_call_short
+        elif greek == "v":
+            vega_low_call_long = vanilla.CalcGreeks(model, greek, s, k_l_c_l, r, q, sigma, t)
+            vega_high_call_short = -vanilla.CalcGreeks(model, greek, s, k_h_c_s, r, q, sigma, t) # -
+            return vega_low_call_long + vega_high_call_short
+        elif greek == "t":
+            theta_low_call_long = vanilla.CalcGreeks(model, greek, s, k_l_c_l, r, q, sigma, t, True)
+            theta_high_call_short = -vanilla.CalcGreeks(model, greek, s, k_h_c_s, r, q, sigma, t, True) # -
+            return theta_low_call_long + theta_high_call_short
+        elif greek == "r":
+            rho_low_call_long = vanilla.CalcGreeks(model, greek, s, k_l_c_l, r, q, sigma, t, True, False, False)
+            rho_high_call_short = -vanilla.CalcGreeks(model, greek, s, k_h_c_s, r, q, sigma, t, True, False, False) # -
+            return rho_low_call_long + rho_high_call_short
+    return 0.0
+
+def CalcGreeksSurface_Spread_Bull_Call(vanilla, model, greek, array_s, k_l_c_l, k_h_c_s, r, q, sigma, array_t):
+    surface_low_call_long = np.zeros((len(array_s), len(array_t)))
+    surface_high_call_short = np.zeros((len(array_s), len(array_t)))
+    if model == "bs":
+        if greek == "d":
+            vanilla.CalcGreeksSurface(surface_low_call_long, model, greek, array_s, k_l_c_l, r, q, sigma, array_t, True)
+            vanilla.CalcGreeksSurface(surface_high_call_short, model, greek, array_s, k_h_c_s, r, q, sigma, array_t, True)
+            return surface_low_call_long - surface_high_call_short # -
+        elif greek == "g":
+            vanilla.CalcGreeksSurface(surface_low_call_long, model, greek, array_s, k_l_c_l, r, q, sigma, array_t)
+            vanilla.CalcGreeksSurface(surface_high_call_short, model, greek, array_s, k_h_c_s, r, q, sigma, array_t)
+            return surface_low_call_long - surface_high_call_short # -
+        elif greek == "v":
+            vanilla.CalcGreeksSurface(surface_low_call_long, model, greek, array_s, k_l_c_l, r, q, sigma, array_t)
+            vanilla.CalcGreeksSurface(surface_high_call_short, model, greek, array_s, k_h_c_s, r, q, sigma, array_t)
+            return surface_low_call_long - surface_high_call_short # -
+        elif greek == "t":
+            vanilla.CalcGreeksSurface(surface_low_call_long, model, greek, array_s, k_l_c_l, r, q, sigma, array_t, True)
+            vanilla.CalcGreeksSurface(surface_high_call_short, model, greek, array_s, k_h_c_s, r, q, sigma, array_t, True)
+            return surface_low_call_long - surface_high_call_short # -
+        elif greek == "r":
+            vanilla.CalcGreeksSurface(surface_low_call_long, model, greek, array_s, k_l_c_l, r, q, sigma, array_t, True, False, False)
+            vanilla.CalcGreeksSurface(surface_high_call_short, model, greek, array_s, k_h_c_s, r, q, sigma, array_t, True, False, False)
+            return surface_low_call_long - surface_high_call_short # -
+    return np.zeros((len(array_s), len(array_t)))
+
 def Test_Vanilla_European():
     vanilla = derivx.Vanilla("European")
     
@@ -64,22 +156,45 @@ def Test_Vanilla_European():
     #result = vanilla.CalcGreeks("bs", "r", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, False, False, False)
     #print(result)
     
-    array_s = np.arange(5.0, 105.0, 5.0)
-    array_t = np.arange(0.004, 1.004, 1.0 / 250)
-    surface = np.zeros((len(array_s), len(array_t)))
+    #array_s = np.arange(5.0, 105.0, 5.0)
+    #array_t = np.arange(0.004, 1.004, 1.0 / 250)
+    #surface = np.zeros((len(array_s), len(array_t)))
     
-    vanilla.CalcGreeksSurface(surface, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
+    #vanilla.CalcGreeksSurface(surface, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
     #vanilla.CalcGreeksSurface(surface, "bs", "g", array_s, 50.0, 0.05, 0.0, 0.2, array_t)
     #vanilla.CalcGreeksSurface(surface, "bs", "v", array_s, 50.0, 0.05, 0.0, 0.2, array_t)
     #vanilla.CalcGreeksSurface(surface, "bs", "t", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
-    #vanilla.CalcGreeksSurface(surface, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False, True)
-    FigureResult(array_s, array_t, surface)
+    #vanilla.CalcGreeksSurface(surface, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False, False)
+    #FigureResult(array_s, array_t, surface)
     
-    vanilla.CalcGreeksSurface(surface, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, False)
+    #vanilla.CalcGreeksSurface(surface, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, False)
     #vanilla.CalcGreeksSurface(surface, "bs", "g", array_s, 50.0, 0.05, 0.0, 0.2, array_t)
     #vanilla.CalcGreeksSurface(surface, "bs", "v", array_s, 50.0, 0.05, 0.0, 0.2, array_t)
     #vanilla.CalcGreeksSurface(surface, "bs", "t", array_s, 50.0, 0.05, 0.0, 0.2, array_t, False)
-    #vanilla.CalcGreeksSurface(surface, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, False, False, True)
+    #vanilla.CalcGreeksSurface(surface, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, False, False, False)
+    #FigureResult(array_s, array_t, surface)
+    
+    array_s = np.arange(5.0, 105.0, 5.0)
+    array_t = np.arange(0.004, 1.004, 1.0 / 250)
+    model, s, k_l, k_m, k_h, r, q, sigma, t = "bs", 50.0, 40.0, 50.0, 60.0, 0.05, 0.0, 0.2, 0.5
+    #print(CalcPrice_Spread_Bull_Call(vanilla, model, s, k_l, k_h, r, q, sigma, t))
+    #print(CalcPrice_Spread_Bull_Put(vanilla, model, s, k_l, k_h, r, q, sigma, t))
+    #print(CalcPrice_Spread_Bear_Call(vanilla, model, s, k_l, k_h, r, q, sigma, t))
+    #print(CalcPrice_Spread_Bear_Put(vanilla, model, s, k_l, k_h, r, q, sigma, t))
+    #print(CalcPrice_Spread_Butterfly_Call(vanilla, model, s, k_l, k_m, k_h, r, q, sigma, t))
+    #print(CalcPrice_Spread_Butterfly_Put(vanilla, model, s, k_l, k_m, k_h, r, q, sigma, t))
+    #print(CalcPrice_Spread_Box_Bull_Call_Bear_Put(vanilla, model, s, k_l, k_h, r, q, sigma, t))
+    #print(CalcPrice_Spread_Box_Bull_Put_Bear_Call(vanilla, model, s, k_l, k_h, r, q, sigma, t))
+    #print(CalcGreeks_Spread_Bull_Call(vanilla, model, "d", s, k_l, k_h, r, q, sigma, t))
+    #print(CalcGreeks_Spread_Bull_Call(vanilla, model, "g", s, k_l, k_h, r, q, sigma, t))
+    #print(CalcGreeks_Spread_Bull_Call(vanilla, model, "v", s, k_l, k_h, r, q, sigma, t))
+    #print(CalcGreeks_Spread_Bull_Call(vanilla, model, "t", s, k_l, k_h, r, q, sigma, t))
+    #print(CalcGreeks_Spread_Bull_Call(vanilla, model, "r", s, k_l, k_h, r, q, sigma, t))
+    #surface = CalcGreeksSurface_Spread_Bull_Call(vanilla, model, "d", array_s, k_l, k_h, r, q, sigma, array_t)
+    #surface = CalcGreeksSurface_Spread_Bull_Call(vanilla, model, "g", array_s, k_l, k_h, r, q, sigma, array_t)
+    #surface = CalcGreeksSurface_Spread_Bull_Call(vanilla, model, "v", array_s, k_l, k_h, r, q, sigma, array_t)
+    #surface = CalcGreeksSurface_Spread_Bull_Call(vanilla, model, "t", array_s, k_l, k_h, r, q, sigma, array_t)
+    surface = CalcGreeksSurface_Spread_Bull_Call(vanilla, model, "r", array_s, k_l, k_h, r, q, sigma, array_t)
     FigureResult(array_s, array_t, surface)
     
     print(vanilla.GetError())
