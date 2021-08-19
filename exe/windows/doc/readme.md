@@ -1,5 +1,5 @@
 # DerivX
-V0.2.8-Beta Build 20210818
+V0.2.8-Beta Build 20210820
 
 © 2021-2021 Xu Rendong. All Rights Reserved.
 
@@ -54,9 +54,11 @@ npm install git+https://github.com/nicolaspanel/numjs.git
 
 ### Benchmark
 ##### Environment:
-+ CPU: Intel Core i7-4790 4C/8T 3.60GHz
-+ RAM: 16.0GB
-+ SYS: Windows 10 Pro 64-bit 20H2 19042.1110
+| Module | Specification                         |
+| :----: | :------------------------------------ |
+| CPU    | Intel Core i7-4790 4C/8T 3.60GHz      |
+| RAM    | 16.0GB                                |
+| SYS    | Windows 10 Pro 64-bit 20H2 19042.1110 |
 
 ##### Parameters:
 | Parameter   | Value  |

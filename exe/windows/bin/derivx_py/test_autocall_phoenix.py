@@ -49,18 +49,11 @@ class Config(object):
         self.knock_o_ratio = 0.0 # 敲出比率，非百分比
         self.knock_i_ratio = 0.0 # 敲入比率，非百分比
         self.knock_o_steps = 0.0 # 敲出比例逐月递减率
-        self.knock_i_valid = True # 是否有下方敲入障碍
         self.knock_i_occur = False # 是否已经发生敲入
         self.knock_i_margin_call = True # 是否敲入后可追加保证金
-        self.coupon_rate = 0.0 # 客户年化收益率
+        self.coupon_rate = 0.0 # 客户单次票息
         self.margin_rate = 0.0 # 保证金比例
         self.margin_interest = 0.0 # 保证金利率
-        self.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
-        self.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率
-        self.prefix_coupon_use = False # 是否支付 prefix 收益
-        self.ukiuko_coupon = 0.0 # 对于无敲出无敲入的情况，客户只要求得到固定收益
-        self.ukiuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
-        self.ukiuko_coupon_use = False # 是否支付 ukiuko 收益
         self.calc_price = np.array([]) # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
         self.run_days = 0 # 运行天数
@@ -122,19 +115,11 @@ def Test_Autocall_Phoenix():
     config.knock_o_ratio = 1.0 # 敲出比率，非百分比
     config.knock_i_ratio = 0.7 # 敲入比率，非百分比
     config.knock_o_steps = 0.0 # 敲出比例逐月递减率
-    config.knock_i_valid = True # 是否有下方敲入障碍
     config.knock_i_occur = False # 是否已经发生敲入
     config.knock_i_margin_call = True # 是否敲入后可追加保证金
-    config.coupon_rate = 0.11 # 客户年化收益率
+    config.coupon_rate = 0.11 # 客户单次票息
     config.margin_rate = 1.0 # 保证金比例
     config.margin_interest = 0.03 # 保证金利率
-    
-    config.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
-    config.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率
-    config.prefix_coupon_use = False # 是否支付 prefix 收益
-    config.ukiuko_coupon = 0.0 # 对于无敲出无敲入的情况，客户只要求得到固定收益
-    config.ukiuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
-    config.ukiuko_coupon_use = False # 是否支付 ukiuko 收益
     
     #  1   2   3   4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     # 20, 40, 61, 81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732]
