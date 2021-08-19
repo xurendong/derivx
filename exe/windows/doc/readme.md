@@ -87,8 +87,8 @@ npm install git+https://github.com/nicolaspanel/numjs.git
 | CalcVega   | 2047ms | 2073ms | per price | -    |
 | CalcTheta  | 1636ms | 1647ms | per price | 2    |
 | CalcRho    | 2106ms | 2161ms | per price | -    |
-1. there is still 200ms optimization space.
-2. as run_days increases this tends to CalcPayoff's time consumption.
+1. There is still 200ms optimization space.
+2. As run_days increases this tends to CalcPayoff's time consumption.
 3. The difference between CalcCoupon and CalcPayoff shows that different prices and barriers will cause different time consumption.
 
 ### Contact Information
