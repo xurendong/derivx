@@ -1,10 +1,14 @@
 # DerivX
-V0.2.8-Beta Build 20210820
+V0.3.0-Beta Build 20210820
 
 © 2021-2021 Xu Rendong. All Rights Reserved.
 
 ### Project Summary
 Derivatives Pricing Engine.
++ Plain Vanilla European / American options portfolio calculation.
++ Plain Vanilla European / American option pricing and greek value calculation.
++ Exotic Autocall Phoenix / Snowball option pricing and greek value calculation.
++ Interfaces and examples for C++, Python, JavaScript.
 
 ### Install
 ##### C++:
@@ -33,9 +37,9 @@ npm install derivx
 import derivx
 print(derivx.Version())
 ```
-For more usages please refer to test files in [derivx_py](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py) folder.
+For more usages please refer to examples in [derivx_py](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py) folder.
 
-DerivX is not dependent on numpy, pandas and matplotlib, but if you want to run tests, you'd better install them with:
+DerivX is not dependent on numpy, pandas and matplotlib, but if you want to run examples, you'd better install them with:
 ```bash
 pip install numpy pandas matplotlib
 ```
@@ -45,9 +49,9 @@ pip install numpy pandas matplotlib
 const derivx = require('derivx')
 console.log(derivx.Version())
 ```
-For more usages please refer to test files in [derivx_js](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js) folder.
+For more usages please refer to examples in [derivx_js](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js) folder.
 
-DerivX is not dependent on numjs, but if you want to run tests, you'd better install it with:
+DerivX is not dependent on numjs, but if you want to run examples, you'd better install it with:
 ```bash
 npm install git+https://github.com/nicolaspanel/numjs.git
 ```
