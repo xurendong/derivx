@@ -132,8 +132,6 @@ def Test_Digital_Simple():
         print(digital.GetError())
         return
     print("payoff:", digital.CalcPayoff())
-    
-    print(digital.GetError())
 
 if __name__ == "__main__":
     Test_Digital_Simple()
