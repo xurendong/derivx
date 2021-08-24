@@ -1,4 +1,8 @@
 
+2021-08-24 0.3.1:
+ - 增加 Digital 类型 CashOrNothing、AssetOrNothing、SuperShare 简单结构。
+ - 增加 Digital 类型 CashOrNothing、AssetOrNothing、SuperShare 计算示例。
+
 2021-08-20 0.3.0:
  - 取消香草价差结构，香草组合结构只做一些示例实现。
  - 香草欧式增加价差组合价格计算示例。

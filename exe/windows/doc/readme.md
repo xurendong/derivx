@@ -1,5 +1,5 @@
 # DerivX
-V0.3.0-Beta Build 20210820
+V0.3.1-Beta Build 20210824
 
 © 2021-2021 Xu Rendong. All Rights Reserved.
 
