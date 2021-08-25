@@ -22,6 +22,20 @@
 
 import derivx
 
+class Config_Gap(object):
+    def __init__(self):
+        self.s = 0.0 # 标的价格
+        self.k_1 = 0.0 # 行权价格
+        self.k_2 = 0.0 # 行权价格
+        self.r = 0.0 # 无风险利率
+        self.q = 0.0 # 年化分红率
+        self.sigma = 0.0 # 波动率
+        self.t = 0.0 # 年化到期期限
+        self.is_call = True # 看涨看跌
+
+    def ToArgs(self):
+        return self.__dict__
+
 class Config_CashOrNothing(object):
     def __init__(self):
         self.s = 0.0 # 标的价格
@@ -63,6 +77,31 @@ class Config_SuperShare(object):
         return self.__dict__
 
 def Test_Digital_Simple():
+    digital = derivx.Digital("Gap")
+    
+    config = Config_Gap()
+    config.k_1 = 50.0 # 行权价格
+    config.k_2 = 57.0 # 行权价格
+    config.r = 0.09 # 无风险利率
+    config.q = 0.0 # 年化分红率
+    config.sigma = 0.2 # 波动率
+    config.t = 0.5 # 年化到期期限
+    config.is_call = True # 看涨看跌
+    
+    config.s = 50.0 # 标的价格
+    if digital.InitArgs(config.ToArgs()) < 0:
+        print(digital.GetError())
+        return
+    print("price:", digital.CalcPrice())
+    
+    config.s = 55.0 # 标的价格
+    if digital.InitArgs(config.ToArgs()) < 0:
+        print(digital.GetError())
+        return
+    print("payoff:", digital.CalcPayoff())
+    
+    ##################################################
+    
     digital = derivx.Digital("CashOrNothing")
     
     config = Config_CashOrNothing()

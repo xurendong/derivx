@@ -23,6 +23,19 @@
 
 const derivx = require('derivx')
 
+class Config_Gap {
+    constructor() {
+        this.s = 0.0 // 标的价格
+        this.k_1 = 0.0 // 行权价格
+        this.k_2 = 0.0 // 行权价格
+        this.r = 0.0 // 无风险利率
+        this.q = 0.0 // 年化分红率
+        this.sigma = 0.0 // 波动率
+        this.t = 0.0 // 年化到期期限
+        this.is_call = true // 看涨看跌
+    }
+}
+
 class Config_CashOrNothing {
     constructor() {
         this.s = 0.0 // 标的价格
@@ -62,6 +75,33 @@ class Config_SuperShare {
 
 function Test_Digital_Simple() {
     let digital = null, config = null
+    
+    digital = new derivx.Digital("Gap")
+    
+    config = new Config_Gap()
+    config.k_1 = 50.0 // 行权价格
+    config.k_2 = 57.0 // 行权价格
+    config.r = 0.09 // 无风险利率
+    config.q = 0.0 // 年化分红率
+    config.sigma = 0.2 // 波动率
+    config.t = 0.5 // 年化到期期限
+    config.is_call = true // 看涨看跌
+    
+    config.s = 50.0 // 标的价格
+    if(digital.InitArgs(config) < 0) {
+        console.log(digital.GetError())
+        return
+    }
+    console.log("price:", digital.CalcPrice())
+    
+    config.s = 55.0 // 标的价格
+    if(digital.InitArgs(config) < 0) {
+        console.log(digital.GetError())
+        return
+    }
+    console.log("payoff:", digital.CalcPayoff())
+    
+    //////////////////////////////////////////////////
     
     digital = new derivx.Digital("CashOrNothing")
     
