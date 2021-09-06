@@ -30,7 +30,7 @@ class Config_Gap {
         this.k_2 = 0.0 // 行权价格
         this.r = 0.0 // 无风险利率
         this.q = 0.0 // 年化分红率
-        this.sigma = 0.0 // 波动率
+        this.v = 0.0 // 波动率
         this.t = 0.0 // 年化到期期限
         this.is_call = true // 看涨看跌
     }
@@ -42,7 +42,7 @@ class Config_CashOrNothing {
         this.k = 0.0 // 行权价格
         this.r = 0.0 // 无风险利率
         this.q = 0.0 // 年化分红率
-        this.sigma = 0.0 // 波动率
+        this.v = 0.0 // 波动率
         this.t = 0.0 // 年化到期期限
         this.cash = 0.0 // 现金回报
         this.is_call = true // 看涨看跌
@@ -55,7 +55,7 @@ class Config_AssetOrNothing {
         this.k = 0.0 // 行权价格
         this.r = 0.0 // 无风险利率
         this.q = 0.0 // 年化分红率
-        this.sigma = 0.0 // 波动率
+        this.v = 0.0 // 波动率
         this.t = 0.0 // 年化到期期限
         this.is_call = true // 看涨看跌
     }
@@ -68,7 +68,7 @@ class Config_SuperShare {
         this.k_h = 0.0 // 高端行权价格
         this.r = 0.0 // 无风险利率
         this.q = 0.0 // 年化分红率
-        this.sigma = 0.0 // 波动率
+        this.v = 0.0 // 波动率
         this.t = 0.0 // 年化到期期限
     }
 }
@@ -83,7 +83,7 @@ function Test_Digital_Simple() {
     config.k_2 = 57.0 // 行权价格
     config.r = 0.09 // 无风险利率
     config.q = 0.0 // 年化分红率
-    config.sigma = 0.2 // 波动率
+    config.v = 0.2 // 波动率
     config.t = 0.5 // 年化到期期限
     config.is_call = true // 看涨看跌
     
@@ -110,7 +110,7 @@ function Test_Digital_Simple() {
     config.k = 80.0 // 行权价格
     config.r = 0.06 // 无风险利率
     config.q = 0.06 // 年化分红率
-    config.sigma = 0.35 // 波动率
+    config.v = 0.35 // 波动率
     config.t = 0.75 // 年化到期期限
     config.cash = 10.0 // 现金回报
     
@@ -137,7 +137,7 @@ function Test_Digital_Simple() {
     config.k = 65.0 // 行权价格
     config.r = 0.07 // 无风险利率
     config.q = 0.05 // 年化分红率
-    config.sigma = 0.27 // 波动率
+    config.v = 0.27 // 波动率
     config.t = 0.5 // 年化到期期限
     
     config.is_call = false // 看涨看跌
@@ -164,7 +164,7 @@ function Test_Digital_Simple() {
     config.k_h = 110.0 // 高端行权价格
     config.r = 0.1 // 无风险利率
     config.q = 0.1 // 年化分红率
-    config.sigma = 0.2 // 波动率
+    config.v = 0.2 // 波动率
     config.t = 0.25 // 年化到期期限
     
     if(digital.InitArgs(config) < 0) {

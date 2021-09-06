@@ -29,7 +29,7 @@ class Config_Gap(object):
         self.k_2 = 0.0 # 行权价格
         self.r = 0.0 # 无风险利率
         self.q = 0.0 # 年化分红率
-        self.sigma = 0.0 # 波动率
+        self.v = 0.0 # 波动率
         self.t = 0.0 # 年化到期期限
         self.is_call = True # 看涨看跌
 
@@ -42,7 +42,7 @@ class Config_CashOrNothing(object):
         self.k = 0.0 # 行权价格
         self.r = 0.0 # 无风险利率
         self.q = 0.0 # 年化分红率
-        self.sigma = 0.0 # 波动率
+        self.v = 0.0 # 波动率
         self.t = 0.0 # 年化到期期限
         self.cash = 0.0 # 现金回报
         self.is_call = True # 看涨看跌
@@ -56,7 +56,7 @@ class Config_AssetOrNothing(object):
         self.k = 0.0 # 行权价格
         self.r = 0.0 # 无风险利率
         self.q = 0.0 # 年化分红率
-        self.sigma = 0.0 # 波动率
+        self.v = 0.0 # 波动率
         self.t = 0.0 # 年化到期期限
         self.is_call = True # 看涨看跌
 
@@ -70,7 +70,7 @@ class Config_SuperShare(object):
         self.k_h = 0.0 # 高端行权价格
         self.r = 0.0 # 无风险利率
         self.q = 0.0 # 年化分红率
-        self.sigma = 0.0 # 波动率
+        self.v = 0.0 # 波动率
         self.t = 0.0 # 年化到期期限
 
     def ToArgs(self):
@@ -84,7 +84,7 @@ def Test_Digital_Simple():
     config.k_2 = 57.0 # 行权价格
     config.r = 0.09 # 无风险利率
     config.q = 0.0 # 年化分红率
-    config.sigma = 0.2 # 波动率
+    config.v = 0.2 # 波动率
     config.t = 0.5 # 年化到期期限
     config.is_call = True # 看涨看跌
     
@@ -109,7 +109,7 @@ def Test_Digital_Simple():
     config.k = 80.0 # 行权价格
     config.r = 0.06 # 无风险利率
     config.q = 0.06 # 年化分红率
-    config.sigma = 0.35 # 波动率
+    config.v = 0.35 # 波动率
     config.t = 0.75 # 年化到期期限
     config.cash = 10.0 # 现金回报
     
@@ -134,7 +134,7 @@ def Test_Digital_Simple():
     config.k = 65.0 # 行权价格
     config.r = 0.07 # 无风险利率
     config.q = 0.05 # 年化分红率
-    config.sigma = 0.27 # 波动率
+    config.v = 0.27 # 波动率
     config.t = 0.5 # 年化到期期限
     
     config.is_call = False # 看涨看跌
@@ -159,7 +159,7 @@ def Test_Digital_Simple():
     config.k_h = 110.0 # 高端行权价格
     config.r = 0.1 # 无风险利率
     config.q = 0.1 # 年化分红率
-    config.sigma = 0.2 # 波动率
+    config.v = 0.2 # 波动率
     config.t = 0.25 # 年化到期期限
     
     if digital.InitArgs(config.ToArgs()) < 0:

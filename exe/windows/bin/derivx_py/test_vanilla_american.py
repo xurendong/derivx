@@ -29,9 +29,9 @@ import derivx
 def Test_Vanilla_American():
     vanilla = derivx.Vanilla("American")
     
-    # CalcPrice(model, s, k, r, q, sigma, t, is_call)
-    # CalcGreeks(model, greek, s, k, r, q, sigma, t, is_long, is_call, is_futures, is_foreign)
-    # CalcGreeksSurface(surface, model, greek, s, k, r, q, sigma, t, is_long, is_call, is_futures, is_foreign)
+    # CalcPrice(model, s, k, r, q, v, t, is_call)
+    # CalcGreeks(model, greek, s, k, r, q, v, t, is_long, is_call, is_futures, is_foreign)
+    # CalcGreeksSurface(surface, model, greek, s, k, r, q, v, t, is_long, is_call, is_futures, is_foreign)
     
     print(vanilla.GetError())
 

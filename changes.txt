@@ -1,4 +1,8 @@
 
+2021-09-06 0.3.2:
+ - Vanilla 和 Digital 类型入参 sigma 改用 v 简化。
+ - 香草组合结构示例允许多个波动率作为入参。
+
 2021-09-03 0.3.1:
  - 增加 Digital 类型 CashOrNothing、AssetOrNothing、SuperShare 简单结构。
  - 增加 Digital 类型 CashOrNothing、AssetOrNothing、SuperShare 计算示例。
