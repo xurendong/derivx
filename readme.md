@@ -57,7 +57,7 @@ npm install git+https://github.com/nicolaspanel/numjs.git
 ```
 
 ### Benchmark
-Please refer to [benchmark](https://github.com/xurendong/derivx/blob/main/benchmark.md).
+Please refer to [benchmark](https://github.com/xurendong/derivx/blob/main/benchmark.md) file.
 
 ### Contact Information
 QQ: 277195007, WeChat: xrd_ustc, E-mail: xrd@ustc.edu
