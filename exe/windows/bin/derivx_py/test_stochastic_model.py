@@ -36,6 +36,11 @@ class Config_GBM(object):
         self.rand_rows = 0 # 随机数据行数
         self.rand_cols = 0 # 随机数据列数
         self.rand_seed = np.array([]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        self.dual_smooth = True # 对偶平滑路径
+        self.runs_size = 0 # 模拟路径数量
+        self.runs_step = 0 # 价格变动步数
+        self.year_days = 0 # 年交易日数量
 
     def ToArgs(self):
         return self.__dict__
@@ -45,6 +50,11 @@ class Config_CIR(object):
         self.rand_rows = 0 # 随机数据行数
         self.rand_cols = 0 # 随机数据列数
         self.rand_seed = np.array([]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        self.dual_smooth = True # 对偶平滑路径
+        self.runs_size = 0 # 模拟路径数量
+        self.runs_step = 0 # 价格变动步数
+        self.year_days = 0 # 年交易日数量
 
     def ToArgs(self):
         return self.__dict__
@@ -54,6 +64,11 @@ class Config_JDP(object):
         self.rand_rows = 0 # 随机数据行数
         self.rand_cols = 0 # 随机数据列数
         self.rand_seed = np.array([]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        self.dual_smooth = True # 对偶平滑路径
+        self.runs_size = 0 # 模拟路径数量
+        self.runs_step = 0 # 价格变动步数
+        self.year_days = 0 # 年交易日数量
 
     def ToArgs(self):
         return self.__dict__
@@ -63,6 +78,11 @@ class Config_SVM(object):
         self.rand_rows = 0 # 随机数据行数
         self.rand_cols = 0 # 随机数据列数
         self.rand_seed = np.array([]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        self.dual_smooth = True # 对偶平滑路径
+        self.runs_size = 0 # 模拟路径数量
+        self.runs_step = 0 # 价格变动步数
+        self.year_days = 0 # 年交易日数量
 
     def ToArgs(self):
         return self.__dict__
@@ -72,6 +92,11 @@ class Config_SABR(object):
         self.rand_rows = 0 # 随机数据行数
         self.rand_cols = 0 # 随机数据列数
         self.rand_seed = np.array([]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        self.dual_smooth = True # 对偶平滑路径
+        self.runs_size = 0 # 模拟路径数量
+        self.runs_step = 0 # 价格变动步数
+        self.year_days = 0 # 年交易日数量
 
     def ToArgs(self):
         return self.__dict__
@@ -83,6 +108,10 @@ def Test_Stochastic_Model():
     config.rand_rows = 500000 # 随机数据行数
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = True # 对偶平滑路径
+    config.runs_size = 1000000 # 模拟路径数量
+    config.runs_step = 244 # 价格变动步数
+    config.year_days = 244 # 年交易日数量
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
@@ -96,6 +125,10 @@ def Test_Stochastic_Model():
     config.rand_rows = 500000 # 随机数据行数
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = True # 对偶平滑路径
+    config.runs_size = 1000000 # 模拟路径数量
+    config.runs_step = 244 # 价格变动步数
+    config.year_days = 244 # 年交易日数量
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
@@ -109,6 +142,10 @@ def Test_Stochastic_Model():
     config.rand_rows = 500000 # 随机数据行数
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = True # 对偶平滑路径
+    config.runs_size = 1000000 # 模拟路径数量
+    config.runs_step = 244 # 价格变动步数
+    config.year_days = 244 # 年交易日数量
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
@@ -122,6 +159,10 @@ def Test_Stochastic_Model():
     config.rand_rows = 500000 # 随机数据行数
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = True # 对偶平滑路径
+    config.runs_size = 1000000 # 模拟路径数量
+    config.runs_step = 244 # 价格变动步数
+    config.year_days = 244 # 年交易日数量
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
@@ -135,6 +176,10 @@ def Test_Stochastic_Model():
     config.rand_rows = 500000 # 随机数据行数
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = True # 对偶平滑路径
+    config.runs_size = 1000000 # 模拟路径数量
+    config.runs_step = 244 # 价格变动步数
+    config.year_days = 244 # 年交易日数量
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())

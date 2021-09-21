@@ -36,6 +36,11 @@ class Config_GBM {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        this.dual_smooth = true // 对偶平滑路径
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
     }
 }
 
@@ -44,6 +49,11 @@ class Config_CIR {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        this.dual_smooth = true // 对偶平滑路径
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
     }
 }
 
@@ -52,6 +62,11 @@ class Config_JDP {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        this.dual_smooth = true // 对偶平滑路径
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
     }
 }
 
@@ -60,6 +75,11 @@ class Config_SVM {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        this.dual_smooth = true // 对偶平滑路径
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
     }
 }
 
@@ -68,6 +88,11 @@ class Config_SABR {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        
+        this.dual_smooth = true // 对偶平滑路径
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
     }
 }
 
@@ -80,6 +105,10 @@ function Test_Stochastic_Model() {
     config.rand_rows = 500000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = true // 对偶平滑路径
+    config.runs_size = 1000000 // 模拟路径数量
+    config.runs_step = 244 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
@@ -94,6 +123,10 @@ function Test_Stochastic_Model() {
     config.rand_rows = 500000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = true // 对偶平滑路径
+    config.runs_size = 1000000 // 模拟路径数量
+    config.runs_step = 244 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
@@ -108,6 +141,10 @@ function Test_Stochastic_Model() {
     config.rand_rows = 500000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = true // 对偶平滑路径
+    config.runs_size = 1000000 // 模拟路径数量
+    config.runs_step = 244 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
@@ -122,6 +159,10 @@ function Test_Stochastic_Model() {
     config.rand_rows = 500000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = true // 对偶平滑路径
+    config.runs_size = 1000000 // 模拟路径数量
+    config.runs_step = 244 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
@@ -136,6 +177,10 @@ function Test_Stochastic_Model() {
     config.rand_rows = 500000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.dual_smooth = true // 对偶平滑路径
+    config.runs_size = 1000000 // 模拟路径数量
+    config.runs_step = 244 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())

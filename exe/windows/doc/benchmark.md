@@ -52,14 +52,29 @@ DerivX V0.3.1-Beta Build 20210903
 ### Parameters:
 | Parameter   | Value  |
 | :---------- | :----: |
-| rand_rows   | 2500000 |
+| rand_rows   | 3600000 |
 | rand_cols   | 250 |
 | rand_seed   | { 0, 1, 2, 3, 4, 5, 6, 7, <br>8, 9, 10, 11, 12, 13, 14, 15, <br>16, 17, 18, 19, 20, 21, 22, 23 } |
 | dual_smooth | true |
-| runs_size   | 5000000 |
+| runs_size   | 7200000 |
 | runs_step   | 244 |
 | run_from    | 0 |
 | run_days    | 1 |
 
 ### C++:
-TBD...
+| Function | Min    | Max    | Note          |
+| :------- | -----: | -----: | :-----------: |
+| InitRand |  731ms |  817ms | -             |
+| InitPath | 6445ms | 7632ms | 978ms/million |
+
+&nbsp;&nbsp;&nbsp;&nbsp;Autocall Snowball:
+
+| Function   | Min    | Max    | Unit      | Note          |
+| :--------- | -----: | -----: | :-------: | :-----------: |
+| CalcCoupon | 1581ms | 1590ms | -         | 220ms/million |
+| CalcPayoff | 3224ms | 3282ms | per price | 465ms/million |
+| CalcDelta  | TBD    | TBD    | per price | TBD           |
+| CalcGamma  | TBD    | TBD    | per price | TBD           |
+| CalcVega   | TBD    | TBD    | per price | TBD           |
+| CalcTheta  | TBD    | TBD    | per price | TBD           |
+| CalcRho    | TBD    | TBD    | per price | TBD           |
