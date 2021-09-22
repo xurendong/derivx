@@ -5,6 +5,7 @@
  - opt 香草组合结构示例允许多个波动率作为入参。
  - opt 改进 Digital 和 Stochastic 基类结构，完善 Stochastic 类及其示例。
  - fix 修正参数设置时因为动态类型转换可能导致内存结构异常的问题。
+ - new 完成 Stochastic GBM 几何布朗运动 Geometric Brownian Motion 随机路径生成。
 
 2021-09-03 0.3.1:
  - new 增加 Digital 类型 CashOrNothing、AssetOrNothing、SuperShare 简单结构。
@@ -27,8 +28,8 @@
  - opt 优化雪球结构计算效率。
 
 2021-08-10 0.2.5:
- - new 改进随机数据种子输参方式。
  - opt 调整 Snowball 至 Autocall 大类下。
+ - new 改进随机数据种子输参方式。
  - opt 优化随机数据和路径数据生成效率。
 
 2021-07-29 0.2.4:

@@ -47,7 +47,7 @@ DerivX V0.3.1-Beta Build 20210903
 | CPU    | AMD Ryzen 9 5900X 12C/24T 3.7GHz-4.8GHz  |
 | RAM    | Corsair 64GB DDR4 1600MHz Dual (3200MHz) |
 | SSD    | SAMSUNG 980 Pro NVMe M.2 1TB             |
-| SYS    | Windows 10 Ent 64-bit 21H1 19043.1165    |
+| SYS    | Windows 10 Ent 64-bit 21H1 19043.1237    |
 
 ### Parameters:
 | Parameter   | Value  |
