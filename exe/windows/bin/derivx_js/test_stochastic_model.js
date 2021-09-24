@@ -55,9 +55,9 @@ class Config_CIR {
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
         this.price = 0.0 // 初始价格
+        this.sigma = 0.0 // 波动率
         this.kappa = 0.0 // 均值回归系数
         this.theta = 0.0 // 长期均值项
-        this.sigma = 0.0 // 波动率
     }
 }
 
@@ -69,6 +69,12 @@ class Config_JDP {
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
+        this.price = 0.0 // 初始价格
+        this.sigma = 0.0 // 波动率
+        this.risk_free_rate = 0.0 // 无风险利率
+        this.mu = 0.0 // 预期跳跃均值，正负决定跳跃方向
+        this.lamb = 0.0 // 跳跃强度
+        this.delta = 0.0 // 跳跃强度标准差
     }
 }
 
@@ -95,6 +101,7 @@ class Config_SABR {
 }
 
 function Test_Stochastic_Model() {
+    let result = 0.0
     let stochastic = null, config = null
     
     stochastic = new derivx.Stochastic("GBM")
@@ -104,7 +111,7 @@ function Test_Stochastic_Model() {
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 244 // 价格变动步数
+    config.runs_step = 250 // 价格变动步数
     config.year_days = 244 // 年交易日数量
     config.price = 1.0 // 初始价格
     config.sigma = 0.24 // 波动率
@@ -116,7 +123,7 @@ function Test_Stochastic_Model() {
         return
     }
     
-    let result = nj.zeros([config.runs_size, config.runs_step + 1]).tolist()
+    result = nj.zeros([config.runs_size, config.runs_step]).tolist()
     if(stochastic.MakeData(result) < 0) {
         console.log(stochastic.GetError())
         return
@@ -132,19 +139,19 @@ function Test_Stochastic_Model() {
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 244 // 价格变动步数
+    config.runs_step = 250 // 价格变动步数
     config.year_days = 244 // 年交易日数量
     config.price = 0.05 // 初始价格
+    config.sigma = 0.1 // 波动率
     config.kappa = 3.0 // 均值回归系数
     config.theta = 0.02 // 长期均值项
-    config.sigma = 0.1 // 波动率
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
         return
     }
     
-    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    result = nj.zeros([config.runs_size, config.runs_step]).tolist()
     if(stochastic.MakeData(result) < 0) {
         console.log(stochastic.GetError())
         return
@@ -160,13 +167,26 @@ function Test_Stochastic_Model() {
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 244 // 价格变动步数
+    config.runs_step = 250 // 价格变动步数
     config.year_days = 244 // 年交易日数量
+    config.price = 1.0 // 初始价格
+    config.sigma = 0.2 // 波动率
+    config.risk_free_rate = 0.05 // 无风险利率
+    config.mu = -0.6 // 预期跳跃均值，正负决定跳跃方向
+    config.lamb = 0.75 // 跳跃强度
+    config.delta = 0.25 // 跳跃强度标准差
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
         return
     }
+    
+    result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    if(stochastic.MakeData(result) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    //console.log("result:", result)
     
     //////////////////////////////////////////////////
     
@@ -177,7 +197,7 @@ function Test_Stochastic_Model() {
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 244 // 价格变动步数
+    config.runs_step = 250 // 价格变动步数
     config.year_days = 244 // 年交易日数量
     
     if(stochastic.InitArgs(config) < 0) {
@@ -194,7 +214,7 @@ function Test_Stochastic_Model() {
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 244 // 价格变动步数
+    config.runs_step = 250 // 价格变动步数
     config.year_days = 244 // 年交易日数量
     
     if(stochastic.InitArgs(config) < 0) {

@@ -78,9 +78,9 @@ class Config_CIR(object):
         self.runs_step = 0 # 价格变动步数
         self.year_days = 0 # 年交易日数量
         self.price = 0.0 # 初始价格
+        self.sigma = 0.0 # 波动率
         self.kappa = 0.0 # 均值回归系数
         self.theta = 0.0 # 长期均值项
-        self.sigma = 0.0 # 波动率
 
     def ToArgs(self):
         return self.__dict__
@@ -93,6 +93,12 @@ class Config_JDP(object):
         self.runs_size = 0 # 模拟路径数量
         self.runs_step = 0 # 价格变动步数
         self.year_days = 0 # 年交易日数量
+        self.price = 0.0 # 初始价格
+        self.sigma = 0.0 # 波动率
+        self.risk_free_rate = 0.0 # 无风险利率
+        self.mu = 0.0 # 预期跳跃均值，正负决定跳跃方向
+        self.lamb = 0.0 # 跳跃强度
+        self.delta = 0.0 # 跳跃强度标准差
 
     def ToArgs(self):
         return self.__dict__
@@ -129,7 +135,7 @@ def Test_Stochastic_Model():
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 # 模拟路径数量
-    config.runs_step = 244 # 价格变动步数
+    config.runs_step = 250 # 价格变动步数
     config.year_days = 244 # 年交易日数量
     config.price = 1.0 # 初始价格
     config.sigma = 0.24 # 波动率
@@ -140,13 +146,13 @@ def Test_Stochastic_Model():
         print(stochastic.GetError())
         return
     
-    result = np.zeros((config.runs_size, config.runs_step + 1))
+    result = np.zeros((config.runs_size, config.runs_step))
     if stochastic.MakeData(result) < 0:
         print(stochastic.GetError())
         return
     #print(result)
     ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
-    ShowPlot_Distribution(result, 1000, config.runs_step + 1, "Price - Steps", "Price")
+    ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
     
     ##################################################
     
@@ -157,12 +163,12 @@ def Test_Stochastic_Model():
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 # 模拟路径数量
-    config.runs_step = 244 # 价格变动步数
+    config.runs_step = 250 # 价格变动步数
     config.year_days = 244 # 年交易日数量
     config.price = 0.05 # 初始价格
+    config.sigma = 0.1 # 波动率
     config.kappa = 3.0 # 均值回归系数
     config.theta = 0.02 # 长期均值项
-    config.sigma = 0.1 # 波动率
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
@@ -185,12 +191,26 @@ def Test_Stochastic_Model():
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 # 模拟路径数量
-    config.runs_step = 244 # 价格变动步数
+    config.runs_step = 250 # 价格变动步数
     config.year_days = 244 # 年交易日数量
+    config.price = 1.0 # 初始价格
+    config.sigma = 0.2 # 波动率
+    config.risk_free_rate = 0.05 # 无风险利率
+    config.mu = -0.6 # 预期跳跃均值，正负决定跳跃方向
+    config.lamb = 0.75 # 跳跃强度
+    config.delta = 0.25 # 跳跃强度标准差
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
         return
+    
+    result = np.zeros((config.runs_size, config.runs_step))
+    if stochastic.MakeData(result) < 0:
+        print(stochastic.GetError())
+        return
+    #print(result)
+    ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
+    ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
     
     ##################################################
     
@@ -201,7 +221,7 @@ def Test_Stochastic_Model():
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 # 模拟路径数量
-    config.runs_step = 244 # 价格变动步数
+    config.runs_step = 250 # 价格变动步数
     config.year_days = 244 # 年交易日数量
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
@@ -217,7 +237,7 @@ def Test_Stochastic_Model():
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 # 模拟路径数量
-    config.runs_step = 244 # 价格变动步数
+    config.runs_step = 250 # 价格变动步数
     config.year_days = 244 # 年交易日数量
     
     if stochastic.InitArgs(config.ToArgs()) < 0:

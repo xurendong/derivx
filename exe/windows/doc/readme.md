@@ -1,5 +1,5 @@
 # DerivX
-V0.3.3-Beta Build 20210925
+[V0.3.3-Beta Build 20210925](https://github.com/xurendong/derivx/blob/main/changes.txt)
 
 © 2021-2021 Xu Rendong. All Rights Reserved.
 
