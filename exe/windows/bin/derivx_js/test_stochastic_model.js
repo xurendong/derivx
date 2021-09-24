@@ -36,15 +36,13 @@ class Config_GBM {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-        
-        this.dual_smooth = true // 对偶平滑路径
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
-        
-        this.v = 0.0 // 波动率
-        this.r = 0.0 // 无风险利率
-        this.q = 0.0 // 股息或贴水
+        this.price = 0.0 // 初始价格
+        this.sigma = 0.0 // 波动率
+        this.risk_free_rate = 0.0 // 无风险利率
+        this.basis_rate = 0.0 // 股息率或贴水率
     }
 }
 
@@ -53,11 +51,13 @@ class Config_CIR {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-        
-        this.dual_smooth = true // 对偶平滑路径
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
+        this.price = 0.0 // 初始价格
+        this.kappa = 0.0 // 均值回归系数
+        this.theta = 0.0 // 长期均值项
+        this.sigma = 0.0 // 波动率
     }
 }
 
@@ -66,8 +66,6 @@ class Config_JDP {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-        
-        this.dual_smooth = true // 对偶平滑路径
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
@@ -79,8 +77,6 @@ class Config_SVM {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-        
-        this.dual_smooth = true // 对偶平滑路径
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
@@ -92,8 +88,6 @@ class Config_SABR {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-        
-        this.dual_smooth = true // 对偶平滑路径
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
@@ -106,16 +100,16 @@ function Test_Stochastic_Model() {
     stochastic = new derivx.Stochastic("GBM")
     
     config = new Config_GBM()
-    config.rand_rows = 5000 // 随机数据行数
+    config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.dual_smooth = true // 对偶平滑路径
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 244 // 价格变动步数
     config.year_days = 244 // 年交易日数量
-    config.v = 0.24 // 波动率
-    config.r = 0.03 // 无风险利率
-    config.q = 0.0 // 股息或贴水
+    config.price = 1.0 // 初始价格
+    config.sigma = 0.24 // 波动率
+    config.risk_free_rate = 0.03 // 无风险利率
+    config.basis_rate = 0.0 // 股息率或贴水率
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
@@ -134,28 +128,37 @@ function Test_Stochastic_Model() {
     stochastic = new derivx.Stochastic("CIR")
     
     config = new Config_CIR()
-    config.rand_rows = 5000 // 随机数据行数
+    config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.dual_smooth = true // 对偶平滑路径
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 244 // 价格变动步数
     config.year_days = 244 // 年交易日数量
+    config.price = 0.05 // 初始价格
+    config.kappa = 3.0 // 均值回归系数
+    config.theta = 0.02 // 长期均值项
+    config.sigma = 0.1 // 波动率
     
     if(stochastic.InitArgs(config) < 0) {
         console.log(stochastic.GetError())
         return
     }
     
+    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    if(stochastic.MakeData(result) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    //console.log("result:", result)
+    
     //////////////////////////////////////////////////
     
     stochastic = new derivx.Stochastic("JDP")
     
     config = new Config_JDP()
-    config.rand_rows = 5000 // 随机数据行数
+    config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.dual_smooth = true // 对偶平滑路径
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 244 // 价格变动步数
     config.year_days = 244 // 年交易日数量
@@ -170,10 +173,9 @@ function Test_Stochastic_Model() {
     stochastic = new derivx.Stochastic("SVM")
     
     config = new Config_SVM()
-    config.rand_rows = 5000 // 随机数据行数
+    config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.dual_smooth = true // 对偶平滑路径
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 244 // 价格变动步数
     config.year_days = 244 // 年交易日数量
@@ -188,10 +190,9 @@ function Test_Stochastic_Model() {
     stochastic = new derivx.Stochastic("SABR")
     
     config = new Config_SABR()
-    config.rand_rows = 5000 // 随机数据行数
+    config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.dual_smooth = true // 对偶平滑路径
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 244 // 价格变动步数
     config.year_days = 244 // 年交易日数量
