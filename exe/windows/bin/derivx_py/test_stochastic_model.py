@@ -111,6 +111,13 @@ class Config_SVM(object):
         self.runs_size = 0 # 模拟路径数量
         self.runs_step = 0 # 价格变动步数
         self.year_days = 0 # 年交易日数量
+        self.price = 0.0 # 初始价格
+        self.sigma = 0.0 # 初始波动率
+        self.risk_free_rate = 0.0 # 无风险利率
+        self.kappa = 0.0 # 波动率均值回归系数
+        self.theta = 0.0 # 波动率长期均值项
+        self.sigma_sigma = 0.0 # 波动率的波动率
+        self.rho = 0.0 # 两个随机过程的相关系数
 
     def ToArgs(self):
         return self.__dict__
@@ -127,7 +134,7 @@ class Config_SABR(object):
     def ToArgs(self):
         return self.__dict__
 
-def Test_Stochastic_Model():
+def Test_Stochastic_Model_GBM():
     stochastic = derivx.Stochastic("GBM")
     
     config = Config_GBM()
@@ -153,9 +160,8 @@ def Test_Stochastic_Model():
     #print(result)
     ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
     ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
-    
-    ##################################################
-    
+
+def Test_Stochastic_Model_CIR():
     stochastic = derivx.Stochastic("CIR")
     
     config = Config_CIR()
@@ -181,9 +187,8 @@ def Test_Stochastic_Model():
     #print(result)
     ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
     ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
-    
-    ##################################################
-    
+
+def Test_Stochastic_Model_JDP():
     stochastic = derivx.Stochastic("JDP")
     
     config = Config_JDP()
@@ -211,9 +216,8 @@ def Test_Stochastic_Model():
     #print(result)
     ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
     ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
-    
-    ##################################################
-    
+
+def Test_Stochastic_Model_SVM():
     stochastic = derivx.Stochastic("SVM")
     
     config = Config_SVM()
@@ -223,13 +227,27 @@ def Test_Stochastic_Model():
     config.runs_size = 10000 # 模拟路径数量
     config.runs_step = 250 # 价格变动步数
     config.year_days = 244 # 年交易日数量
+    config.price = 1.0 # 初始价格
+    config.sigma = 0.1 # 初始波动率
+    config.risk_free_rate = 0.03 # 无风险利率
+    config.kappa = 3.0 # 波动率均值回归系数
+    config.theta = 0.25 # 波动率长期均值项
+    config.sigma_sigma = 0.1 # 波动率的波动率
+    config.rho = 0.6 # 两个随机过程的相关系数
     
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
         return
     
-    ##################################################
-    
+    result = np.zeros((config.runs_size, config.runs_step))
+    if stochastic.MakeData(result) < 0:
+        print(stochastic.GetError())
+        return
+    #print(result)
+    ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
+    ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
+
+def Test_Stochastic_Model_SABR():
     stochastic = derivx.Stochastic("SABR")
     
     config = Config_SABR()
@@ -243,6 +261,18 @@ def Test_Stochastic_Model():
     if stochastic.InitArgs(config.ToArgs()) < 0:
         print(stochastic.GetError())
         return
+    
+    result = np.zeros((config.runs_size, config.runs_step))
+    if stochastic.MakeData(result) < 0:
+        print(stochastic.GetError())
+        return
+    #print(result)
+    ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
+    ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
 
 if __name__ == "__main__":
-    Test_Stochastic_Model()
+    #Test_Stochastic_Model_GBM()
+    #Test_Stochastic_Model_CIR()
+    #Test_Stochastic_Model_JDP()
+    Test_Stochastic_Model_SVM()
+    #Test_Stochastic_Model_SABR()

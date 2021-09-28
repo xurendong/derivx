@@ -86,6 +86,13 @@ class Config_SVM {
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
         this.year_days = 0 // 年交易日数量
+        this.price = 0.0 // 初始价格
+        this.sigma = 0.0 // 初始波动率
+        this.risk_free_rate = 0.0 // 无风险利率
+        this.kappa = 0.0 // 波动率均值回归系数
+        this.theta = 0.0 // 波动率长期均值项
+        this.sigma_sigma = 0.0 // 波动率的波动率
+        this.rho = 0.0 // 两个随机过程的相关系数
     }
 }
 
@@ -100,13 +107,10 @@ class Config_SABR {
     }
 }
 
-function Test_Stochastic_Model() {
-    let result = 0.0
-    let stochastic = null, config = null
+function Test_Stochastic_Model_GBM() {
+    let stochastic = new derivx.Stochastic("GBM")
     
-    stochastic = new derivx.Stochastic("GBM")
-    
-    config = new Config_GBM()
+    let config = new Config_GBM()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
@@ -123,18 +127,18 @@ function Test_Stochastic_Model() {
         return
     }
     
-    result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
     if(stochastic.MakeData(result) < 0) {
         console.log(stochastic.GetError())
         return
     }
     //console.log("result:", result)
+}
+
+function Test_Stochastic_Model_CIR() {
+    let stochastic = new derivx.Stochastic("CIR")
     
-    //////////////////////////////////////////////////
-    
-    stochastic = new derivx.Stochastic("CIR")
-    
-    config = new Config_CIR()
+    let config = new Config_CIR()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
@@ -151,18 +155,18 @@ function Test_Stochastic_Model() {
         return
     }
     
-    result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
     if(stochastic.MakeData(result) < 0) {
         console.log(stochastic.GetError())
         return
     }
     //console.log("result:", result)
+}
+
+function Test_Stochastic_Model_JDP() {
+    let stochastic = new derivx.Stochastic("JDP")
     
-    //////////////////////////////////////////////////
-    
-    stochastic = new derivx.Stochastic("JDP")
-    
-    config = new Config_JDP()
+    let config = new Config_JDP()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
@@ -181,46 +185,71 @@ function Test_Stochastic_Model() {
         return
     }
     
-    result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
     if(stochastic.MakeData(result) < 0) {
         console.log(stochastic.GetError())
         return
     }
     //console.log("result:", result)
-    
-    //////////////////////////////////////////////////
-    
-    stochastic = new derivx.Stochastic("SVM")
-    
-    config = new Config_SVM()
-    config.rand_rows = 10000 // 随机数据行数
-    config.rand_cols = 250 // 随机数据列数
-    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
-    config.year_days = 244 // 年交易日数量
-    
-    if(stochastic.InitArgs(config) < 0) {
-        console.log(stochastic.GetError())
-        return
-    }
-    
-    //////////////////////////////////////////////////
-    
-    stochastic = new derivx.Stochastic("SABR")
-    
-    config = new Config_SABR()
-    config.rand_rows = 10000 // 随机数据行数
-    config.rand_cols = 250 // 随机数据列数
-    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
-    config.year_days = 244 // 年交易日数量
-    
-    if(stochastic.InitArgs(config) < 0) {
-        console.log(stochastic.GetError())
-        return
-    }
 }
 
-Test_Stochastic_Model()
+function Test_Stochastic_Model_SVM() {
+    let stochastic = new derivx.Stochastic("SVM")
+    
+    let config = new Config_SVM()
+    config.rand_rows = 10000 // 随机数据行数
+    config.rand_cols = 250 // 随机数据列数
+    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.runs_size = 10000 // 模拟路径数量
+    config.runs_step = 250 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
+    config.price = 1.0 // 初始价格
+    config.sigma = 0.1 // 初始波动率
+    config.risk_free_rate = 0.03 // 无风险利率
+    config.kappa = 3.0 // 波动率均值回归系数
+    config.theta = 0.25 // 波动率长期均值项
+    config.sigma_sigma = 0.1 // 波动率的波动率
+    config.rho = 0.6 // 两个随机过程的相关系数
+    
+    if(stochastic.InitArgs(config) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    
+    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    if(stochastic.MakeData(result) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    //console.log("result:", result)
+}
+
+function Test_Stochastic_Model_SABR() {
+    let stochastic = new derivx.Stochastic("SABR")
+    
+    let config = new Config_SABR()
+    config.rand_rows = 10000 // 随机数据行数
+    config.rand_cols = 250 // 随机数据列数
+    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.runs_size = 10000 // 模拟路径数量
+    config.runs_step = 250 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
+    
+    if(stochastic.InitArgs(config) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    
+    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    if(stochastic.MakeData(result) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    //console.log("result:", result)
+}
+
+//Test_Stochastic_Model_GBM()
+//Test_Stochastic_Model_CIR()
+//Test_Stochastic_Model_JDP()
+Test_Stochastic_Model_SVM()
+//Test_Stochastic_Model_SABR()
