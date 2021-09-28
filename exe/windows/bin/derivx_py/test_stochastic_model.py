@@ -103,7 +103,7 @@ class Config_JDP(object):
     def ToArgs(self):
         return self.__dict__
 
-class Config_SVM(object):
+class Config_HEST(object):
     def __init__(self):
         self.rand_rows = 0 # 随机数据行数
         self.rand_cols = 0 # 随机数据列数
@@ -217,10 +217,10 @@ def Test_Stochastic_Model_JDP():
     ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
     ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
 
-def Test_Stochastic_Model_SVM():
-    stochastic = derivx.Stochastic("SVM")
+def Test_Stochastic_Model_HEST():
+    stochastic = derivx.Stochastic("HEST")
     
-    config = Config_SVM()
+    config = Config_HEST()
     config.rand_rows = 10000 # 随机数据行数
     config.rand_cols = 250 # 随机数据列数
     config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
@@ -274,5 +274,5 @@ if __name__ == "__main__":
     #Test_Stochastic_Model_GBM()
     #Test_Stochastic_Model_CIR()
     #Test_Stochastic_Model_JDP()
-    Test_Stochastic_Model_SVM()
+    Test_Stochastic_Model_HEST()
     #Test_Stochastic_Model_SABR()

@@ -78,7 +78,7 @@ class Config_JDP {
     }
 }
 
-class Config_SVM {
+class Config_HEST {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
@@ -193,10 +193,10 @@ function Test_Stochastic_Model_JDP() {
     //console.log("result:", result)
 }
 
-function Test_Stochastic_Model_SVM() {
-    let stochastic = new derivx.Stochastic("SVM")
+function Test_Stochastic_Model_HEST() {
+    let stochastic = new derivx.Stochastic("HEST")
     
-    let config = new Config_SVM()
+    let config = new Config_HEST()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
@@ -251,5 +251,5 @@ function Test_Stochastic_Model_SABR() {
 //Test_Stochastic_Model_GBM()
 //Test_Stochastic_Model_CIR()
 //Test_Stochastic_Model_JDP()
-Test_Stochastic_Model_SVM()
+Test_Stochastic_Model_HEST()
 //Test_Stochastic_Model_SABR()
