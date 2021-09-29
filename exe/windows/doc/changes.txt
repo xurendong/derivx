@@ -1,8 +1,9 @@
 
-2021-09-28 0.3.3:
+2021-09-30 0.3.3:
  - new 完成 Stochastic CIR 平方根扩散过程 Square-Root Diffusion（Cox Ingersoll Ross）随机路径生成。
  - new 完成 Stochastic JDP 跳跃扩散过程 Jump Diffusion Process 随机路径生成。
- - new 完成 Stochastic SVM 随机波动率模型 Stochastic Volatility Model（Heston Model）随机路径生成。
+ - new 完成 Stochastic HEST 随机波动率模型 Heston Model 随机路径生成。
+ - new 完成 Stochastic SABR 随机波动率模型 Stochastic Alpha Beta Rho Model 随机路径生成。
  - opt 完善 Stochastic 类及其示例。
 
 2021-09-22 0.3.2:

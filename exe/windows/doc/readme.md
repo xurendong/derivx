@@ -1,5 +1,5 @@
 # DerivX
-V0.3.3-Beta Build 20210928
+V0.3.3-Beta Build 20210930
 
 © 2021-2021 Xu Rendong. All Rights Reserved.
 
@@ -8,6 +8,7 @@ Derivatives Pricing Engine.
 + Plain Vanilla European / American options portfolio calculation.
 + Plain Vanilla European / American option pricing and greek value calculation.
 + Exotic Autocall Phoenix / Snowball option pricing and greek value calculation.
++ Stochastic Diffusion Processes and Stochastic Volatility Models.
 + Interfaces and examples for C++, Python, JavaScript.
 
 ### Install
