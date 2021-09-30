@@ -1,4 +1,8 @@
 
+2021-09-30 0.3.4:
+ - new 构建单障碍欧式期权结构。
+ - new 
+
 2021-09-30 0.3.3:
  - new 完成 Stochastic CIR 平方根扩散过程 Square-Root Diffusion（Cox Ingersoll Ross）随机路径生成。
  - new 完成 Stochastic JDP 跳跃扩散过程 Jump Diffusion Process 随机路径生成。
