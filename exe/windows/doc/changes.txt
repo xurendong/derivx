@@ -1,7 +1,8 @@
 
-2021-10-08 0.3.4:
+2021-10-15 0.3.4:
  - new 构建单障碍欧式期权结构。
  - fix 修正特定环境下无法动态加载 JavaScript 接口问题。
+ - new 增加对 Python 3.10 的支持。
 
 2021-09-30 0.3.3:
  - new 完成 Stochastic CIR 平方根扩散过程 Square-Root Diffusion（Cox Ingersoll Ross）随机路径生成。
