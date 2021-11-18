@@ -1,6 +1,7 @@
 
-2021-11-15 0.3.6:
- - new
+2021-11-18 0.3.6:
+ - new 完成 Barrier Double 双鲨鱼鳍结构定价功能及其示例。
+ - opt 移除 Barrier Single 中 is_knock 参数，Payoff 改由价格 s 判断计算。
 
 2021-11-12 0.3.5.1:
  - fix 修正 Autocall 中 Booster 的同名异构类导致 Phoenix 和 Snowball 计算异常的问题。

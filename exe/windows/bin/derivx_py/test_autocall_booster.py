@@ -31,7 +31,7 @@ class Config(object):
     def __init__(self):
         self.rand_rows = 0 # 随机数据行数 # InitRand
         self.rand_cols = 0 # 随机数据列数 # InitRand
-        self.rand_seed = np.array([]) # 随机数据种子 # InitRand // 非负整数，有效位数不超逻辑处理器数量
+        self.rand_seed = np.array([]) # 随机数据种子 # InitRand # 非负整数，有效位数不超逻辑处理器数量
         
         self.dual_smooth = True # 对偶平滑路径 # InitPath
         self.runs_size = 0 # 模拟路径数量 # InitPath
@@ -41,7 +41,7 @@ class Config(object):
         self.risk_free_rate = 0.0 # 无风险利率 # InitPath
         self.basis_rate = 0.0 # 股息或贴水 # InitPath
         self.price_limit_ratio = 0.0 # 涨跌停限制幅度 # InitPath
-        self.price_limit_style = 0 # 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
+        self.price_limit_style = 0 # 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 # InitPath
         
         self.notional = 0.0 # 名义本金
         self.trade_long = True # 交易方向
@@ -99,7 +99,7 @@ def Test_Autocall_Booster():
     config = Config()
     config.rand_rows = 50000 # 随机数据行数 # InitRand
     config.rand_cols = 250 # 随机数据列数 # InitRand
-    config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 # InitRand // 非负整数，有效位数不超逻辑处理器数量
+    config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 # InitRand # 非负整数，有效位数不超逻辑处理器数量
     
     config.dual_smooth = True # 对偶平滑路径 # InitPath
     config.runs_size = 100000 # 模拟路径数量 # InitPath
@@ -109,7 +109,7 @@ def Test_Autocall_Booster():
     config.risk_free_rate = 0.03 # 无风险利率 # InitPath
     config.basis_rate = 0.06 # 股息或贴水 # InitPath
     config.price_limit_ratio = 0.1 # 涨跌停限制幅度 # InitPath
-    config.price_limit_style = 0 # 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
+    config.price_limit_style = 0 # 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 # InitPath
     
     config.notional = 100000.0 # 名义本金
     config.trade_long = False # 交易方向

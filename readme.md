@@ -1,11 +1,11 @@
 # DerivX
-V0.3.6-Beta Build 20211115
+V0.3.6-Beta Build 20211118
 
 © 2021-2021 Xu Rendong. All Rights Reserved.
 
 ### Project Summary
 Derivatives Pricing Engine.
-+ Single Barrier European option pricing.
++ Single / Double Barrier European option pricing.
 + Plain Vanilla European / American options portfolio calculation.
 + Plain Vanilla European / American option pricing and greek value calculation.
 + Exotic Autocall Booster / Phoenix / Snowball option pricing and greek value calculation.
