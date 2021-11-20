@@ -30,6 +30,7 @@ import derivx
 # JDP：跳跃扩散过程 Jump Diffusion Process
 # HEST：Heston 模型 Heston Model
 # SABR：SABR 模型 Stochastic Alpha Beta Rho
+# USER：仅用于随机过程数据测试
 
 def ShowPlot_Frequency(price, title, xlabel):
     n, bins, patches = plt.hist(price[:, -1], bins = 50, normed = True, facecolor = "blue", alpha = 0.75)
@@ -135,6 +136,22 @@ class Config_SABR(object):
         self.beta = 0.0 # 价格分布力度
         self.sigma_sigma = 0.0 # 波动率的波动率
         self.rho = 0.0 # 两个随机过程的相关系数
+
+    def ToArgs(self):
+        return self.__dict__
+
+class Config_USER(object):
+    def __init__(self):
+        self.rand_rows = 0 # 随机数据行数
+        self.rand_cols = 0 # 随机数据列数
+        self.rand_seed = np.array([]) # 随机数据种子 # 非负整数，有效位数不超逻辑处理器数量
+        self.runs_size = 0 # 模拟路径数量
+        self.runs_step = 0 # 价格变动步数
+        self.year_days = 0 # 年交易日数量
+        self.price = 0.0 # 初始价格
+        self.sigma = 0.0 # 波动率
+        self.risk_free_rate = 0.0 # 无风险利率
+        self.basis_rate = 0.0 # 股息率或贴水率
 
     def ToArgs(self):
         return self.__dict__
@@ -280,9 +297,38 @@ def Test_Stochastic_Model_SABR():
     ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
     ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
 
+# USER：仅用于随机过程数据测试
+def Test_Stochastic_Model_USER():
+    stochastic = derivx.Stochastic("USER")
+    
+    config = Config_USER()
+    config.rand_rows = 10000 # 随机数据行数
+    config.rand_cols = 250 # 随机数据列数
+    config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 # 非负整数，有效位数不超逻辑处理器数量
+    config.runs_size = 10000 # 模拟路径数量
+    config.runs_step = 250 # 价格变动步数
+    config.year_days = 244 # 年交易日数量
+    config.price = 1.0 # 初始价格
+    config.sigma = 0.24 # 波动率
+    config.risk_free_rate = 0.03 # 无风险利率
+    config.basis_rate = 0.0 # 股息率或贴水率
+    
+    if stochastic.InitArgs(config.ToArgs()) < 0:
+        print(stochastic.GetError())
+        return
+    
+    result = np.zeros((config.runs_size, config.runs_step))
+    if stochastic.MakeData(result) < 0:
+        print(stochastic.GetError())
+        return
+    #print(result)
+    ShowPlot_Frequency(result, "Final-Price-Frequency", "Final-Price")
+    ShowPlot_Distribution(result, 1000, config.runs_step, "Price - Steps", "Price")
+
 if __name__ == "__main__":
-    Test_Stochastic_Model_GBM()
-    Test_Stochastic_Model_CIR()
-    Test_Stochastic_Model_JDP()
-    Test_Stochastic_Model_HEST()
-    Test_Stochastic_Model_SABR()
+    #Test_Stochastic_Model_GBM()
+    #Test_Stochastic_Model_CIR()
+    #Test_Stochastic_Model_JDP()
+    #Test_Stochastic_Model_HEST()
+    #Test_Stochastic_Model_SABR()
+    Test_Stochastic_Model_USER()

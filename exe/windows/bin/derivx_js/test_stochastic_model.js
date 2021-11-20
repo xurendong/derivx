@@ -30,6 +30,7 @@ const derivx = require('derivx')
 // JDP：跳跃扩散过程 Jump Diffusion Process
 // HEST：Heston 模型 Heston Model
 // SABR：SABR 模型 Stochastic Alpha Beta Rho
+// USER：仅用于随机过程数据测试
 
 class Config_GBM {
     constructor() {
@@ -109,6 +110,21 @@ class Config_SABR {
         this.beta = 0.0 // 价格分布力度
         this.sigma_sigma = 0.0 // 波动率的波动率
         this.rho = 0.0 // 两个随机过程的相关系数
+    }
+}
+
+class Config_USER {
+    constructor() {
+        this.rand_rows = 0 // 随机数据行数
+        this.rand_cols = 0 // 随机数据列数
+        this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
+        this.price = 0.0 // 初始价格
+        this.sigma = 0.0 // 波动率
+        this.risk_free_rate = 0.0 // 无风险利率
+        this.basis_rate = 0.0 // 股息率或贴水率
     }
 }
 
@@ -258,8 +274,38 @@ function Test_Stochastic_Model_SABR() {
     //console.log("result:", result)
 }
 
-Test_Stochastic_Model_GBM()
-Test_Stochastic_Model_CIR()
-Test_Stochastic_Model_JDP()
-Test_Stochastic_Model_HEST()
-Test_Stochastic_Model_SABR()
+// USER：仅用于随机过程数据测试
+function Test_Stochastic_Model_USER() {
+    let stochastic = new derivx.Stochastic("USER")
+    
+    let config = new Config_USER()
+    config.rand_rows = 10000 // 随机数据行数
+    config.rand_cols = 250 // 随机数据列数
+    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.runs_size = 10000 // 模拟路径数量
+    config.runs_step = 250 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
+    config.price = 1.0 // 初始价格
+    config.sigma = 0.24 // 波动率
+    config.risk_free_rate = 0.03 // 无风险利率
+    config.basis_rate = 0.0 // 股息率或贴水率
+    
+    if(stochastic.InitArgs(config) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    
+    let result = nj.zeros([config.runs_size, config.runs_step]).tolist()
+    if(stochastic.MakeData(result) < 0) {
+        console.log(stochastic.GetError())
+        return
+    }
+    //console.log("result:", result)
+}
+
+//Test_Stochastic_Model_GBM()
+//Test_Stochastic_Model_CIR()
+//Test_Stochastic_Model_JDP()
+//Test_Stochastic_Model_HEST()
+//Test_Stochastic_Model_SABR()
+Test_Stochastic_Model_USER()
