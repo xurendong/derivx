@@ -36,6 +36,7 @@ class Config_GBM {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度 // 未使用
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
@@ -51,6 +52,7 @@ class Config_CIR {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度 // 未使用
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
@@ -66,6 +68,7 @@ class Config_JDP {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度 // 未使用
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
@@ -83,6 +86,7 @@ class Config_HEST {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度 // 未使用
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
@@ -101,6 +105,7 @@ class Config_SABR {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度 // 未使用
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
@@ -117,6 +122,7 @@ class Config_USER {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度
         this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
         this.runs_size = 0 // 模拟路径数量
         this.runs_step = 0 // 价格变动步数
@@ -134,6 +140,7 @@ function Test_Stochastic_Model_GBM() {
     let config = new Config_GBM()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
+    config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 250 // 价格变动步数
@@ -162,6 +169,7 @@ function Test_Stochastic_Model_CIR() {
     let config = new Config_CIR()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
+    config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 250 // 价格变动步数
@@ -190,6 +198,7 @@ function Test_Stochastic_Model_JDP() {
     let config = new Config_JDP()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
+    config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 250 // 价格变动步数
@@ -220,6 +229,7 @@ function Test_Stochastic_Model_HEST() {
     let config = new Config_HEST()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
+    config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 250 // 价格变动步数
@@ -251,6 +261,7 @@ function Test_Stochastic_Model_SABR() {
     let config = new Config_SABR()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
+    config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 250 // 价格变动步数
@@ -281,6 +292,7 @@ function Test_Stochastic_Model_USER() {
     let config = new Config_USER()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
+    config.dimension = 624 // 随机数据维度
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
     config.runs_size = 10000 // 模拟路径数量
     config.runs_step = 250 // 价格变动步数

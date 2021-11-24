@@ -13,6 +13,7 @@ DerivX V0.3.1-Beta Build 20210903
 | :---------- | :----: |
 | rand_rows   | 500000 |
 | rand_cols   | 250 |
+| rand_quasi  | false |
 | rand_seed   | { 0, 1, 2, 3, 4, 5, 6, 7 } |
 | dual_smooth | true |
 | runs_size   | 1000000 |
@@ -54,6 +55,7 @@ DerivX V0.3.1-Beta Build 20210903
 | :---------- | :----: |
 | rand_rows   | 3600000 |
 | rand_cols   | 250 |
+| rand_quasi  | false |
 | rand_seed   | { 0, 1, 2, 3, 4, 5, 6, 7, <br>8, 9, 10, 11, 12, 13, 14, 15, <br>16, 17, 18, 19, 20, 21, 22, 23 } |
 | dual_smooth | true |
 | runs_size   | 7200000 |

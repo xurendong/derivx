@@ -31,7 +31,8 @@ class Config(object):
     def __init__(self):
         self.rand_rows = 0 # 随机数据行数 # InitRand
         self.rand_cols = 0 # 随机数据列数 # InitRand
-        self.rand_seed = np.array([]) # 随机数据种子 # InitRand # 非负整数，有效位数不超逻辑处理器数量
+        self.rand_quasi = False # 随机数据类型 # InitRand # 目前 quasi 随机数据只能使用单核处理
+        self.rand_seed = np.array([]) # 随机数据种子 # InitRand # 非负整数，有效位数不超逻辑处理器数量，目前 quasi 仅第一位有效
         
         self.dual_smooth = True # 对偶平滑路径 # InitPath
         self.runs_size = 0 # 模拟路径数量 # InitPath
@@ -107,7 +108,8 @@ def Test_Autocall_Snowball():
     config = Config()
     config.rand_rows = 50000 # 随机数据行数 # InitRand
     config.rand_cols = 500 # 随机数据列数 # InitRand
-    config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 # InitRand # 非负整数，有效位数不超逻辑处理器数量
+    config.rand_quasi = False # 随机数据类型 # InitRand # 目前 quasi 随机数据只能使用单核处理
+    config.rand_seed = np.array([0, 1, 2, 3, 4, 5, 6, 7]) # 随机数据种子 # InitRand # 非负整数，有效位数不超逻辑处理器数量，目前 quasi 仅第一位有效
     
     config.dual_smooth = True # 对偶平滑路径 # InitPath
     config.runs_size = 100000 # 模拟路径数量 # InitPath

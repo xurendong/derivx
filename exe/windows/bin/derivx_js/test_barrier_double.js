@@ -31,7 +31,8 @@ class Config {
     constructor() {
         this.rand_rows = 0 // 随机数据行数 // InitRand
         this.rand_cols = 0 // 随机数据列数 // InitRand
-        this.rand_seed = [] // 随机数据种子 // InitRand // 非负整数，有效位数不超逻辑处理器数量
+        this.rand_quasi = false // 随机数据类型 // InitRand // 目前 quasi 随机数据只能使用单核处理
+        this.rand_seed = [] // 随机数据种子 // InitRand // 非负整数，有效位数不超逻辑处理器数量，目前 quasi 仅第一位有效
         
         this.dual_smooth = true // 对偶平滑路径 // InitPath
         this.runs_size = 0 // 模拟路径数量 // InitPath
@@ -63,7 +64,8 @@ function Test_Barrier_Double() {
     let config = new Config()
     config.rand_rows = 50000 // 随机数据行数 // InitRand
     config.rand_cols = 250 // 随机数据列数 // InitRand
-    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // InitRand // 非负整数，有效位数不超逻辑处理器数量
+    config.rand_quasi = false // 随机数据类型 // InitRand // 目前 quasi 随机数据只能使用单核处理
+    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // InitRand // 非负整数，有效位数不超逻辑处理器数量，目前 quasi 仅第一位有效
     
     config.dual_smooth = true // 对偶平滑路径 // InitPath
     config.runs_size = 100000 // 模拟路径数量 // InitPath
