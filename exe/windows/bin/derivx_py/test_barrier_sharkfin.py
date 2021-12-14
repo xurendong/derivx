@@ -1,7 +1,7 @@
 
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2021-2021 the DerivX authors
+# Copyright (c) 2021-2022 the DerivX authors
 # All rights reserved.
 #
 # The project sponsor and lead author is Xu Rendong.
@@ -27,7 +27,9 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import derivx
 
-g_uoc_dop = 1 # 向上敲出看涨，向下敲出看跌，双鲨
+g_sharkfin_uc = 1 # 向上敲出看涨，看涨鲨鱼鳍
+g_sharkfin_dp = 2 # 向下敲出看跌，看跌鲨鱼鳍
+g_sharkfin_ucdp = 3 # 向上敲出看涨 + 向下敲出看跌，双鲨鱼鳍
 
 class Config(object):
     def __init__(self):
@@ -52,10 +54,6 @@ class Config(object):
         self.k_l = 0.0 # 行权价格，低
         self.k_h = 0.0 # 行权价格，高
         self.x = 0.0 # 敲出后需支付的资金
-        self.v = 0.0 # 波动率 # 双鲨未用
-        self.r = 0.0 # 无风险利率 # 双鲨未用
-        self.q = 0.0 # 年化分红率 # 双鲨未用
-        self.t = 0.0 # 年化到期期限 # 双鲨未用
         self.p = 0.0 # 参与率，未敲出情况下客户对收益的占比要求
         self.is_kop_delay = False # 敲出后是立即还是延期支付资金
         self.barrier_type = 0 # 障碍类型
@@ -91,7 +89,7 @@ def ExportResult(config, result, file_path):
     df_result.to_excel(file_path, sheet_name = "result")
     print("导出结果：%s" % file_path)
 
-def Test_Barrier_Double():
+def Test_Barrier_SharkFin():
     config = Config()
     config.rand_rows = 50000 # 随机数据行数 # InitRand
     config.rand_cols = 250 # 随机数据列数 # InitRand
@@ -114,13 +112,9 @@ def Test_Barrier_Double():
     config.k_l = 99.0 # 行权价格，低
     config.k_h = 101.0 # 行权价格，高
     config.x = 3.5 # 敲出后需支付的资金
-    # config.v = 0.16 # 波动率 # 双鲨未用
-    # config.r = 0.03 # 无风险利率 # 双鲨未用
-    # config.q = 0.06 # 年化分红率 # 双鲨未用
-    # config.t = 1.0 # 年化到期期限 # 双鲨未用
     config.p = 1.0 # 参与率，未敲出情况下客户对收益的占比要求
     config.is_kop_delay = True # 敲出后是立即还是延期支付资金
-    config.barrier_type = g_uoc_dop # 障碍类型
+    config.barrier_type = g_sharkfin_ucdp # 障碍类型
     config.trade_long = False # 交易方向
     config.price_rate = 0.035 # 价格比率
     
@@ -136,7 +130,7 @@ def Test_Barrier_Double():
     ret_cols = config.runs_step
     ret_rows = len(config.calc_price)
     
-    barrier = derivx.Barrier("Double")
+    barrier = derivx.Barrier("SharkFin")
     
     if barrier.InitArgs(config.ToArgs()) < 0:
         print(barrier.GetError())
@@ -182,4 +176,4 @@ def Test_Barrier_Double():
         ExportResult(config, result, "/export_greeks_%s.xls" % name)
 
 if __name__ == "__main__":
-    Test_Barrier_Double()
+    Test_Barrier_SharkFin()

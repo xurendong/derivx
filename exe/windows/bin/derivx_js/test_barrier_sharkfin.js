@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2021-2021 the DerivX authors
+* Copyright (c) 2021-2022 the DerivX authors
 * All rights reserved.
 *
 * The project sponsor and lead author is Xu Rendong.
@@ -25,7 +25,9 @@ const nj = require('numjs')
 
 const derivx = require('derivx')
 
-let g_uoc_dop = 1 // 向上敲出看涨，向下敲出看跌，双鲨
+let g_sharkfin_uc = 1 // 向上敲出看涨，看涨鲨鱼鳍
+let g_sharkfin_dp = 2 // 向下敲出看跌，看跌鲨鱼鳍
+let g_sharkfin_ucdp = 3 // 向上敲出看涨 + 向下敲出看跌，双鲨鱼鳍
 
 class Config {
     constructor() {
@@ -50,10 +52,6 @@ class Config {
         this.k_l = 0.0 // 行权价格，低
         this.k_h = 0.0 // 行权价格，高
         this.x = 0.0 // 敲出后需支付的资金
-        this.v = 0.0 // 波动率 // 双鲨未用
-        this.r = 0.0 // 无风险利率 // 双鲨未用
-        this.q = 0.0 // 年化分红率 // 双鲨未用
-        this.t = 0.0 // 年化到期期限 // 双鲨未用
         this.p = 0.0 // 参与率，未敲出情况下客户对收益的占比要求
         this.is_kop_delay = false // 敲出后是立即还是延期支付资金
         this.barrier_type = 0 // 障碍类型
@@ -66,7 +64,7 @@ class Config {
     }
 }
 
-function Test_Barrier_Double() {
+function Test_Barrier_SharkFin() {
     let config = new Config()
     config.rand_rows = 50000 // 随机数据行数 // InitRand
     config.rand_cols = 250 // 随机数据列数 // InitRand
@@ -89,13 +87,9 @@ function Test_Barrier_Double() {
     config.k_l = 99.0 // 行权价格，低
     config.k_h = 101.0 // 行权价格，高
     config.x = 3.5 // 敲出后需支付的资金
-    // config.v = 0.16 // 波动率 // 双鲨未用
-    // config.r = 0.03 // 无风险利率 // 双鲨未用
-    // config.q = 0.06 // 年化分红率 // 双鲨未用
-    // config.t = 1.0 // 年化到期期限 // 双鲨未用
     config.p = 1.0 // 参与率，未敲出情况下客户对收益的占比要求
     config.is_kop_delay = true // 敲出后是立即还是延期支付资金
-    config.barrier_type = g_uoc_dop // 障碍类型
+    config.barrier_type = g_sharkfin_ucdp // 障碍类型
     config.trade_long = false // 交易方向
     config.price_rate = 0.035 // 价格比率
     
@@ -111,7 +105,7 @@ function Test_Barrier_Double() {
     let ret_cols = config.runs_step
     let ret_rows = config.calc_price.length
     
-    let barrier = new derivx.Barrier("Double")
+    let barrier = new derivx.Barrier("SharkFin")
     
     if(barrier.InitArgs(config) < 0) {
         console.log(barrier.GetError())
@@ -164,4 +158,4 @@ function Test_Barrier_Double() {
     }
 }
 
-Test_Barrier_Double()
+Test_Barrier_SharkFin()
