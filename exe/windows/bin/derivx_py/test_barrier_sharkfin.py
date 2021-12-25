@@ -27,6 +27,9 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import derivx
 
+g_option_european = 1 # 欧式
+g_option_american = 2 # 美式
+
 g_sharkfin_uc = 1 # 向上敲出看涨，看涨鲨鱼鳍
 g_sharkfin_dp = 2 # 向下敲出看跌，看跌鲨鱼鳍
 g_sharkfin_ucdp = 3 # 向上敲出看涨 + 向下敲出看跌，双鲨鱼鳍
@@ -56,9 +59,10 @@ class Config(object):
         self.x = 0.0 # 敲出后需支付的资金
         self.p = 0.0 # 参与率，未敲出情况下客户对收益的占比要求
         self.is_kop_delay = False # 敲出后是立即还是延期支付资金
+        self.option_type = 0 # 期权类型
         self.barrier_type = 0 # 障碍类型
         self.trade_long = True # 交易方向
-        self.price_rate = 0.0 # 价格比率
+        self.price_rate = 0.0 # 价格比率，CalcPrice 时此入参不参与计算
         
         self.calc_price = np.array([]) # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
@@ -114,9 +118,10 @@ def Test_Barrier_SharkFin():
     config.x = 3.5 # 敲出后需支付的资金
     config.p = 1.0 # 参与率，未敲出情况下客户对收益的占比要求
     config.is_kop_delay = True # 敲出后是立即还是延期支付资金
+    config.option_type = g_option_american # 期权类型
     config.barrier_type = g_sharkfin_ucdp # 障碍类型
     config.trade_long = False # 交易方向
-    config.price_rate = 0.035 # 价格比率
+    config.price_rate = 0.035 # 价格比率，CalcPrice 时此入参不参与计算
     
     calc_price_u = 110.0 # 价格点上界
     calc_price_d = 90.0 # 价格点下界

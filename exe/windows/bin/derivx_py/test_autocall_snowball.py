@@ -51,10 +51,10 @@ class Config(object):
         self.knock_o_ratio = 0.0 # 敲出比率，非百分比
         self.knock_i_ratio = 0.0 # 敲入比率，非百分比
         self.knock_o_steps = 0.0 # 敲出比例逐月递减率
-        self.knock_i_valid = True # 是否有下方敲入障碍
+        self.knock_i_valid = True # 是否有下方敲入障碍，置为 False 则变成保本小雪球
         self.knock_i_occur = False # 是否已经发生敲入
-        self.knock_i_margin_call = True # 是否敲入后可追加保证金
-        self.coupon_rate = 0.0 # 客户年化收益率
+        self.knock_i_margin_call = True # 是否敲入后可追加保证金，置为 False 则变成不追保雪球
+        self.coupon_rate = 0.0 # 客户年化收益率，CalcCoupon 时此入参不参与计算
         self.margin_rate = 0.0 # 保证金比例
         self.margin_interest = 0.0 # 保证金利率
         self.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
@@ -128,10 +128,10 @@ def Test_Autocall_Snowball():
     config.knock_o_ratio = 1.0 # 敲出比率，非百分比
     config.knock_i_ratio = 0.7 # 敲入比率，非百分比
     config.knock_o_steps = 0.0 # 敲出比例逐月递减率
-    config.knock_i_valid = True # 是否有下方敲入障碍
+    config.knock_i_valid = True # 是否有下方敲入障碍，置为 False 则变成保本小雪球
     config.knock_i_occur = False # 是否已经发生敲入
-    config.knock_i_margin_call = True # 是否敲入后可追加保证金
-    config.coupon_rate = 0.11 # 客户年化收益率
+    config.knock_i_margin_call = True # 是否敲入后可追加保证金，置为 False 则变成不追保雪球
+    config.coupon_rate = 0.11 # 客户年化收益率，CalcCoupon 时此入参不参与计算
     config.margin_rate = 1.0 # 保证金比例
     config.margin_interest = 0.03 # 保证金利率
     

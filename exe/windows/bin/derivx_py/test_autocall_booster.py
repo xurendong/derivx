@@ -50,7 +50,7 @@ class Config(object):
         self.knock_o_ratio = 0.0 # 敲出比率，非百分比
         self.margin_i_ratio = 0.0 # 保本比率，非百分比
         self.knock_o_steps = 0.0 # 敲出比例逐月递减率
-        self.coupon_rate = 0.0 # 敲出收益率
+        self.coupon_rate = 0.0 # 敲出收益率，CalcCoupon 时此入参不参与计算
         self.coupon_annual = False # 敲出收益率类型，False 为绝对，True 为年化
         self.rise_lever = 0.0 # 上涨杠杆，上涨参与率
         self.margin_rate = 0.0 # 保证金比例
@@ -119,7 +119,7 @@ def Test_Autocall_Booster():
     config.knock_o_ratio = 1.06 # 敲出比率，非百分比
     config.margin_i_ratio = 0.8 # 保本比率，非百分比
     config.knock_o_steps = 0.0 # 敲出比例逐月递减率
-    config.coupon_rate = 0.145221 # 敲出收益率
+    config.coupon_rate = 0.145221 # 敲出收益率，CalcCoupon 时此入参不参与计算
     config.coupon_annual = False # 敲出收益率类型，False 为绝对，True 为年化
     config.rise_lever = 2.4 # 上涨杠杆，上涨参与率
     config.margin_rate = 1.0 # 保证金比例
