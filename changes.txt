@@ -1,4 +1,10 @@
 
+2022-01-21 0.3.8:
+ - new 
+
+2022-01-21 0.3.7.1:
+ - fix 修正 Autocall 中 Booster、Phoenix、Snowball 和 Barrier 中 Sharkfin、Single 的 Vega 及 Rho 值放大 100 倍问题。
+
 2021-12-25 0.3.7:
  - new 鲨鱼鳍结构从单/双障碍中独立出来，改进计算并更新示例。
  - new 增加 Experiment 类用于数据接口测试。
