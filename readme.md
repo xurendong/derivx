@@ -1,5 +1,5 @@
 # DerivX
-V0.3.7.1-Beta Build 20220121
+V0.4.0-Beta Build 20220130
 
 © 2021-2022 Xu Rendong. All Rights Reserved.
 
@@ -12,7 +12,7 @@ Derivatives Pricing Engine.
 + Stochastic Diffusion Processes and Stochastic Volatility Models.
 + Interfaces and examples for C++, Python, JavaScript.
 
-### Install
+### Install (before V0.4.0)
 ##### C++:
 ```bash
 
@@ -28,7 +28,7 @@ pip install derivx
 npm install derivx
 ```
 
-### Usage
+### Usage (before V0.4.0)
 ##### C++:
 ```c++
 

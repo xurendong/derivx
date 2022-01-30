@@ -1,6 +1,7 @@
 
-2022-01-21 0.3.8:
- - new 
+2022-01-30 0.4.0:
+ - new 调整架构，基于 CyberX 分布式计算框架进行重构。
+ - 完成 Vanilla European 定价模块重构并更新示例。
 
 2022-01-21 0.3.7.1:
  - fix 修正 Autocall 中 Booster、Phoenix、Snowball 和 Barrier 中 Sharkfin、Single 的 Vega 及 Rho 值放大 100 倍问题。

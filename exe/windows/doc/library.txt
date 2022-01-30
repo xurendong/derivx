@@ -4,11 +4,6 @@ Version: 3.14.5(W), 3.14.5(L)
 License: BSD
 Website: https://cmake.org
 
-Library: BasicX
-Version: 1.0.2(W), 1.0.2(L)
-License: BSD & LGPL
-Website: https://github.com/xurendong/basicx
-
 Library: Boost
 Version: 1.70.0(W), 1.70.0(L)
 License: Boost
@@ -18,3 +13,13 @@ Library: {fmt}
 Version: 8.0.0(W), 8.0.0(L)
 License: MIT
 Website: https://github.com/fmtlib/fmt
+
+Library: FrameX
+Version: 1.0.3(W), 1.0.3(L)
+License: BSD & LGPL
+Website: https://github.com/universal-exchange/FrameX-Cpp
+
+Library: CyberX
+Version: 0.1.0(W), 0.1.0(L)
+License: BSD & LGPL
+Website: https://github.com/universal-exchange/CyberX
