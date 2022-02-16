@@ -11,8 +11,81 @@ Derivatives Pricing Engine.
 + Exotic Autocall Booster / Phoenix / Snowball option pricing and greek value calculation.
 + Stochastic Diffusion Processes and Stochastic Volatility Models.
 + Interfaces and examples for C++, Python, JavaScript.
++ Based on CyberX distributed heterogeneous computing framework.
 
-### Install (before V0.4.0)
+### Install (version >= 0.4.0)
+##### C++:
+```bash
+
+```
+
+##### Python:
+```bash
+pip install cyberx
+```
+
+##### JavaScript:
+```bash
+npm install cyberx-js
+```
+
+### Usage (version >= 0.4.0)
+##### C++:
+```c++
+
+```
+
+##### Python:
+Visit the latest version folder in [derivx_py](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py), download the following items to a folder:
+
++ plugins (entire folder)
++ define.py
++ matlib.dll
++ syscfg.py
++ tasker.py
++ test_xxxx.py (all examples)
+
+Edit syscfg.py and change 
+```bash
+self.work_path = ""
+```
+to the folder's absolute path like
+```bash
+self.work_path = "C:\\Users\\UserName\\Desktop\\Test"
+```
+then open and run examples in Shell or a Python IDE.
+
+DerivX is not dependent on numpy, pandas and matplotlib, but if you want to run examples, you'd better install them with:
+```bash
+pip install numpy pandas matplotlib
+```
+
+##### JavaScript:
+Visit the latest version folder in [derivx_js](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js), download the following items to a folder:
+
++ plugins (entire folder)
++ define.js
++ matlib.dll
++ syscfg.js
++ tasker.js
++ test_xxxx.js (all examples)
+
+Edit syscfg.js and change 
+```bash
+self.work_path = ''
+```
+to the folder's absolute path like
+```bash
+self.work_path = 'C:\\Users\\UserName\\Desktop\\Test'
+```
+then open and run examples in Shell or a JavaScript IDE.
+
+DerivX is not dependent on numjs, but if you want to run examples, you'd better install it with:
+```bash
+npm install numjs
+```
+
+### Install (version < 0.4.0)
 ##### C++:
 ```bash
 
@@ -28,7 +101,7 @@ pip install derivx
 npm install derivx
 ```
 
-### Usage (before V0.4.0)
+### Usage (version < 0.4.0)
 ##### C++:
 ```c++
 
