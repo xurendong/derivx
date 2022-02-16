@@ -25,6 +25,7 @@ class SysCfg(object):
         self.work_path = "" # 工作路径 # 路径中 "\" 使用 "\\" 替换
         self.plugins = [ # 插件列表
             {"work": True, "name": "derivx_autocall_snowball", "version": "1.0.0"},
+            {"work": True, "name": "derivx_stochastic_model", "version": "1.0.0"},
             {"work": True, "name": "derivx_vanilla_european", "version": "1.0.0"}
         ]
 

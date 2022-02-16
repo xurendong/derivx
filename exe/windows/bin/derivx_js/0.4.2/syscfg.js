@@ -26,6 +26,7 @@ class SysCfg {
         this.work_path = '' // 工作路径 // 路径中 "\" 使用 "\\" 替换
         this.plugins = [ // 插件列表
             {"work": true, "name": "derivx_autocall_snowball", "version": "1.0.0"},
+            {"work": true, "name": "derivx_stochastic_model", "version": "1.0.0"},
             {"work": true, "name": "derivx_vanilla_european", "version": "1.0.0"}
         ]
     }
