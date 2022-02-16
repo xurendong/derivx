@@ -20,6 +20,13 @@
 #
 # Be sure to retain the above copyright notice and conditions.
 
+# 示例说明：
+# 1、演示几种随机过程模型和价格路径生成；
+# 2、演示模型参数设置；
+# 3、演示使用 GetKernel 方法获取 kernel 实例；
+# 4、演示 tasker 任务信息创建；
+# 5、演示 同步模式 AssignTask 任务执行调用；
+
 import json
 
 import numpy as np

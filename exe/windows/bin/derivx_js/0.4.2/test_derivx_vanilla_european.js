@@ -19,6 +19,13 @@
 * Be sure to retain the above copyright notice and conditions.
 */
 
+// 示例说明：
+// 1、演示欧式香草期权隐含波动率、理论价格、希腊值、希腊值曲面等的计算；
+// 2、演示欧式香草期权组合理论价格、希腊值、希腊值曲面等的计算；
+// 3、演示通过 Create 方法获取执行模块实例；
+// 4、演示 直接模式 DirectCalc 任务执行调用；
+// 5、演示任务参数序列化和任务结果反序列化的封装；
+
 'use strict'
 
 const nj = require('numjs')

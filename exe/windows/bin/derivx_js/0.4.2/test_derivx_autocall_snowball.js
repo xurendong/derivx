@@ -19,6 +19,13 @@
 * Be sure to retain the above copyright notice and conditions.
 */
 
+// 示例说明：
+// 1、演示雪球结构参数设置；
+// 2、演示雪球结构客户票息、收益曲面、希腊值曲面等的计算；
+// 3、演示 tasker 任务信息创建；
+// 4、演示 同步模式 和 异步模式 的 AssignTask 任务执行调用；
+// 5、演示异步回调函数的编写和使用；
+
 'use strict'
 
 // 使用 timers/promises 的 setTimeout 要求 Node 版本为 15.0.0 及以上
