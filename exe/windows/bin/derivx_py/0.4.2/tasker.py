@@ -20,6 +20,21 @@
 #
 # Be sure to retain the above copyright notice and conditions.
 
+# 任务分发粒度
+grain_single_machine = 0 # 单台机器
+grain_cpu_logic_core = 1 # CPU 逻辑核心
+
+# 任务分发类型
+distribute_local = 0 # 本地计算任务
+distribute_remote = 1 # 远程计算任务
+
+# 序列化类型
+serialize_json = 0 # Json
+serialize_bson = 1 # Bson
+serialize_thrift = 2 # Thrift
+serialize_msgpack = 3 # MsgPack
+serialize_protobuf = 4 # ProtoBuf
+
 class Tasker(object):
     def __init__(self):
         self.tasker_id = 0 # 任务分配标识

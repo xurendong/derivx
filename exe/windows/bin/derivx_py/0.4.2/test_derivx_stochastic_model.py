@@ -32,7 +32,6 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
-import define
 import syscfg
 import tasker
 import cyberx

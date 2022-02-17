@@ -21,6 +21,21 @@
 
 'use strict'
 
+// 任务分发粒度
+exports.grain_single_machine = 0 // 单台机器
+exports.grain_cpu_logic_core = 1 // CPU 逻辑核心
+
+// 任务分发类型
+exports.distribute_local = 0 // 本地计算任务
+exports.distribute_remote = 1 // 远程计算任务
+
+// 序列化类型
+exports.serialize_json = 0 // Json
+exports.serialize_bson = 1 // Bson
+exports.serialize_thrift = 2 // Thrift
+exports.serialize_msgpack = 3 // MsgPack
+exports.serialize_protobuf = 4 // ProtoBuf
+
 class Tasker {
     constructor() {
         this.tasker_id = 0 // 任务分配标识

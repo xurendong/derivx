@@ -1,7 +1,7 @@
 
 2022-02-16 0.4.2:
  - 模块 Vanilla European 增加隐含波动率计算功能并更新示例。
- - 完成 Stochastic Model 研究模块重构并更新示例。
+ - 完成 Stochastic Model 实验模块重构并更新示例。
 
 2022-02-09 0.4.1:
  - 完成 Autocall Snowball 定价模块重构并更新示例。

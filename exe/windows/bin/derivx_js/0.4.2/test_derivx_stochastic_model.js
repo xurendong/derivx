@@ -30,7 +30,6 @@
 
 const nj = require('numjs')
 
-const define = require('./define')
 const syscfg = require('./syscfg')
 const tasker = require('./tasker')
 const cyberx = require('cyberx') // cyberx-js
