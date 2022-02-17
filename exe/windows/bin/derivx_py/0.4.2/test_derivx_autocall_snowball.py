@@ -234,14 +234,14 @@ def Test_DerivX_Autocall_Snowball():
     
     result = None
     
-    tasker_snowball = tasker.Tasker()
-    tasker_snowball.plugin_id = "derivx_autocall_snowball"
-    tasker_snowball.timeout_wait = 3600 # 秒
-    tasker_snowball.common_args = config.ToJson()
+    tasker_test = tasker.Tasker()
+    tasker_test.plugin_id = "derivx_autocall_snowball"
+    tasker_test.timeout_wait = 3600 # 秒
+    tasker_test.common_args = config.ToJson()
     
-    tasker_snowball.method_id = func_calc_coupon
+    tasker_test.method_id = func_calc_coupon
     
-    #result = kernel.AssignTask(tasker_snowball.ToArgs()) # 同步
+    #result = kernel.AssignTask(tasker_test.ToArgs()) # 同步
     #print("同步:", result)
     #if result["return_code"] != 0:
     #    print(result["return_code"], result["return_info"])
@@ -250,19 +250,19 @@ def Test_DerivX_Autocall_Snowball():
     #    print("coupon:", result)
     
     #event_task_finish.clear()
-    #result = kernel.AssignTask(tasker_snowball.ToArgs(), OnResult_Coupon) # 异步
+    #result = kernel.AssignTask(tasker_test.ToArgs(), OnResult_Coupon) # 异步
     #print("异步:", result)
     #if result["return_code"] != 0:
     #    print(result["return_code"], result["return_info"])
     #else:
     #    tasker_id = result["tasker_id"]
-    #    ret_wait = event_task_finish.wait(timeout = tasker_snowball.timeout_wait) # 等待任务结果
+    #    ret_wait = event_task_finish.wait(timeout = tasker_test.timeout_wait) # 等待任务结果
     #    if ret_wait != True:
     #        print("等待任务结果超时！", tasker_id)
     
-    tasker_snowball.method_id = func_calc_payoff
+    tasker_test.method_id = func_calc_payoff
     
-    #result = kernel.AssignTask(tasker_snowball.ToArgs()) # 同步
+    #result = kernel.AssignTask(tasker_test.ToArgs()) # 同步
     #if result["return_code"] != 0:
     #    print(result["return_code"], result["return_info"])
     #else:
@@ -271,25 +271,25 @@ def Test_DerivX_Autocall_Snowball():
     #    ExportResult(config, np.array(result), "/export_payoff.xls")
     
     #event_task_finish.clear()
-    #result = kernel.AssignTask(tasker_snowball.ToArgs(), OnResult_Payoff) # 异步
+    #result = kernel.AssignTask(tasker_test.ToArgs(), OnResult_Payoff) # 异步
     #print("异步:", result)
     #if result["return_code"] != 0:
     #    print(result["return_code"], result["return_info"])
     #else:
     #    tasker_id = result["tasker_id"]
-    #    ret_wait = event_task_finish.wait(timeout = tasker_snowball.timeout_wait) # 等待任务结果
+    #    ret_wait = event_task_finish.wait(timeout = tasker_test.timeout_wait) # 等待任务结果
     #    if ret_wait != True:
     #        print("等待任务结果超时！", tasker_id)
     
-    tasker_snowball.method_id = func_calc_greeks
+    tasker_test.method_id = func_calc_greeks
     
     #greek_flags = {"delta":"d"}
     greek_flags = {"delta":"d", "gamma":"g", "vega":"v", "theta":"t", "rho":"r"}
     for name, flag in greek_flags.items():
         config.calc_greek = flag
-        tasker_snowball.common_args = config.ToJson()
+        tasker_test.common_args = config.ToJson()
         
-        #result = kernel.AssignTask(tasker_snowball.ToArgs()) # 同步
+        #result = kernel.AssignTask(tasker_test.ToArgs()) # 同步
         #if result["return_code"] != 0:
         #    print(result["return_code"], result["return_info"])
         #else:
@@ -298,13 +298,13 @@ def Test_DerivX_Autocall_Snowball():
         #    ExportResult(config, np.array(result), "/export_greeks_%s.xls" % name)
         
         #event_task_finish.clear()
-        #result = kernel.AssignTask(tasker_snowball.ToArgs(), OnResult_Greeks) # 异步
+        #result = kernel.AssignTask(tasker_test.ToArgs(), OnResult_Greeks) # 异步
         #print("异步:", result)
         #if result["return_code"] != 0:
         #    print(result["return_code"], result["return_info"])
         #else:
         #    tasker_id = result["tasker_id"]
-        #    ret_wait = event_task_finish.wait(timeout = tasker_snowball.timeout_wait) # 等待任务结果
+        #    ret_wait = event_task_finish.wait(timeout = tasker_test.timeout_wait) # 等待任务结果
         #    if ret_wait != True:
         #        print("等待任务结果超时！", tasker_id)
 

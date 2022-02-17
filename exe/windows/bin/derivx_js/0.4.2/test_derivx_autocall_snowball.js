@@ -215,14 +215,14 @@ async function Test_DerivX_Autocall_Snowball() {
     
     let result = null
     
-    let tasker_snowball = new tasker.Tasker()
-    tasker_snowball.plugin_id = 'derivx_autocall_snowball'
-    tasker_snowball.timeout_wait = 3600 // 秒
-    tasker_snowball.common_args = config.ToJson()
+    let tasker_test = new tasker.Tasker()
+    tasker_test.plugin_id = 'derivx_autocall_snowball'
+    tasker_test.timeout_wait = 3600 // 秒
+    tasker_test.common_args = config.ToJson()
     
-    tasker_snowball.method_id = func_calc_coupon
+    tasker_test.method_id = func_calc_coupon
     
-    //result = kernel.AssignTask(tasker_snowball) // 同步
+    //result = kernel.AssignTask(tasker_test) // 同步
     //console.log('同步:', result)
     //if(result['return_code'] !== 0) {
     //    console.log(result['return_code'], result['return_info'])
@@ -233,22 +233,22 @@ async function Test_DerivX_Autocall_Snowball() {
     //}
     
     //event_task_finish = new AbortController()
-    //result = kernel.AssignTask(tasker_snowball, OnResult_Coupon) // 异步
+    //result = kernel.AssignTask(tasker_test, OnResult_Coupon) // 异步
     //console.log('异步:', result)
     //if(result['return_code'] !== 0) {
     //    console.log(result['return_code'], result['return_info'])
     //}
     //else {
     //    let tasker_id = result['tasker_id']
-    //    const ret_wait = await promises.setTimeout(tasker_snowball.timeout_wait * 1000, '', { signal:event_task_finish.signal }).then(() => false, err => true) // 等待任务结果
+    //    const ret_wait = await promises.setTimeout(tasker_test.timeout_wait * 1000, '', { signal:event_task_finish.signal }).then(() => false, err => true) // 等待任务结果
     //    if(ret_wait != true) {
     //        console.log('等待任务结果超时！' + tasker_id)
     //    }
     //}
     
-    tasker_snowball.method_id = func_calc_payoff
+    tasker_test.method_id = func_calc_payoff
     
-    //result = kernel.AssignTask(tasker_snowball) // 同步
+    //result = kernel.AssignTask(tasker_test) // 同步
     //if(result['return_code'] !== 0) {
     //    console.log(result['return_code'], result['return_info'])
     //}
@@ -258,28 +258,28 @@ async function Test_DerivX_Autocall_Snowball() {
     //}
     
     //event_task_finish = new AbortController()
-    //result = kernel.AssignTask(tasker_snowball, OnResult_Payoff) // 异步
+    //result = kernel.AssignTask(tasker_test, OnResult_Payoff) // 异步
     //console.log('异步:', result)
     //if(result['return_code'] !== 0) {
     //    console.log(result['return_code'], result['return_info'])
     //}
     //else {
     //    let tasker_id = result['tasker_id']
-    //    const ret_wait = await promises.setTimeout(tasker_snowball.timeout_wait * 1000, '', { signal:event_task_finish.signal }).then(() => false, err => true) // 等待任务结果
+    //    const ret_wait = await promises.setTimeout(tasker_test.timeout_wait * 1000, '', { signal:event_task_finish.signal }).then(() => false, err => true) // 等待任务结果
     //    if(ret_wait != true) {
     //        console.log('等待任务结果超时！' + tasker_id)
     //    }
     //}
     
-    tasker_snowball.method_id = func_calc_greeks
+    tasker_test.method_id = func_calc_greeks
     
     //let greek_flags = {"delta":"d"}
     let greek_flags = {"delta":"d", "gamma":"g", "vega":"v", "theta":"t", "rho":"r"}
     for(let [name, flag] of Object.entries(greek_flags)) {
         config.calc_greek = flag
-        tasker_snowball.common_args = config.ToJson()
+        tasker_test.common_args = config.ToJson()
         
-        //result = kernel.AssignTask(tasker_snowball) // 同步
+        //result = kernel.AssignTask(tasker_test) // 同步
         //if(result['return_code'] !== 0) {
         //    console.log(result['return_code'], result['return_info'])
         //}
@@ -289,14 +289,14 @@ async function Test_DerivX_Autocall_Snowball() {
         //}
         
         //event_task_finish = new AbortController()
-        //result = kernel.AssignTask(tasker_snowball, OnResult_Greeks) // 异步
+        //result = kernel.AssignTask(tasker_test, OnResult_Greeks) // 异步
         //console.log('异步:', result)
         //if(result['return_code'] !== 0) {
         //    console.log(result['return_code'], result['return_info'])
         //}
         //else {
         //    let tasker_id = result['tasker_id']
-        //    const ret_wait = await promises.setTimeout(tasker_snowball.timeout_wait * 1000, '', { signal:event_task_finish.signal }).then(() => false, err => true) // 等待任务结果
+        //    const ret_wait = await promises.setTimeout(tasker_test.timeout_wait * 1000, '', { signal:event_task_finish.signal }).then(() => false, err => true) // 等待任务结果
         //    if(ret_wait != true) {
         //        console.log('等待任务结果超时！' + tasker_id)
         //    }
