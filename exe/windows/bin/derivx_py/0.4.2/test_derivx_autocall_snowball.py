@@ -115,6 +115,16 @@ def ExportResult(config, result, file_path):
     df_result.to_excel(file_path, sheet_name = "result")
     print("导出结果：%s" % file_path)
 
+def MakeStepDown(duration, observe_start, default_ratio, stepdown_start, stepdown_ratio):
+    stepdown = np.array([])
+    stepdown_times = duration - stepdown_start + 2
+    for i in range(stepdown_start - observe_start - 1):
+        stepdown = np.append(stepdown, default_ratio)
+    for i in range(stepdown_times):
+        stepdown = np.append(stepdown, default_ratio - stepdown_ratio * i)
+    print(stepdown)
+    return stepdown
+
 def OnResult_Coupon(result):
     try:
         print("Callback OnResult_Coupon:", result)
