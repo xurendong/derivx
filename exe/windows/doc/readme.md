@@ -14,28 +14,28 @@ Derivatives Pricing Engine.
 + Based on CyberX distributed heterogeneous computing framework.
 
 ### Install (version >= 0.4.0)
-##### C++:
+#### C++:
 ```bash
 
 ```
 
-##### Python:
+#### Python:
 ```bash
 pip install cyberx
 ```
 
-##### JavaScript:
+#### JavaScript:
 ```bash
 npm install cyberx-js
 ```
 
 ### Usage (version >= 0.4.0)
-##### C++:
+#### C++:
 ```c++
 
 ```
 
-##### Python:
+#### Python:
 Visit the latest version folder in [derivx_py](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py), download the following items to a folder:
 
 + plugins (entire folder)
@@ -60,7 +60,7 @@ DerivX is not dependent on numpy, pandas and matplotlib, but if you want to run 
 pip install numpy pandas matplotlib
 ```
 
-##### JavaScript:
+#### JavaScript:
 Visit the latest version folder in [derivx_js](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js), download the following items to a folder:
 
 + plugins (entire folder)
@@ -86,28 +86,28 @@ npm install numjs
 ```
 
 ### Install (version < 0.4.0)
-##### C++:
+#### C++:
 ```bash
 
 ```
 
-##### Python:
+#### Python:
 ```bash
 pip install derivx
 ```
 
-##### JavaScript:
+#### JavaScript:
 ```bash
 npm install derivx
 ```
 
 ### Usage (version < 0.4.0)
-##### C++:
+#### C++:
 ```c++
 
 ```
 
-##### Python:
+#### Python:
 ```python
 import derivx
 print(derivx.Version())
@@ -119,7 +119,7 @@ DerivX is not dependent on numpy, pandas and matplotlib, but if you want to run 
 pip install numpy pandas matplotlib
 ```
 
-##### JavaScript:
+#### JavaScript:
 ```javascript
 const derivx = require('derivx')
 console.log(derivx.Version())
