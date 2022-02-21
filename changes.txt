@@ -1,5 +1,6 @@
 
-2022-02-17 0.4.3:
+2022-02-20 0.4.3:
+ - 完成 Digital Simple 定价模块重构并更新示例。
  - 完成 Autocall Booster 定价模块重构并更新示例。
  - 完成 Autocall Phoenix 定价模块重构并更新示例。
 
