@@ -35,8 +35,8 @@ const cyberx = require('cyberx') // cyberx-js
 
 let func_calc_iv = 1
 let func_calc_price = 2
-let func_calc_greek = 3
-let func_calc_greek_surface = 4
+let func_calc_greeks = 3
+let func_calc_greeks_surface = 4
 
 function CalcIV(module, method, p, s, k, r, q, t, is_call) {
     let inputs = {'method':method, 'p':p, 's':s, 'k':k, 'r':r, 'q':q, 't':t, 'is_call':is_call}
@@ -56,18 +56,18 @@ function CalcPrice(module, model, s, k, r, q, v, t, is_call) {
     return result['result_data']
 }
 
-function CalcGreek(module, model, greek, s, k, r, q, v, t, is_long = true, is_call = true, is_futures = false, is_foreign = false) {
+function CalcGreeks(module, model, greek, s, k, r, q, v, t, is_long = true, is_call = true, is_futures = false, is_foreign = false) {
     let inputs = {'model':model, 'greek':greek, 's':s, 'k':k, 'r':r, 'q':q, 'v':v, 't':t, 'is_long':is_long, 'is_call':is_call, 'is_futures':is_futures, 'is_foreign':is_foreign}
-    let result = JSON.parse(module.DirectCalc(func_calc_greek, 0, JSON.stringify(inputs)))
+    let result = JSON.parse(module.DirectCalc(func_calc_greeks, 0, JSON.stringify(inputs)))
     if(result['return_code'] !== 0) {
         console.log(result['return_code'], result['return_info'])
     }
     return result['result_data']
 }
 
-function CalcGreekSurface(module, model, greek, array_s, k, r, q, v, array_t, is_long = true, is_call = true, is_futures = false, is_foreign = false) {
+function CalcGreeksSurface(module, model, greek, array_s, k, r, q, v, array_t, is_long = true, is_call = true, is_futures = false, is_foreign = false) {
     let inputs = {'model':model, 'greek':greek, 'array_s':array_s, 'k':k, 'r':r, 'q':q, 'v':v, 'array_t':array_t, 'is_long':is_long, 'is_call':is_call, 'is_futures':is_futures, 'is_foreign':is_foreign}
-    let result = JSON.parse(module.DirectCalc(func_calc_greek_surface, 0, JSON.stringify(inputs)))
+    let result = JSON.parse(module.DirectCalc(func_calc_greeks_surface, 0, JSON.stringify(inputs)))
     if(result['return_code'] !== 0) {
         console.log(result['return_code'], result['return_info'])
     }
@@ -124,32 +124,32 @@ function CalcPrice_Spread_Box_Bull_Put_Bear_Call(module, model, s, k_l_pc_ls, k_
     return price_bull_put + price_bear_call
 }
 
-function CalcGreek_Spread_Bull_Call(module, model, greek, s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, t, is_long) {
+function CalcGreeks_Spread_Bull_Call(module, model, greek, s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, t, is_long) {
     let result = 0.0
     if(model === "bs") {
         if(greek === "d") {
-            let delta_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true, true)
-            let delta_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false, true)
+            let delta_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true, true)
+            let delta_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false, true)
             result = delta_low_call_long + delta_high_call_short
         }
         else if(greek === "g") {
-            let gamma_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true)
-            let gamma_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false)
+            let gamma_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true)
+            let gamma_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false)
             result = gamma_low_call_long + gamma_high_call_short
         }
         else if(greek === "v") {
-            let vega_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true)
-            let vega_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false)
+            let vega_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true)
+            let vega_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false)
             result = vega_low_call_long + vega_high_call_short
         }
         else if(greek === "t") {
-            let theta_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true, true)
-            let theta_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false, true)
+            let theta_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true, true)
+            let theta_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false, true)
             result = theta_low_call_long + theta_high_call_short
         }
         else if(greek === "r") {
-            let rho_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true, true, false, false)
-            let rho_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false, true, false, false)
+            let rho_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, true, true, false, false)
+            let rho_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, false, true, false, false)
             result = rho_low_call_long + rho_high_call_short
         }
     }
@@ -161,29 +161,29 @@ function CalcGreek_Spread_Bull_Call(module, model, greek, s, k_l_c_l, k_h_c_s, r
     }
 }
 
-function CalcGreekSurface_Spread_Bull_Call(module, model, greek, array_s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, array_t, is_long) {
+function CalcGreeksSurface_Spread_Bull_Call(module, model, greek, array_s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, array_t, is_long) {
     let surface_low_call_long = nj.zeros([array_s.length, array_t.length]).tolist()
     let surface_high_call_short = nj.zeros([array_s.length, array_t.length]).tolist()
     if(model === "bs") {
         if(greek === "d") {
-            surface_low_call_long = CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true, true)
-            surface_high_call_short = CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false, true)
+            surface_low_call_long = CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true, true)
+            surface_high_call_short = CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false, true)
         }
         else if(greek === "g") {
-            surface_low_call_long = CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true)
-            surface_high_call_short = CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false)
+            surface_low_call_long = CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true)
+            surface_high_call_short = CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false)
         }
         else if(greek === "v") {
-            surface_low_call_long = CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true)
-            surface_high_call_short = CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false)
+            surface_low_call_long = CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true)
+            surface_high_call_short = CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false)
         }
         else if(greek === "t") {
-            surface_low_call_long = CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true, true)
-            surface_high_call_short = CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false, true)
+            surface_low_call_long = CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true, true)
+            surface_high_call_short = CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false, true)
         }
         else if(greek === "r") {
-            surface_low_call_long = CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true, true, false, false)
-            surface_high_call_short = CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false, true, false, false)
+            surface_low_call_long = CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, true, true, false, false)
+            surface_high_call_short = CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, false, true, false, false)
         }
     }
     surface_low_call_long = nj.array(surface_low_call_long, "float64")
@@ -213,37 +213,37 @@ function Test_DerivX_Vanilla_European() {
     
     //result = CalcPrice(module, 'bs', 100.0, 100.0, 0.03, 0.085 - 0.03, 0.15, 1.0, true)
     //result = CalcPrice(module, 'bs', 42.0, 40.0, 0.1, 0.0, 0.2, 0.5, true)
-    //result = CalcGreek(module, 'bs', 'd', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, true)
-    //result = CalcGreek(module, 'bs', 'g', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
-    //result = CalcGreek(module, 'bs', 'v', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
-    //result = CalcGreek(module, 'bs', 't', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, true)
-    //result = CalcGreek(module, 'bs', 'r', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, true, false, false)
+    //result = CalcGreeks(module, 'bs', 'd', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, true)
+    //result = CalcGreeks(module, 'bs', 'g', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
+    //result = CalcGreeks(module, 'bs', 'v', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
+    //result = CalcGreeks(module, 'bs', 't', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, true)
+    //result = CalcGreeks(module, 'bs', 'r', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, true, false, false)
     //console.log(result)
     
     //result = CalcPrice(module, 'bs', 100.0, 100.0, 0.03, 0.085 + 0.03, 0.15, 1.0, false)
     //result = CalcPrice(module, 'bs', 42.0, 40.0, 0.1, 0.0, 0.2, 0.5, false)
-    //result = CalcGreek(module, 'bs', 'd', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, false)
-    //result = CalcGreek(module, 'bs', 'g', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
-    //result = CalcGreek(module, 'bs', 'v', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
-    //result = CalcGreek(module, 'bs', 't', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, false)
-    //result = CalcGreek(module, 'bs', 'r', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, false, false, false)
+    //result = CalcGreeks(module, 'bs', 'd', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, false)
+    //result = CalcGreeks(module, 'bs', 'g', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
+    //result = CalcGreeks(module, 'bs', 'v', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true)
+    //result = CalcGreeks(module, 'bs', 't', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, false)
+    //result = CalcGreeks(module, 'bs', 'r', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, false, false, false)
     //console.log(result)
     
     //let array_s = nj.arange(5.0, 105.0, 5.0).tolist()
     //let array_t = nj.arange(0.004, 1.004, 1.0 / 250).tolist()
     
-    //surface = CalcGreekSurface(module, 'bs', 'd', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, true)
-    //surface = CalcGreekSurface(module, 'bs', 'g', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
-    //surface = CalcGreekSurface(module, 'bs', 'v', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
-    //surface = CalcGreekSurface(module, 'bs', 't', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, true)
-    //surface = CalcGreekSurface(module, 'bs', 'r', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, true, false, false)
+    //surface = CalcGreeksSurface(module, 'bs', 'd', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, true)
+    //surface = CalcGreeksSurface(module, 'bs', 'g', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
+    //surface = CalcGreeksSurface(module, 'bs', 'v', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
+    //surface = CalcGreeksSurface(module, 'bs', 't', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, true)
+    //surface = CalcGreeksSurface(module, 'bs', 'r', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, true, false, false)
     //console.log(surface)
     
-    //surface = CalcGreekSurface(module, 'bs', 'd', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, false)
-    //surface = CalcGreekSurface(module, 'bs', 'g', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
-    //surface = CalcGreekSurface(module, 'bs', 'v', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
-    //surface = CalcGreekSurface(module, 'bs', 't', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, false)
-    //surface = CalcGreekSurface(module, 'bs', 'r', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, false, false, false)
+    //surface = CalcGreeksSurface(module, 'bs', 'd', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, false)
+    //surface = CalcGreeksSurface(module, 'bs', 'g', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
+    //surface = CalcGreeksSurface(module, 'bs', 'v', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true)
+    //surface = CalcGreeksSurface(module, 'bs', 't', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, false)
+    //surface = CalcGreeksSurface(module, 'bs', 'r', array_s, 50.0, 0.05, 0.0, 0.2, array_t, true, false, false, false)
     //console.log(surface)
     
     let array_s = nj.arange(5.0, 105.0, 5.0).tolist()
@@ -257,16 +257,16 @@ function Test_DerivX_Vanilla_European() {
     //console.log(CalcPrice_Spread_Butterfly_Put(module, model, s, k_l, k_m, k_h, r, q, v_l, v_m, v_h, t))
     //console.log(CalcPrice_Spread_Box_Bull_Call_Bear_Put(module, model, s, k_l, k_h, r, q, v_l, v_h, t))
     //console.log(CalcPrice_Spread_Box_Bull_Put_Bear_Call(module, model, s, k_l, k_h, r, q, v_l, v_h, t))
-    //console.log(CalcGreek_Spread_Bull_Call(module, model, "d", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    //console.log(CalcGreek_Spread_Bull_Call(module, model, "g", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    //console.log(CalcGreek_Spread_Bull_Call(module, model, "v", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    //console.log(CalcGreek_Spread_Bull_Call(module, model, "t", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    //console.log(CalcGreek_Spread_Bull_Call(module, model, "r", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    //surface = CalcGreekSurface_Spread_Bull_Call(module, model, "d", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    //surface = CalcGreekSurface_Spread_Bull_Call(module, model, "g", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    //surface = CalcGreekSurface_Spread_Bull_Call(module, model, "v", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    //surface = CalcGreekSurface_Spread_Bull_Call(module, model, "t", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    //surface = CalcGreekSurface_Spread_Bull_Call(module, model, "r", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    //console.log(CalcGreeks_Spread_Bull_Call(module, model, "d", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    //console.log(CalcGreeks_Spread_Bull_Call(module, model, "g", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    //console.log(CalcGreeks_Spread_Bull_Call(module, model, "v", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    //console.log(CalcGreeks_Spread_Bull_Call(module, model, "t", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    //console.log(CalcGreeks_Spread_Bull_Call(module, model, "r", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    //surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "d", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    //surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "g", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    //surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "v", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    //surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "t", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    //surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "r", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
     //console.log(surface)
 }
 

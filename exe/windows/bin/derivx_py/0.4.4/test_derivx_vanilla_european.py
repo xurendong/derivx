@@ -38,8 +38,8 @@ import cyberx
 
 func_calc_iv = 1
 func_calc_price = 2
-func_calc_greek = 3
-func_calc_greek_surface = 4
+func_calc_greeks = 3
+func_calc_greeks_surface = 4
 
 def CalcIV(module, method, p, s, k, r, q, t, is_call):
     inputs = {"method":method, "p":p, "s":s, "k":k, "r":r, "q":q, "t":t, "is_call":is_call}
@@ -55,16 +55,16 @@ def CalcPrice(module, model, s, k, r, q, v, t, is_call):
         print(result["return_code"], result["return_info"])
     return result["result_data"]
 
-def CalcGreek(module, model, greek, s, k, r, q, v, t, is_long = True, is_call = True, is_futures = False, is_foreign = False):
+def CalcGreeks(module, model, greek, s, k, r, q, v, t, is_long = True, is_call = True, is_futures = False, is_foreign = False):
     inputs = {"model":model, "greek":greek, "s":s, "k":k, "r":r, "q":q, "v":v, "t":t, "is_long":is_long, "is_call":is_call, "is_futures":is_futures, "is_foreign":is_foreign}
-    result = json.loads(module.DirectCalc(func_calc_greek, 0, json.dumps(inputs)))
+    result = json.loads(module.DirectCalc(func_calc_greeks, 0, json.dumps(inputs)))
     if result["return_code"] != 0:
         print(result["return_code"], result["return_info"])
     return result["result_data"]
 
-def CalcGreekSurface(module, model, greek, array_s, k, r, q, v, array_t, is_long = True, is_call = True, is_futures = False, is_foreign = False):
+def CalcGreeksSurface(module, model, greek, array_s, k, r, q, v, array_t, is_long = True, is_call = True, is_futures = False, is_foreign = False):
     inputs = {"model":model, "greek":greek, "array_s":array_s, "k":k, "r":r, "q":q, "v":v, "array_t":array_t, "is_long":is_long, "is_call":is_call, "is_futures":is_futures, "is_foreign":is_foreign}
-    result = json.loads(module.DirectCalc(func_calc_greek_surface, 0, json.dumps(inputs)))
+    result = json.loads(module.DirectCalc(func_calc_greeks_surface, 0, json.dumps(inputs)))
     if result["return_code"] != 0:
         print(result["return_code"], result["return_info"])
     return result["result_data"]
@@ -126,53 +126,53 @@ def CalcPrice_Spread_Box_Bull_Put_Bear_Call(module, model, s, k_l_pc_ls, k_h_pc_
     price_bear_call = CalcPrice_Spread_Bear_Call(module, model, s, k_l_pc_ls, k_h_pc_sl, r, q, v_l_pc_ls, v_h_pc_sl, t)
     return price_bull_put + price_bear_call
 
-def CalcGreek_Spread_Bull_Call(module, model, greek, s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, t, is_long):
+def CalcGreeks_Spread_Bull_Call(module, model, greek, s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, t, is_long):
     result = 0.0
     if model == "bs":
         if greek == "d":
-            delta_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True, True)
-            delta_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False, True)
+            delta_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True, True)
+            delta_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False, True)
             result = delta_low_call_long + delta_high_call_short
         elif greek == "g":
-            gamma_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True)
-            gamma_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False)
+            gamma_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True)
+            gamma_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False)
             result = gamma_low_call_long + gamma_high_call_short
         elif greek == "v":
-            vega_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True)
-            vega_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False)
+            vega_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True)
+            vega_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False)
             result = vega_low_call_long + vega_high_call_short
         elif greek == "t":
-            theta_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True, True)
-            theta_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False, True)
+            theta_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True, True)
+            theta_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False, True)
             result = theta_low_call_long + theta_high_call_short
         elif greek == "r":
-            rho_low_call_long = CalcGreek(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True, True, False, False)
-            rho_high_call_short = CalcGreek(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False, True, False, False)
+            rho_low_call_long = CalcGreeks(module, model, greek, s, k_l_c_l, r, q, v_l_c_l, t, True, True, False, False)
+            rho_high_call_short = CalcGreeks(module, model, greek, s, k_h_c_s, r, q, v_h_c_s, t, False, True, False, False)
             result = rho_low_call_long + rho_high_call_short
     if is_long == True:
         return result
     else:
         return -result
 
-def CalcGreekSurface_Spread_Bull_Call(module, model, greek, array_s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, array_t, is_long):
+def CalcGreeksSurface_Spread_Bull_Call(module, model, greek, array_s, k_l_c_l, k_h_c_s, r, q, v_l_c_l, v_h_c_s, array_t, is_long):
     surface_low_call_long = np.zeros((len(array_s), len(array_t)))
     surface_high_call_short = np.zeros((len(array_s), len(array_t)))
     if model == "bs":
         if greek == "d":
-            surface_low_call_long = np.array(CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True, True))
-            surface_high_call_short = np.array(CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False, True))
+            surface_low_call_long = np.array(CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True, True))
+            surface_high_call_short = np.array(CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False, True))
         elif greek == "g":
-            surface_low_call_long = np.array(CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True))
-            surface_high_call_short = np.array(CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False))
+            surface_low_call_long = np.array(CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True))
+            surface_high_call_short = np.array(CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False))
         elif greek == "v":
-            surface_low_call_long = np.array(CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True))
-            surface_high_call_short = np.array(CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False))
+            surface_low_call_long = np.array(CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True))
+            surface_high_call_short = np.array(CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False))
         elif greek == "t":
-            surface_low_call_long = np.array(CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True, True))
-            surface_high_call_short = np.array(CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False, True))
+            surface_low_call_long = np.array(CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True, True))
+            surface_high_call_short = np.array(CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False, True))
         elif greek == "r":
-            surface_low_call_long = np.array(CalcGreekSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True, True, False, False))
-            surface_high_call_short = np.array(CalcGreekSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False, True, False, False))
+            surface_low_call_long = np.array(CalcGreeksSurface(module, model, greek, array_s, k_l_c_l, r, q, v_l_c_l, array_t, True, True, False, False))
+            surface_high_call_short = np.array(CalcGreeksSurface(module, model, greek, array_s, k_h_c_s, r, q, v_h_c_s, array_t, False, True, False, False))
     result = surface_low_call_long + surface_high_call_short
     if is_long == True:
         return result
@@ -195,37 +195,37 @@ def Test_DerivX_Vanilla_European():
     
     #result = CalcPrice(module, "bs", 100.0, 100.0, 0.03, 0.08 - 0.03, 0.15, 1.0, True)
     #result = CalcPrice(module, "bs", 42.0, 40.0, 0.1, 0.0, 0.2, 0.5, True)
-    #result = CalcGreek(module, "bs", "d", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, True)
-    #result = CalcGreek(module, "bs", "g", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
-    #result = CalcGreek(module, "bs", "v", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
-    #result = CalcGreek(module, "bs", "t", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, True)
-    #result = CalcGreek(module, "bs", "r", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, True, False, False)
+    #result = CalcGreeks(module, "bs", "d", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, True)
+    #result = CalcGreeks(module, "bs", "g", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
+    #result = CalcGreeks(module, "bs", "v", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
+    #result = CalcGreeks(module, "bs", "t", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, True)
+    #result = CalcGreeks(module, "bs", "r", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, True, False, False)
     #print(result)
     
     #result = CalcPrice(module, "bs", 100.0, 100.0, 0.03, 0.08 + 0.03, 0.22, 1.0, False)
     #result = CalcPrice(module, "bs", 42.0, 40.0, 0.1, 0.0, 0.2, 0.5, False)
-    #result = CalcGreek(module, "bs", "d", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, False)
-    #result = CalcGreek(module, "bs", "g", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
-    #result = CalcGreek(module, "bs", "v", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
-    #result = CalcGreek(module, "bs", "t", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, False)
-    #result = CalcGreek(module, "bs", "r", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, False, False, False)
+    #result = CalcGreeks(module, "bs", "d", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, False)
+    #result = CalcGreeks(module, "bs", "g", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
+    #result = CalcGreeks(module, "bs", "v", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True)
+    #result = CalcGreeks(module, "bs", "t", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, False)
+    #result = CalcGreeks(module, "bs", "r", 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, True, False, False, False)
     #print(result)
     
     #array_s = np.arange(5.0, 105.0, 5.0).tolist()
     #array_t = np.arange(0.004, 1.004, 1.0 / 250).tolist()
     
-    #surface = CalcGreekSurface(module, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, True)
-    #surface = CalcGreekSurface(module, "bs", "g", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
-    #surface = CalcGreekSurface(module, "bs", "v", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
-    #surface = CalcGreekSurface(module, "bs", "t", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, True)
-    #surface = CalcGreekSurface(module, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, True, False, False)
+    #surface = CalcGreeksSurface(module, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, True)
+    #surface = CalcGreeksSurface(module, "bs", "g", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
+    #surface = CalcGreeksSurface(module, "bs", "v", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
+    #surface = CalcGreeksSurface(module, "bs", "t", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, True)
+    #surface = CalcGreeksSurface(module, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, True, False, False)
     #FigureResult(np.array(array_s), np.array(array_t), np.array(surface))
     
-    #surface = CalcGreekSurface(module, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False)
-    #surface = CalcGreekSurface(module, "bs", "g", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
-    #surface = CalcGreekSurface(module, "bs", "v", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
-    #surface = CalcGreekSurface(module, "bs", "t", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False)
-    #surface = CalcGreekSurface(module, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False, False, False)
+    #surface = CalcGreeksSurface(module, "bs", "d", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False)
+    #surface = CalcGreeksSurface(module, "bs", "g", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
+    #surface = CalcGreeksSurface(module, "bs", "v", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True)
+    #surface = CalcGreeksSurface(module, "bs", "t", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False)
+    #surface = CalcGreeksSurface(module, "bs", "r", array_s, 50.0, 0.05, 0.0, 0.2, array_t, True, False, False, False)
     #FigureResult(np.array(array_s), np.array(array_t), np.array(surface))
     
     array_s = np.arange(5.0, 105.0, 5.0).tolist()
@@ -239,16 +239,16 @@ def Test_DerivX_Vanilla_European():
     #print(CalcPrice_Spread_Butterfly_Put(module, model, s, k_l, k_m, k_h, r, q, v_l, v_m, v_h, t))
     #print(CalcPrice_Spread_Box_Bull_Call_Bear_Put(module, model, s, k_l, k_h, r, q, v_l, v_h, t))
     #print(CalcPrice_Spread_Box_Bull_Put_Bear_Call(module, model, s, k_l, k_h, r, q, v_l, v_h, t))
-    #print(CalcGreek_Spread_Bull_Call(module, model, "d", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    #print(CalcGreek_Spread_Bull_Call(module, model, "g", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    #print(CalcGreek_Spread_Bull_Call(module, model, "v", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    #print(CalcGreek_Spread_Bull_Call(module, model, "t", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    #print(CalcGreek_Spread_Bull_Call(module, model, "r", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
-    #surface = CalcGreekSurface_Spread_Bull_Call(module, model, "d", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    #surface = CalcGreekSurface_Spread_Bull_Call(module, model, "g", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    #surface = CalcGreekSurface_Spread_Bull_Call(module, model, "v", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    #surface = CalcGreekSurface_Spread_Bull_Call(module, model, "t", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
-    #surface = CalcGreekSurface_Spread_Bull_Call(module, model, "r", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    #print(CalcGreeks_Spread_Bull_Call(module, model, "d", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    #print(CalcGreeks_Spread_Bull_Call(module, model, "g", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    #print(CalcGreeks_Spread_Bull_Call(module, model, "v", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    #print(CalcGreeks_Spread_Bull_Call(module, model, "t", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    #print(CalcGreeks_Spread_Bull_Call(module, model, "r", s, k_l, k_h, r, q, v_l, v_h, t, is_long))
+    #surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "d", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    #surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "g", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    #surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "v", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    #surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "t", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
+    #surface = CalcGreeksSurface_Spread_Bull_Call(module, model, "r", array_s, k_l, k_h, r, q, v_l, v_h, array_t, is_long)
     #FigureResult(np.array(array_s), np.array(array_t), surface)
 
 if __name__ == "__main__":
