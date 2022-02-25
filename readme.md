@@ -1,5 +1,5 @@
 # DerivX
-V0.4.3-Beta Build 20220220
+V0.4.4-Beta Build 20220225
 
 © 2021-2022 Xu Rendong. All Rights Reserved.
 
@@ -45,12 +45,11 @@ Visit the latest version folder in [derivx_py](https://github.com/xurendong/deri
 + test_xxxx.py (all examples)
 
 Edit syscfg.py and change 
-```bash
+```python
+# the folder's absolute path, like "C:\\Users\\UserName\\Desktop\\Test"
 self.work_path = ""
-```
-to the folder's absolute path like
-```bash
-self.work_path = "C:\\Users\\UserName\\Desktop\\Test"
+# your CPU's logic cores number, like 4
+self.local_cpu_thread = 8
 ```
 then open and run examples in Shell or a Python IDE.
 
@@ -69,12 +68,11 @@ Visit the latest version folder in [derivx_js](https://github.com/xurendong/deri
 + test_xxxx.js (all examples)
 
 Edit syscfg.js and change 
-```bash
-self.work_path = ''
-```
-to the folder's absolute path like
-```bash
-self.work_path = 'C:\\Users\\UserName\\Desktop\\Test'
+```javascript
+// the folder's absolute path, like 'C:\\Users\\UserName\\Desktop\\Test'
+this.work_path = ''
+// your CPU's logic cores number, like 4
+this.local_cpu_thread = 8
 ```
 then open and run examples in Shell or a JavaScript IDE.
 
