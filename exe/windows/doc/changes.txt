@@ -1,23 +1,25 @@
 
-2022-02-25 0.4.4:
- - 任务消息队列由定价模块插件移至 CyberX Kernel 模块。
- - 完成 Barrier Sharkfin 定价模块重构并更新示例。
+2022-03-19 0.4.4:
+ - opt 任务消息队列由定价模块插件移至 CyberX Kernel 模块。
+ - new 完成 Barrier Sharkfin 定价模块重构并更新示例。
+ - fix 修正部分定价模块插件异常时任务结果未显示错误信息问题。
+ - new 结构 Autocall 中 Booster、Phoenix、Snowball 计算票息时增加可选的自然日相关参数。
 
 2022-02-20 0.4.3:
- - 完成 Digital Simple 定价模块重构并更新示例。
- - 完成 Autocall Booster 定价模块重构并更新示例。
- - 完成 Autocall Phoenix 定价模块重构并更新示例。
+ - new 完成 Digital Simple 定价模块重构并更新示例。
+ - new 完成 Autocall Booster 定价模块重构并更新示例。
+ - new 完成 Autocall Phoenix 定价模块重构并更新示例。
 
 2022-02-16 0.4.2:
- - 模块 Vanilla European 增加隐含波动率计算功能并更新示例。
- - 完成 Stochastic Model 研究模块重构并更新示例。
+ - new 模块 Vanilla European 增加隐含波动率计算功能并更新示例。
+ - new 完成 Stochastic Model 研究模块重构并更新示例。
 
 2022-02-09 0.4.1:
- - 完成 Autocall Snowball 定价模块重构并更新示例。
+ - new 完成 Autocall Snowball 定价模块重构并更新示例。
 
 2022-01-30 0.4.0:
  - new 调整架构，基于 CyberX 分布式异构计算框架进行重构。
- - 完成 Vanilla European 定价模块重构并更新示例。
+ - new 完成 Vanilla European 定价模块重构并更新示例。
 
 2022-01-21 0.3.7.1:
  - fix 修正 Autocall 中 Booster、Phoenix、Snowball 和 Barrier 中 Sharkfin、Single 的 Vega 及 Rho 值放大 100 倍问题。

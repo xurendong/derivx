@@ -83,8 +83,13 @@ class Config {
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
         this.run_days = 0 // 运行天数
-        this.knock_o_days = [] // 敲出日期序列
+        this.knock_o_days = [] // 敲出日期序列(交易日)
         this.knock_o_rate = [] // 敲出比率序列
+        
+        // 只影响 func_calc_coupon 票息计算，用户不传入则默认与 runs_step、year_days、knock_o_days 一致
+        this.runs_step_n = 0 // 产品自然日数 (可选)
+        this.year_days_n = 0 // 年自然日数量 (可选)
+        this.knock_o_days_n = [] // 敲出日期序列(自然日) (可选)
         
         this.calc_greek = '' // 要计算的希腊值标识
     }
@@ -191,8 +196,8 @@ async function Test_DerivX_Autocall_Snowball() {
     //  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732
     // 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
     
-    //config.knock_o_days = [61, 81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488] // 敲出日期序列
-    config.knock_o_days = nj.array([61, 81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488]).tolist() // 敲出日期序列
+    //config.knock_o_days = [61, 81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488] // 敲出日期序列(交易日)
+    config.knock_o_days = nj.array([61, 81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488]).tolist() // 敲出日期序列(交易日)
     
     //config.knock_o_rate = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] // 敲出比率序列
     //config.knock_o_rate = config.knock_o_rate.map((rate, index) => { return rate * config.knock_o_ratio })
@@ -204,6 +209,11 @@ async function Test_DerivX_Autocall_Snowball() {
     let calc_price_g = 1.0 // 价格点间隔
     //config.calc_price = [65.0, 70.0, 75.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0] // 计算价格序列
     config.calc_price = nj.arange(calc_price_d, calc_price_u + calc_price_g, calc_price_g).tolist() // 含价格点上下界
+    
+    // 只影响 func_calc_coupon 票息计算，用户不传入则默认与 runs_step、year_days、knock_o_days 一致
+    //config.runs_step_n = 720 // 产品自然日数 (可选)
+    //config.year_days_n = 365 // 年自然日数量 (可选)
+    //config.knock_o_days_n = nj.array([90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450, 480, 510, 540, 570, 600, 630, 660, 690, 720]).tolist() // 敲出日期序列(自然日) (可选)
     
     config.run_from = 0 // 起始天数，第一天为零
     config.run_days = 1 // 运行天数
