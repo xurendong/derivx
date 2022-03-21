@@ -79,7 +79,7 @@ class Config {
         this.prefix_coupon_use = false // 是否支付 prefix 收益
         this.ukiuko_coupon = 0.0 // 对于无敲出无敲入的情况，客户只要求得到固定收益
         this.ukiuko_coupon_ann = false // false 为绝对收益率，true 为年化收益率
-        this.ukiuko_coupon_use = false // 是否支付 ukiuko 收益
+        this.ukiuko_coupon_use = false // 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
         this.run_days = 0 // 运行天数
@@ -190,7 +190,7 @@ async function Test_DerivX_Autocall_Snowball() {
     config.prefix_coupon_use = false // 是否支付 prefix 收益
     config.ukiuko_coupon = 0.0 // 对于无敲出无敲入的情况，客户只要求得到固定收益
     config.ukiuko_coupon_ann = false // false 为绝对收益率，true 为年化收益率
-    config.ukiuko_coupon_use = false // 是否支付 ukiuko 收益
+    config.ukiuko_coupon_use = false // 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
     
     //   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     //  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732

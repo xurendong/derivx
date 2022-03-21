@@ -1,9 +1,10 @@
 
-2022-03-19 0.4.4:
+2022-03-21 0.4.4:
  - opt 任务消息队列由定价模块插件移至 CyberX Kernel 模块。
  - new 完成 Barrier Sharkfin 定价模块重构并更新示例。
  - fix 修正部分定价模块插件异常时任务结果未显示错误信息问题。
  - new 结构 Autocall 中 Booster、Phoenix、Snowball 计算票息时增加可选的自然日相关参数。
+ - new 完成 Barrier Single 定价模块重构并更新示例。
 
 2022-02-20 0.4.3:
  - new 完成 Digital Simple 定价模块重构并更新示例。

@@ -29,6 +29,7 @@ class SysCfg(object):
             {"work": True, "name": "derivx_autocall_phoenix", "version": "1.0.0"},
             {"work": True, "name": "derivx_autocall_snowball", "version": "1.0.0"},
             {"work": True, "name": "derivx_barrier_sharkfin", "version": "1.0.0"},
+            {"work": True, "name": "derivx_barrier_single", "version": "1.0.0"},
             {"work": True, "name": "derivx_digital_simple", "version": "1.0.0"},
             {"work": True, "name": "derivx_stochastic_model", "version": "1.0.0"},
             {"work": True, "name": "derivx_vanilla_european", "version": "1.0.0"}
