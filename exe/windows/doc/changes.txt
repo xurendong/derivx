@@ -1,4 +1,7 @@
 
+2022-03-25 0.4.5:
+ - opt 提升 Booster、Phoenix、Snowball、Sharkfin 路径依赖结构单日期价格点多核计算性能最多可达 40% 左右。
+
 2022-03-21 0.4.4:
  - opt 任务消息队列由定价模块插件移至 CyberX Kernel 模块。
  - new 完成 Barrier Sharkfin 定价模块重构并更新示例。
