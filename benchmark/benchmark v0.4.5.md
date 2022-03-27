@@ -17,7 +17,7 @@ DerivX V0.4.5 to V0.4.5
 | rand_rows           | 3600000                                            | -                  |
 | rand_cols           | 250                                                | -                  |
 | rand_quasi          | false                                              | -                  |
-| rand_seed           | [0, ..., 24]                                       | use 1 - 24 threads |
+| rand_seed           | [0, ..., 23]                                       | use 1 - 24 threads |
 | dual_smooth         | true                                               | -                  |
 | runs_size           | 7200000                                            | -                  |
 | runs_step           | 244                                                | -                  |
