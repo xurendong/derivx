@@ -68,18 +68,22 @@ class Config {
         this.knock_o_ratio = 0.0 // 敲出比率，非百分比
         this.knock_i_ratio = 0.0 // 敲入比率，非百分比
         this.knock_o_steps = 0.0 // 敲出比例逐月递减率
-        this.knock_i_valid = true // 是否有下方敲入障碍，置为 False 则变成保本小雪球
+        this.knock_i_valid = true // 是否有下方敲入障碍，置为 false 则变成保本小雪球
         this.knock_i_occur = false // 是否已经发生敲入
-        this.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 False 则变成不追保雪球
+        this.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保雪球
         this.coupon_rate = 0.0 // 客户年化收益率，CalcCoupon 时此入参不参与计算
         this.margin_rate = 0.0 // 保证金比例
         this.margin_interest = 0.0 // 保证金利率
+        this.use_option_fee = false // 使用期权费方式而非保证金方式
+        this.option_fee = 0.0 // 期权费费率
+        this.option_fee_interest = 0.0 // 期权费利率
+        this.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
         this.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
         this.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率
         this.prefix_coupon_use = false // 是否支付 prefix 收益
         this.ukiuko_coupon = 0.0 // 对于无敲出无敲入的情况，客户只要求得到固定收益
         this.ukiuko_coupon_ann = false // false 为绝对收益率，true 为年化收益率
-        this.ukiuko_coupon_use = false // 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
+        this.ukiuko_coupon_use = false // 是否支付 ukiuko 收益，false 为红利票息等同敲出票息，true 为单独指定红利票息
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
         this.run_days = 0 // 运行天数
@@ -178,19 +182,23 @@ async function Test_DerivX_Autocall_Snowball() {
     config.knock_o_ratio = 1.0 // 敲出比率，非百分比
     config.knock_i_ratio = 0.7 // 敲入比率，非百分比
     config.knock_o_steps = 0.0 // 敲出比例逐月递减率
-    config.knock_i_valid = true // 是否有下方敲入障碍，置为 False 则变成保本小雪球
+    config.knock_i_valid = true // 是否有下方敲入障碍，置为 false 则变成保本小雪球
     config.knock_i_occur = false // 是否已经发生敲入
-    config.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 False 则变成不追保雪球
+    config.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保雪球
     config.coupon_rate = 0.11 // 客户年化收益率，CalcCoupon 时此入参不参与计算
     config.margin_rate = 1.0 // 保证金比例
     config.margin_interest = 0.03 // 保证金利率
+    config.use_option_fee = false // 使用期权费方式而非保证金方式
+    config.option_fee = 0.0 // 期权费费率
+    config.option_fee_interest = 0.03 // 期权费利率
+    config.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
     
     config.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
     config.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率
     config.prefix_coupon_use = false // 是否支付 prefix 收益
     config.ukiuko_coupon = 0.0 // 对于无敲出无敲入的情况，客户只要求得到固定收益
     config.ukiuko_coupon_ann = false // false 为绝对收益率，true 为年化收益率
-    config.ukiuko_coupon_use = false // 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
+    config.ukiuko_coupon_use = false // 是否支付 ukiuko 收益，false 为红利票息等同敲出票息，true 为单独指定红利票息
     
     //   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     //  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732

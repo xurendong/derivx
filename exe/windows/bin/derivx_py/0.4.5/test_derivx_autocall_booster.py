@@ -73,6 +73,10 @@ class Config(object):
         self.rise_lever = 0.0 # 上涨杠杆，上涨参与率
         self.margin_rate = 0.0 # 保证金比例
         self.margin_interest = 0.0 # 保证金利率
+        self.use_option_fee = False # 使用期权费方式而非保证金方式
+        self.option_fee = 0.0 # 期权费费率
+        self.option_fee_interest = 0.0 # 期权费利率
+        self.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
         self.calc_price = [] # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
         self.run_days = 0 # 运行天数
@@ -186,6 +190,10 @@ def Test_DerivX_Autocall_Booster():
     config.rise_lever = 2.4 # 上涨杠杆，上涨参与率
     config.margin_rate = 1.0 # 保证金比例
     config.margin_interest = 0.03 # 保证金利率
+    config.use_option_fee = False # 使用期权费方式而非保证金方式
+    config.option_fee = 0.0 # 期权费费率
+    config.option_fee_interest = 0.03 # 期权费利率
+    config.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
     
     #   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     #  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732

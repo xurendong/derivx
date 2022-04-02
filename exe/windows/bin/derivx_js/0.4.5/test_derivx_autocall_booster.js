@@ -68,10 +68,14 @@ class Config {
         this.margin_i_ratio = 0.0 // 保本比率，非百分比
         this.knock_o_steps = 0.0 // 敲出比例逐月递减率
         this.coupon_rate = 0.0 // 敲出收益率，CalcCoupon 时此入参不参与计算
-        this.coupon_annual = false // 敲出收益率类型，False 为绝对，True 为年化
+        this.coupon_annual = false // 敲出收益率类型，false 为绝对，true 为年化
         this.rise_lever = 0.0 // 上涨杠杆，上涨参与率
         this.margin_rate = 0.0 // 保证金比例
         this.margin_interest = 0.0 // 保证金利率
+        this.use_option_fee = false // 使用期权费方式而非保证金方式
+        this.option_fee = 0.0 // 期权费费率
+        this.option_fee_interest = 0.0 // 期权费利率
+        this.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
         this.run_days = 0 // 运行天数
@@ -170,10 +174,14 @@ async function Test_DerivX_Autocall_Booster() {
     config.margin_i_ratio = 0.8 // 保本比率，非百分比
     config.knock_o_steps = 0.0 // 敲出比例逐月递减率
     config.coupon_rate = 0.145221 // 敲出收益率，CalcCoupon 时此入参不参与计算
-    config.coupon_annual = false // 敲出收益率类型，False 为绝对，True 为年化
+    config.coupon_annual = false // 敲出收益率类型，false 为绝对，true 为年化
     config.rise_lever = 2.4 // 上涨杠杆，上涨参与率
     config.margin_rate = 1.0 // 保证金比例
     config.margin_interest = 0.03 // 保证金利率
+    config.use_option_fee = false // 使用期权费方式而非保证金方式
+    config.option_fee = 0.0 // 期权费费率
+    config.option_fee_interest = 0.03 // 期权费利率
+    config.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
     
     //   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     //  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732

@@ -75,6 +75,10 @@ class Config(object):
         self.coupon_rate = 0.0 # 客户年化收益率，CalcCoupon 时此入参不参与计算
         self.margin_rate = 0.0 # 保证金比例
         self.margin_interest = 0.0 # 保证金利率
+        self.use_option_fee = False # 使用期权费方式而非保证金方式
+        self.option_fee = 0.0 # 期权费费率
+        self.option_fee_interest = 0.0 # 期权费利率
+        self.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
         self.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
         self.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率
         self.prefix_coupon_use = False # 是否支付 prefix 收益
@@ -196,6 +200,10 @@ def Test_DerivX_Autocall_Snowball():
     config.coupon_rate = 0.11 # 客户年化收益率，CalcCoupon 时此入参不参与计算
     config.margin_rate = 1.0 # 保证金比例
     config.margin_interest = 0.03 # 保证金利率
+    config.use_option_fee = False # 使用期权费方式而非保证金方式
+    config.option_fee = 0.0 # 期权费费率
+    config.option_fee_interest = 0.03 # 期权费利率
+    config.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
     
     config.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
     config.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率

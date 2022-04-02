@@ -55,7 +55,7 @@ g_down_out = 4 # 向下敲出
 # t # 年化到期期限
 # p # 参与率，未敲出情况下客户对收益的占比要求
 # is_call # 看涨看跌
-# is_kop_delay # 敲出后是立即还是延期支付资金
+# is_kop_delay # 敲出后是立即还是延期支付资金，false 为立即，true 为延期
 # barrier_type # 障碍类型
 # calc_price # 计算价格序列
 # runs_step # 价格变动步数

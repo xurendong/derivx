@@ -69,10 +69,14 @@ class Config {
         this.knock_i_ratio = 0.0 // 敲入比率，非百分比
         this.knock_o_steps = 0.0 // 敲出比例逐月递减率
         this.knock_i_occur = false // 是否已经发生敲入
-        this.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 False 则变成不追保凤凰
+        this.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保凤凰
         this.coupon_rate = 0.0 // 客户单次票息，CalcCoupon 时此入参不参与计算
         this.margin_rate = 0.0 // 保证金比例
         this.margin_interest = 0.0 // 保证金利率
+        this.use_option_fee = false // 使用期权费方式而非保证金方式
+        this.option_fee = 0.0 // 期权费费率
+        this.option_fee_interest = 0.0 // 期权费利率
+        this.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
         this.run_days = 0 // 运行天数
@@ -172,10 +176,14 @@ async function Test_DerivX_Autocall_Phoenix() {
     config.knock_i_ratio = 0.8 // 敲入比率，非百分比
     config.knock_o_steps = 0.0 // 敲出比例逐月递减率
     config.knock_i_occur = false // 是否已经发生敲入
-    config.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 False 则变成不追保凤凰
+    config.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保凤凰
     config.coupon_rate = 0.013 // 客户单次票息，CalcCoupon 时此入参不参与计算
     config.margin_rate = 1.0 // 保证金比例
     config.margin_interest = 0.03 // 保证金利率
+    config.use_option_fee = false // 使用期权费方式而非保证金方式
+    config.option_fee = 0.0 // 期权费费率
+    config.option_fee_interest = 0.03 // 期权费利率
+    config.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
     
     //   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     //  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732

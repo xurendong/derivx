@@ -1,5 +1,5 @@
 # DerivX
-V0.4.5-Beta Build 20220327
+V0.4.5-Beta Build 20220401
 
 © 2021-2022 Xu Rendong. All Rights Reserved.
 
@@ -131,7 +131,7 @@ npm install git+https://github.com/nicolaspanel/numjs.git
 Please refer to [changes](https://github.com/xurendong/derivx/blob/main/changes.txt) file.
 
 ### Benchmark
-Please refer to [benchmark](https://github.com/xurendong/derivx/tree/main/benchmark) folder.
+Please refer to [benchmark](https://github.com/xurendong/derivx/blob/main/benchmark.md) file.
 
 ### Contact Information
 QQ: 277195007, WeChat: xrd_ustc, E-mail: xrd@ustc.edu

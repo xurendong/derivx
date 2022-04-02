@@ -74,13 +74,15 @@ class Config(object):
         self.h_h = 0.0 # 障碍价格，高
         self.k_l = 0.0 # 行权价格，低
         self.k_h = 0.0 # 行权价格，高
-        self.x = 0.0 # 敲出后需支付的资金
+        self.x = 0.0 # 敲出后需支付的年化资金
         self.p = 0.0 # 参与率，未敲出情况下客户对收益的占比要求
-        self.is_kop_delay = False # 敲出后是立即还是延期支付资金
+        self.is_kop_delay = False # 敲出后是立即还是延期支付资金，False 为立即，True 为延期，欧式的此参数无效
         self.option_type = 0 # 期权类型
         self.barrier_type = 0 # 障碍类型
         self.trade_long = True # 交易方向
-        self.price_rate = 0.0 # 价格比率，CalcPrice 时此入参不参与计算
+        self.option_fee = 0.0 # 期权费费率，CalcPrice 时此入参不参与计算
+        self.option_fee_interest = 0.0 # 期权费利率
+        self.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
         
         self.calc_price = [] # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
@@ -182,13 +184,15 @@ def Test_DerivX_Barrier_Sharkfin():
     config.h_h = 105.0 # 障碍价格，高
     config.k_l = 99.0 # 行权价格，低
     config.k_h = 101.0 # 行权价格，高
-    config.x = 3.5 # 敲出后需支付的资金
+    config.x = 3.5 # 敲出后需支付的年化资金
     config.p = 1.0 # 参与率，未敲出情况下客户对收益的占比要求
-    config.is_kop_delay = True # 敲出后是立即还是延期支付资金
+    config.is_kop_delay = True # 敲出后是立即还是延期支付资金，False 为立即，True 为延期，欧式的此参数无效
     config.option_type = g_option_american # 期权类型
     config.barrier_type = g_sharkfin_ucdp # 障碍类型
     config.trade_long = False # 交易方向
-    config.price_rate = 0.035 # 价格比率，CalcPrice 时此入参不参与计算
+    config.option_fee = 0.035 # 期权费费率，CalcPrice 时此入参不参与计算
+    config.option_fee_interest = 0.03 # 期权费利率
+    config.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
     
     calc_price_u = 110.0 # 价格点上界
     calc_price_d = 90.0 # 价格点下界
