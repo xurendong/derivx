@@ -195,8 +195,8 @@ def Test_DerivX_Barrier_Sharkfin():
     config.option_fee = 0.035 # 期权费费率，CalcPrice 时此入参不参与计算
     config.option_fee_interest = 0.03 # 期权费利率
     config.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
-    config.consumed_option_fee_rate = 0.0 # 对冲交易 消耗 的期权费占比
-    config.occupied_option_fee_rate = 0.0 # 对冲交易 占用 的期权费占比
+    config.consumed_option_fee_rate = 0.0 # 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
+    config.occupied_option_fee_rate = 0.0 # 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
     
     calc_price_u = 110.0 # 价格点上界
     calc_price_d = 90.0 # 价格点下界
