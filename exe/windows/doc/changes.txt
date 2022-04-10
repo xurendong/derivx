@@ -1,4 +1,8 @@
 
+2022-04-10 0.4.6:
+ - opt 结构 Barrier 中 Sharkfin 改进期权费对冲耗损计算。
+ - new 结构 Barrier 中 Sharkfin 增加 consumed_option_fee_rate、occupied_option_fee_rate 参数。
+
 2022-04-01 0.4.5:
  - opt 提升 Booster、Phoenix、Snowball、Sharkfin 路径依赖结构单日期价格点多核计算性能最多可达 40% 左右。
  - opt 继续优化前述路径依赖结构多核计算性能，Payoff 和 Greeks 计算耗时降幅达 60% 到 80% 且多核效果显著。
