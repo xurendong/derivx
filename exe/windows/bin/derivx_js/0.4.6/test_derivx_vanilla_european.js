@@ -230,7 +230,7 @@ function Test_DerivX_Vanilla_European() {
     //result = CalcGreeks(module, 'bs', 'r', 49.0, 50.0, 0.05, 0.0, 0.2, 0.3846, true, false, false, false)
     //console.log(result)
     
-    // 为使代码美观参数清晰，示例中二叉树节点层数使用 CalcIV、CalcPrice、CalcGreeks、CalcGreeksSurface 等函数的入参默认值设置
+    // 为使代码美观参数清晰，示例中二叉树节点层数通过 CalcIV、CalcPrice、CalcGreeks、CalcGreeksSurface 等函数的入参默认值设置
     
     //result = CalcIV(module, 'bt', 'v', 0.1566, 5.29, 6.0, 0.04, 0.0, 0.5, true) // Vega 法
     //result = CalcIV(module, 'bt', 'v', 0.7503, 5.29, 6.0, 0.04, 0.0, 0.5, false) // Vega 法

@@ -1,11 +1,12 @@
 
-2022-04-18 0.4.6:
+2022-04-20 0.4.6:
  - opt 结构 Barrier 中 Sharkfin 改进期权费对冲耗损计算。
  - new 结构 Barrier 中 Sharkfin 增加 consumed_option_fee_rate、occupied_option_fee_rate 参数。
  - fix 修正 Vanilla European 的 BS Vega 计算结果以波动率变动 1% 为单位，即缩小 100 倍。
  - fix 修正 Vanilla European 的 BS Theta 计算结果以 1day 为单位，即缩小 365 倍。
  - fix 修正 Vanilla European 的 BS Rho 计算结果以无风险利率变动 1% 为单位，即缩小 100 倍。
- - new 结构 Vanilla European 增加基于二叉树方法的隐含波动率、理论价格、希腊值、希腊值曲面等的计算。
+ - new 结构 Vanilla European 增加基于二叉树方法的隐含波动率、理论价格、希腊值、希腊值曲面等的计算并更新示例。
+ - new 结构 Vanilla American 完成基于二叉树方法的隐含波动率、理论价格、希腊值、希腊值曲面等的计算并更新示例。
 
 2022-04-01 0.4.5:
  - opt 提升 Booster、Phoenix、Snowball、Sharkfin 路径依赖结构单日期价格点多核计算性能最多可达 40% 左右。

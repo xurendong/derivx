@@ -33,6 +33,7 @@ class SysCfg {
             {"work": true, "name": "derivx_barrier_single", "version": "1.0.0"},
             {"work": true, "name": "derivx_digital_simple", "version": "1.0.0"},
             {"work": true, "name": "derivx_stochastic_model", "version": "1.0.0"},
+            {"work": true, "name": "derivx_vanilla_american", "version": "1.0.0"},
             {"work": true, "name": "derivx_vanilla_european", "version": "1.0.0"}
         ]
     }
