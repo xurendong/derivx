@@ -78,6 +78,11 @@ class Config {
         this.option_fee = 0.0 // 期权费费率
         this.option_fee_interest = 0.0 // 期权费利率
         this.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
+        this.discount_payoff = false // 是否对票息等收支进行贴现，false 为不贴现，true 为做贴现
+        this.discount_margin = false // 是否对保证金收支进行贴现，false 为不贴现，true 为做贴现
+        this.discount_option_fee = false // 是否对期权费收支进行贴现，影响期权费后付，false 为不贴现，true 为做贴现
+        this.compound_option_fee = false // 是否对期权费收支进行复利，影响期权费先付，false 为不复利，true 为做复利
+        this.market_close = false // 是否已经收盘，会影响交易和估值，false 为未收盘，true 为已收盘
         this.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
         this.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率
         this.prefix_coupon_use = false // 是否支付 prefix 收益
@@ -192,6 +197,11 @@ async function Test_DerivX_Autocall_Snowball_Stage_Coupon() {
     config.option_fee = 0.0 // 期权费费率
     config.option_fee_interest = 0.03 // 期权费利率
     config.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
+    config.discount_payoff = false // 是否对票息等收支进行贴现，false 为不贴现，true 为做贴现
+    config.discount_margin = false // 是否对保证金收支进行贴现，false 为不贴现，true 为做贴现
+    config.discount_option_fee = false // 是否对期权费收支进行贴现，影响期权费后付，false 为不贴现，true 为做贴现
+    config.compound_option_fee = false // 是否对期权费收支进行复利，影响期权费先付，false 为不复利，true 为做复利
+    config.market_close = false // 是否已经收盘，会影响交易和估值，false 为未收盘，true 为已收盘
     
     config.prefix_coupon = 0.0 // 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
     config.prefix_coupon_ann = false // false 为绝对收益率，true 为年化收益率

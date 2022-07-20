@@ -82,9 +82,13 @@ class Config(object):
         self.trade_long = True # 交易方向
         self.option_fee = 0.0 # 期权费费率，CalcPrice 时此入参不参与计算
         self.option_fee_interest = 0.0 # 期权费利率
-        self.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
         self.consumed_option_fee_rate = 0.0 # 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
         self.occupied_option_fee_rate = 0.0 # 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
+        self.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
+        self.discount_payoff = False # 是否对票息等收支进行贴现，False 为不贴现，True 为做贴现
+        self.discount_option_fee = False # 是否对期权费收支进行贴现，影响期权费后付及先付时交易占用资金，False 为不贴现，True 为做贴现
+        self.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付及后付时垫付占用资金，False 为不复利，True 为做复利
+        self.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
         
         self.calc_price = [] # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
@@ -194,9 +198,13 @@ def Test_DerivX_Barrier_Sharkfin():
     config.trade_long = False # 交易方向
     config.option_fee = 0.035 # 期权费费率，CalcPrice 时此入参不参与计算
     config.option_fee_interest = 0.03 # 期权费利率
-    config.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
     config.consumed_option_fee_rate = 0.0 # 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
     config.occupied_option_fee_rate = 0.0 # 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
+    config.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
+    config.discount_payoff = False # 是否对票息等收支进行贴现，False 为不贴现，True 为做贴现
+    config.discount_option_fee = False # 是否对期权费收支进行贴现，影响期权费后付及先付时交易占用资金，False 为不贴现，True 为做贴现
+    config.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付及后付时垫付占用资金，False 为不复利，True 为做复利
+    config.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
     
     calc_price_u = 110.0 # 价格点上界
     calc_price_d = 90.0 # 价格点下界

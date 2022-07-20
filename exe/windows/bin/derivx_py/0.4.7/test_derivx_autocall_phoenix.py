@@ -78,6 +78,11 @@ class Config(object):
         self.option_fee = 0.0 # 期权费费率
         self.option_fee_interest = 0.0 # 期权费利率
         self.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
+        self.discount_payoff = False # 是否对票息等收支进行贴现，False 为不贴现，True 为做贴现
+        self.discount_margin = False # 是否对保证金收支进行贴现，False 为不贴现，True 为做贴现
+        self.discount_option_fee = False # 是否对期权费收支进行贴现，影响期权费后付，False 为不贴现，True 为做贴现
+        self.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付，False 为不复利，True 为做复利
+        self.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
         self.calc_price = [] # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
         self.run_days = 0 # 运行天数
@@ -196,6 +201,11 @@ def Test_DerivX_Autocall_Phoenix():
     config.option_fee = 0.0 # 期权费费率
     config.option_fee_interest = 0.03 # 期权费利率
     config.back_end_load = False # 期权费支付方式，False 为前端，True 为后端
+    config.discount_payoff = False # 是否对票息等收支进行贴现，False 为不贴现，True 为做贴现
+    config.discount_margin = False # 是否对保证金收支进行贴现，False 为不贴现，True 为做贴现
+    config.discount_option_fee = False # 是否对期权费收支进行贴现，影响期权费后付，False 为不贴现，True 为做贴现
+    config.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付，False 为不复利，True 为做复利
+    config.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
     
     #   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     #  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732
