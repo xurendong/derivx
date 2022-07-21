@@ -73,8 +73,10 @@ class Config {
         this.h_h = 0.0 // 障碍价格，高
         this.k_l = 0.0 // 行权价格，低
         this.k_h = 0.0 // 行权价格，高
-        this.x = 0.0 // 敲出后需支付的年化资金
-        this.p = 0.0 // 参与率，未敲出情况下客户对收益的占比要求
+        this.x_l = 0.0 // 敲出后需支付的年化资金，低，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
+        this.x_h = 0.0 // 敲出后需支付的年化资金，高，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
+        this.p_l = 0.0 // 参与率，低，未敲出情况下客户对收益的占比要求
+        this.p_h = 0.0 // 参与率，高，未敲出情况下客户对收益的占比要求
         this.is_kop_delay = false // 敲出后是立即还是延期支付资金，false 为立即，true 为延期，欧式的此参数无效
         this.option_type = 0 // 期权类型
         this.barrier_type = 0 // 障碍类型
@@ -178,8 +180,10 @@ async function Test_DerivX_Barrier_Sharkfin() {
     config.h_h = 105.0 // 障碍价格，高
     config.k_l = 99.0 // 行权价格，低
     config.k_h = 101.0 // 行权价格，高
-    config.x = 3.5 // 敲出后需支付的年化资金
-    config.p = 1.0 // 参与率，未敲出情况下客户对收益的占比要求
+    config.x_l = 3.5 // 敲出后需支付的年化资金，低，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
+    config.x_h = 3.5 // 敲出后需支付的年化资金，高，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
+    config.p_l = 1.0 // 参与率，低，未敲出情况下客户对收益的占比要求
+    config.p_h = 1.0 // 参与率，高，未敲出情况下客户对收益的占比要求
     config.is_kop_delay = true // 敲出后是立即还是延期支付资金，false 为立即，true 为延期，欧式的此参数无效
     config.option_type = g_option_american // 期权类型
     config.barrier_type = g_sharkfin_ucdp // 障碍类型
