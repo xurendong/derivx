@@ -6,6 +6,7 @@
  - fix 修正 Booster、Phoenix、Snowball 等模块中一处自然日序列赋值异常可能导致计算崩溃的问题。
  - fix 修正 Stage Coupon Snowball 模块中取票息尾数时可能导致崩溃的问题。
  - new 结构 Booster、Phoenix、Snowball、Sharkfin 等模块增加是否收盘的开关参数，主要用于以盘后固定价格进行估值计算。
+ - opt 增加起始天数和运行天数的参数值合法性校验，便于计算时自动化取值纠错。
 
 2022-04-20 0.4.6:
  - opt 结构 Barrier 中 Sharkfin 改进期权费对冲耗损计算。
