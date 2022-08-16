@@ -1,5 +1,5 @@
 
-2022-07-28 0.4.7:
+2022-08-16 0.4.7:
  - new 结构 Autocall 中增加 Stage Coupon Snowball 阶段票息雪球定价模块，从票息填写便利考虑暂不与普通雪球模块合并。
  - opt 结构 Booster、Phoenix、Snowball、Sharkfin 等模块增加是否计算贴现的开关参数。
  - opt 结构 Sharkfin 支持看涨和看跌使用不同的敲出收益和参与率。
@@ -7,6 +7,7 @@
  - fix 修正 Stage Coupon Snowball 模块中取票息尾数时可能导致崩溃的问题。
  - new 结构 Booster、Phoenix、Snowball、Sharkfin 等模块增加是否收盘的开关参数，主要用于以盘后固定价格进行估值计算。
  - opt 增加起始天数和运行天数的参数值合法性校验，便于计算时自动化取值纠错。
+ - opt 结构 Booster、Phoenix 等模块增加前端扣费相关参数。
 
 2022-04-20 0.4.6:
  - opt 结构 Barrier 中 Sharkfin 改进期权费对冲耗损计算。
