@@ -1,5 +1,5 @@
 # DerivX
-V0.4.7-Beta Build 20220818
+V0.4.8-Beta Build 20220818
 
 © 2021-2022 Xu Rendong. All Rights Reserved.
 
@@ -8,7 +8,7 @@ Derivatives Pricing Engine.
 + Plain Vanilla European / American options portfolio calculation.
 + Plain Vanilla European / American option pricing and greek value calculation.
 + Single Barrier / SharkFin option pricing and greek value calculation.
-+ Exotic Autocall Booster / Phoenix / Snowball option pricing and greek value calculation.
++ Exotic Autocall Booster / FCN / Phoenix / Snowball option pricing and greek value calculation.
 + Stochastic Diffusion Processes and Stochastic Volatility Models.
 + Interfaces and examples for C++, Python, JavaScript.
 + Based on CyberX distributed heterogeneous computing framework.
