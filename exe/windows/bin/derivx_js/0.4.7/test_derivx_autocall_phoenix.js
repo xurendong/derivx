@@ -70,6 +70,7 @@ class Config {
         this.knock_o_steps = 0.0 // 敲出比例逐月递减率
         this.knock_i_occur = false // 是否已经发生敲入
         this.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保凤凰
+        this.knock_o_observe_pay = false // 是否在敲出观察日支付票息，false 为累计至敲出或到期支付，true 为每次当日支付
         this.coupon_rate = 0.0 // 客户单次票息，CalcCoupon 时此入参不参与计算
         this.margin_rate = 0.0 // 保证金比例
         this.margin_interest = 0.0 // 保证金利率
@@ -185,6 +186,7 @@ async function Test_DerivX_Autocall_Phoenix() {
     config.knock_o_steps = 0.0 // 敲出比例逐月递减率
     config.knock_i_occur = false // 是否已经发生敲入
     config.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保凤凰
+    config.knock_o_observe_pay = false // 是否在敲出观察日支付票息，false 为累计至敲出或到期支付，true 为每次当日支付
     config.coupon_rate = 0.013 // 客户单次票息，CalcCoupon 时此入参不参与计算
     config.margin_rate = 1.0 // 保证金比例
     config.margin_interest = 0.03 // 保证金利率
