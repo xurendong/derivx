@@ -1,6 +1,7 @@
 
-2022-08-18 0.4.8:
+2022-08-19 0.4.8:
  - new 结构 Autocall 中增加 Fixed Coupon Notes 定息票据定价模块及其示例。
+ - opt 修改 Fixed Coupon Notes 模块红利票息相关参数使用 uexuko_ 作为前缀。
 
 2022-08-18 0.4.7:
  - new 结构 Autocall 中增加 Stage Coupon Snowball 阶段票息雪球定价模块，从票息填写便利考虑暂不与普通雪球模块合并。

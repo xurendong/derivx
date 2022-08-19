@@ -80,12 +80,12 @@ class Config(object):
         self.discount_option_fee = False # 是否对期权费收支进行贴现，影响期权费后付，False 为不贴现，True 为做贴现
         self.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付，False 为不复利，True 为做复利
         self.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
-        self.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
+        self.prefix_coupon = 0.0 # 不管行权敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
         self.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率
         self.prefix_coupon_use = False # 是否支付 prefix 收益
-        self.ukiuko_coupon = 0.0 # 对于无敲出无敲入的情况，客户只要求得到固定收益
-        self.ukiuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
-        self.ukiuko_coupon_use = False # 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
+        self.uexuko_coupon = 0.0 # 对于无敲出无行权的情况，客户只要求得到固定收益
+        self.uexuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
+        self.uexuko_coupon_use = False # 是否支付 uexuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
         self.calc_price = [] # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
         self.run_days = 0 # 运行天数
@@ -207,12 +207,12 @@ def Test_DerivX_Autocall_Fixed_Coupon_Notes():
     config.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付，False 为不复利，True 为做复利
     config.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
     
-    config.prefix_coupon = 0.0 # 不管敲入敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
+    config.prefix_coupon = 0.0 # 不管行权敲出和到期时间，客户都要求得到固定收益，相当于前端扣费的意思
     config.prefix_coupon_ann = False # False 为绝对收益率，True 为年化收益率
     config.prefix_coupon_use = False # 是否支付 prefix 收益
-    config.ukiuko_coupon = 0.0 # 对于无敲出无敲入的情况，客户只要求得到固定收益
-    config.ukiuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
-    config.ukiuko_coupon_use = False # 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
+    config.uexuko_coupon = 0.0 # 对于无敲出无行权的情况，客户只要求得到固定收益
+    config.uexuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
+    config.uexuko_coupon_use = False # 是否支付 uexuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
     
     #   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     #  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732
