@@ -74,15 +74,15 @@ class Config(object):
         self.h_h = 0.0 # 障碍价格，高
         self.k_l = 0.0 # 行权价格，低
         self.k_h = 0.0 # 行权价格，高
-        self.x_l = 0.0 # 敲出后需支付的年化资金，低，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
-        self.x_h = 0.0 # 敲出后需支付的年化资金，高，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
+        self.x_l = 0.0 # 敲出后需支付的年化资金，低，比如 s = 1.0 x = 0.035
+        self.x_h = 0.0 # 敲出后需支付的年化资金，高，比如 s = 1.0 x = 0.035
         self.p_l = 0.0 # 参与率，低，未敲出情况下客户对收益的占比要求
         self.p_h = 0.0 # 参与率，高，未敲出情况下客户对收益的占比要求
         self.is_kop_delay = False # 敲出后是立即还是延期支付资金，False 为立即，True 为延期，欧式的此参数无效
         self.option_type = 0 # 期权类型
         self.barrier_type = 0 # 障碍类型
         self.trade_long = True # 交易方向
-        self.option_fee = 0.0 # 期权费费率，CalcPrice 时此入参不参与计算
+        self.option_fee = 0.0 # 期权费费率，目前未使用
         self.option_fee_interest = 0.0 # 期权费利率
         self.consumed_option_fee_rate = 0.0 # 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
         self.occupied_option_fee_rate = 0.0 # 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
@@ -187,13 +187,13 @@ def Test_DerivX_Barrier_Sharkfin():
     config.price_limit_ratio = 0.1 # 涨跌停限制幅度 # InitPath
     config.price_limit_style = 0 # 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 # InitPath
     
-    config.s = 100.0 # 标的价格
-    config.h_l = 95.0 # 障碍价格，低
-    config.h_h = 105.0 # 障碍价格，高
-    config.k_l = 99.0 # 行权价格，低
-    config.k_h = 101.0 # 行权价格，高
-    config.x_l = 3.5 # 敲出后需支付的年化资金，低，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
-    config.x_h = 3.5 # 敲出后需支付的年化资金，高，比如 s = 100.0 x = 3.5 若 s = 1.0 则 x = 0.035
+    config.s = 1.0 # 标的价格
+    config.h_l = 0.95 # 障碍价格，低
+    config.h_h = 1.05 # 障碍价格，高
+    config.k_l = 0.99 # 行权价格，低
+    config.k_h = 1.01 # 行权价格，高
+    config.x_l = 0.035 # 敲出后需支付的年化资金，低，比如 s = 1.0 x = 0.035
+    config.x_h = 0.035 # 敲出后需支付的年化资金，高，比如 s = 1.0 x = 0.035
     config.p_l = 1.0 # 参与率，低，未敲出情况下客户对收益的占比要求
     config.p_h = 1.0 # 参与率，高，未敲出情况下客户对收益的占比要求
     config.is_kop_delay = True # 敲出后是立即还是延期支付资金，False 为立即，True 为延期，欧式的此参数无效
@@ -210,10 +210,10 @@ def Test_DerivX_Barrier_Sharkfin():
     config.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付及后付时垫付占用资金，False 为不复利，True 为做复利
     config.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
     
-    calc_price_u = 110.0 # 价格点上界
-    calc_price_d = 90.0 # 价格点下界
-    calc_price_g = 1.0 # 价格点间隔
-    #config.calc_price = np.array([65.0, 70.0, 75.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0]).tolist() # 计算价格序列
+    calc_price_u = 1.1 # 价格点上界
+    calc_price_d = 0.9 # 价格点下界
+    calc_price_g = 0.01 # 价格点间隔
+    #config.calc_price = np.array([0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1.00, 1.05]).tolist() # 计算价格序列
     config.calc_price = np.arange(calc_price_d, calc_price_u + calc_price_g, calc_price_g).tolist() # 含价格点上下界
     
     config.run_from = 0 # 起始天数，第一天为零
