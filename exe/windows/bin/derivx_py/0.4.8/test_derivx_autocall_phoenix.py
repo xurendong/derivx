@@ -68,6 +68,7 @@ class Config(object):
         self.strike_price = 0.0 # 敲入后执行价格
         self.knock_o_ratio = 0.0 # 敲出比率，非百分比
         self.knock_i_ratio = 0.0 # 敲入比率，非百分比
+        self.knock_p_ratio = 0.0 # 付息比率，非百分比，观察日收盘不小于此比率则支付或有票息，将 knock_o_rate 序列某些数值设得很大则可当作在这些交易日不观察敲出但观察付息
         self.knock_o_steps = 0.0 # 敲出比例逐月递减率
         self.knock_i_occur = False # 是否已经发生敲入
         self.knock_i_margin_call = True # 是否敲入后可追加保证金，置为 False 则变成不追保凤凰
@@ -195,6 +196,7 @@ def Test_DerivX_Autocall_Phoenix():
     config.strike_price = 100.0 # 敲入后执行价格
     config.knock_o_ratio = 1.0 # 敲出比率，非百分比
     config.knock_i_ratio = 0.8 # 敲入比率，非百分比
+    config.knock_p_ratio = 0.8 # 付息比率，非百分比，观察日收盘不小于此比率则支付或有票息，将 knock_o_rate 序列某些数值设得很大则可当作在这些交易日不观察敲出但观察付息
     config.knock_o_steps = 0.0 # 敲出比例逐月递减率
     config.knock_i_occur = False # 是否已经发生敲入
     config.knock_i_margin_call = True # 是否敲入后可追加保证金，置为 False 则变成不追保凤凰

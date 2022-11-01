@@ -67,6 +67,7 @@ class Config {
         this.strike_price = 0.0 // 敲入后执行价格
         this.knock_o_ratio = 0.0 // 敲出比率，非百分比
         this.knock_i_ratio = 0.0 // 敲入比率，非百分比
+        this.knock_p_ratio = 0.0 // 付息比率，非百分比，观察日收盘不小于此比率则支付或有票息，将 knock_o_rate 序列某些数值设得很大则可当作在这些交易日不观察敲出但观察付息
         this.knock_o_steps = 0.0 // 敲出比例逐月递减率
         this.knock_i_occur = false // 是否已经发生敲入
         this.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保凤凰
@@ -183,6 +184,7 @@ async function Test_DerivX_Autocall_Phoenix() {
     config.strike_price = 100.0 // 敲入后执行价格
     config.knock_o_ratio = 1.0 // 敲出比率，非百分比
     config.knock_i_ratio = 0.8 // 敲入比率，非百分比
+    config.knock_p_ratio = 0.8 // 付息比率，非百分比，观察日收盘不小于此比率则支付或有票息，将 knock_o_rate 序列某些数值设得很大则可当作在这些交易日不观察敲出但观察付息
     config.knock_o_steps = 0.0 // 敲出比例逐月递减率
     config.knock_i_occur = false // 是否已经发生敲入
     config.knock_i_margin_call = true // 是否敲入后可追加保证金，置为 false 则变成不追保凤凰
