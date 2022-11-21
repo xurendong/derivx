@@ -95,11 +95,12 @@ class Config {
         this.prefix_rebate_ann_need = false // 是否支付前端返息（年化）
         this.prefix_rebate_abs_rate = 0.0 // 前端返息比率，非百分比（绝对）
         this.prefix_rebate_abs_need = false // 是否支付前端返息（绝对）
-        
         this.suffix_rebate_ann_rate = 0.0 // 后端返息比率，非百分比（年化）
         this.suffix_rebate_ann_need = false // 是否支付后端返息（年化）
         this.suffix_rebate_abs_rate = 0.0 // 后端返息比率，非百分比（绝对）
         this.suffix_rebate_abs_need = false // 是否支付后端返息（绝对）
+        this.discount_rebate = false // 是否对返息进行贴现，影响后端返息，false 为不贴现，true 为做贴现
+        this.compound_rebate = false // 是否对返息进行复利，影响前端返息，false 为不复利，true 为做复利
         
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
@@ -212,11 +213,12 @@ async function Test_DerivX_Barrier_Sharkfin() {
     config.prefix_rebate_ann_need = false // 是否支付前端返息（年化）
     config.prefix_rebate_abs_rate = 0.0 // 前端返息比率，非百分比（绝对）
     config.prefix_rebate_abs_need = false // 是否支付前端返息（绝对）
-    
     config.suffix_rebate_ann_rate = 0.0 // 后端返息比率，非百分比（年化）
     config.suffix_rebate_ann_need = false // 是否支付后端返息（年化）
     config.suffix_rebate_abs_rate = 0.0 // 后端返息比率，非百分比（绝对）
     config.suffix_rebate_abs_need = false // 是否支付后端返息（绝对）
+    config.discount_rebate = false // 是否对返息进行贴现，影响后端返息，false 为不贴现，true 为做贴现
+    config.compound_rebate = false // 是否对返息进行复利，影响前端返息，false 为不复利，true 为做复利
     
     let calc_price_u = 1.1 // 价格点上界
     let calc_price_d = 0.9 // 价格点下界

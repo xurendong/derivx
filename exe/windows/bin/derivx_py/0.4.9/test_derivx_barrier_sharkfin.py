@@ -96,11 +96,12 @@ class Config(object):
         self.prefix_rebate_ann_need = False # 是否支付前端返息（年化）
         self.prefix_rebate_abs_rate = 0.0 # 前端返息比率，非百分比（绝对）
         self.prefix_rebate_abs_need = False # 是否支付前端返息（绝对）
-        
         self.suffix_rebate_ann_rate = 0.0 # 后端返息比率，非百分比（年化）
         self.suffix_rebate_ann_need = False # 是否支付后端返息（年化）
         self.suffix_rebate_abs_rate = 0.0 # 后端返息比率，非百分比（绝对）
         self.suffix_rebate_abs_need = False # 是否支付后端返息（绝对）
+        self.discount_rebate = False # 是否对返息进行贴现，影响后端返息，False 为不贴现，True 为做贴现
+        self.compound_rebate = False # 是否对返息进行复利，影响前端返息，False 为不复利，True 为做复利
         
         self.calc_price = [] # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
@@ -224,11 +225,12 @@ def Test_DerivX_Barrier_Sharkfin():
     config.prefix_rebate_ann_need = False # 是否支付前端返息（年化）
     config.prefix_rebate_abs_rate = 0.0 # 前端返息比率，非百分比（绝对）
     config.prefix_rebate_abs_need = False # 是否支付前端返息（绝对）
-    
     config.suffix_rebate_ann_rate = 0.0 # 后端返息比率，非百分比（年化）
     config.suffix_rebate_ann_need = False # 是否支付后端返息（年化）
     config.suffix_rebate_abs_rate = 0.0 # 后端返息比率，非百分比（绝对）
     config.suffix_rebate_abs_need = False # 是否支付后端返息（绝对）
+    config.discount_rebate = False # 是否对返息进行贴现，影响后端返息，False 为不贴现，True 为做贴现
+    config.compound_rebate = False # 是否对返息进行复利，影响前端返息，False 为不复利，True 为做复利
     
     calc_price_u = 1.1 # 价格点上界
     calc_price_d = 0.9 # 价格点下界

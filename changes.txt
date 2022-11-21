@@ -1,6 +1,7 @@
 
-2022-11-18 0.4.9:
+2022-11-20 0.4.9:
  - opt 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加 prefix/suffix_rebate_ann/abs 等前端/后端的年化/绝对返息参数。
+ - opt 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加 discount/compound_rebate 等返息贴现/复利参数。
 
 2022-10-31 0.4.8:
  - new 结构 Autocall 中增加 Fixed Coupon Notes 定息票据定价模块及其示例。
