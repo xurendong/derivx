@@ -86,8 +86,8 @@ class Config(object):
         self.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付，False 为不复利，True 为做复利
         self.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
         
-        self.participation_use = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
-        self.participation_ratio = 0.0 # 敲出参与比率，非百分比
+        self.knock_o_p_rate = 0.0 # 敲出参与比率，非百分比
+        self.knock_o_p_need = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
         
         self.prefix_rebate_ann_rate = 0.0 # 前端返息比率，非百分比（年化）
         self.prefix_rebate_ann_need = False # 是否支付前端返息（年化）
@@ -226,8 +226,8 @@ def Test_DerivX_Autocall_Phoenix():
     config.compound_option_fee = False # 是否对期权费收支进行复利，影响期权费先付，False 为不复利，True 为做复利
     config.market_close = False # 是否已经收盘，会影响交易和估值，False 为未收盘，True 为已收盘
     
-    config.participation_use = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
-    config.participation_ratio = 0.0 # 敲出参与比率，非百分比
+    config.knock_o_p_rate = 0.0 # 敲出参与比率，非百分比
+    config.knock_o_p_need = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
     
     config.prefix_rebate_ann_rate = 0.0 # 前端返息比率，非百分比（年化）
     config.prefix_rebate_ann_need = False # 是否支付前端返息（年化）

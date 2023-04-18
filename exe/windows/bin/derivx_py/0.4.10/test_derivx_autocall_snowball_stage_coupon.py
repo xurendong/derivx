@@ -89,8 +89,8 @@ class Config(object):
         self.ukiuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
         self.ukiuko_coupon_use = False # 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
         
-        self.participation_use = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
-        self.participation_ratio = 0.0 # 敲出参与比率，非百分比
+        self.knock_o_p_rate = 0.0 # 敲出参与比率，非百分比
+        self.knock_o_p_need = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
         
         self.prefix_rebate_ann_rate = 0.0 # 前端返息比率，非百分比（年化）
         self.prefix_rebate_ann_need = False # 是否支付前端返息（年化）
@@ -232,8 +232,8 @@ def Test_DerivX_Autocall_Snowball_Stage_Coupon():
     config.ukiuko_coupon_ann = False # False 为绝对收益率，True 为年化收益率
     config.ukiuko_coupon_use = False # 是否支付 ukiuko 收益，False 为红利票息等同敲出票息，True 为单独指定红利票息
     
-    config.participation_use = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
-    config.participation_ratio = 0.0 # 敲出参与比率，非百分比
+    config.knock_o_p_rate = 0.0 # 敲出参与比率，非百分比
+    config.knock_o_p_need = False # 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
     
     config.prefix_rebate_ann_rate = 0.0 # 前端返息比率，非百分比（年化）
     config.prefix_rebate_ann_need = False # 是否支付前端返息（年化）

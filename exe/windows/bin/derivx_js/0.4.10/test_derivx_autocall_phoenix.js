@@ -85,8 +85,8 @@ class Config {
         this.compound_option_fee = false // 是否对期权费收支进行复利，影响期权费先付，false 为不复利，true 为做复利
         this.market_close = false // 是否已经收盘，会影响交易和估值，false 为未收盘，true 为已收盘
         
-        this.participation_use = false // 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
-        this.participation_ratio = 0.0 // 敲出参与比率，非百分比
+        this.knock_o_p_rate = 0.0 // 敲出参与比率，非百分比
+        this.knock_o_p_need = false // 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
 		
         this.prefix_rebate_ann_rate = 0.0 // 前端返息比率，非百分比（年化）
         this.prefix_rebate_ann_need = false // 是否支付前端返息（年化）
@@ -214,8 +214,8 @@ async function Test_DerivX_Autocall_Phoenix() {
     config.compound_option_fee = false // 是否对期权费收支进行复利，影响期权费先付，false 为不复利，true 为做复利
     config.market_close = false // 是否已经收盘，会影响交易和估值，false 为未收盘，true 为已收盘
     
-    config.participation_use = false // 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
-    config.participation_ratio = 0.0 // 敲出参与比率，非百分比
+    config.knock_o_p_rate = 0.0 // 敲出参与比率，非百分比
+    config.knock_o_p_need = false // 是否进行敲出上涨参与增强，敲出参与基准为敲出比率，收益率按绝对计算
 	
     config.prefix_rebate_ann_rate = 0.0 // 前端返息比率，非百分比（年化）
     config.prefix_rebate_ann_need = false // 是否支付前端返息（年化）
