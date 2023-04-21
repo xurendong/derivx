@@ -1,7 +1,8 @@
 
-2023-04-18 0.4.10:
+2023-04-20 0.4.10:
  - opt 结构 Booster、FCN、Phoenix、Snowball 等模块增加 knock_o_p_rate/need 等敲出上涨参与增强参数。
  - opt 修改随机数据生成按列分配，避免随机数据列数改变带来微小扰动。（暂未更新 CyberX 框架模块）
+ - new 完成 Stochastic GBB 几何（指数）布朗桥 Geometric Brownian Bridge 随机路径生成。
 
 2022-12-12 0.4.9:
  - opt 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加 prefix/suffix_rebate_ann/abs 等前端/后端的年化/绝对返息参数。

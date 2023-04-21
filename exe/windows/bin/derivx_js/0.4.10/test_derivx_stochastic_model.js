@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2021-2022 the DerivX authors
+* Copyright (c) 2021-2023 the DerivX authors
 * All rights reserved.
 *
 * The project sponsor and lead author is Xu Rendong.
@@ -35,13 +35,15 @@ const tasker = require('./tasker')
 const cyberx = require('cyberx') // cyberx-js
 
 let func_make_data_gbm = 1
-let func_make_data_cir = 2
-let func_make_data_jdp = 3
-let func_make_data_hest = 4
-let func_make_data_sabr = 5
-let func_make_data_user = 6
+let func_make_data_gbb = 2
+let func_make_data_cir = 3
+let func_make_data_jdp = 4
+let func_make_data_hest = 5
+let func_make_data_sabr = 6
+let func_make_data_user = 7
 
 // GBM：几何布朗运动 (指数布朗运动) Geometric Brownian Motion
+// GBB：几何布朗桥 (指数布朗桥) Geometric Brownian Bridge
 // CIR：CIR 模型 (平方根扩散过程) Cox–Ingersoll–Ross model (Square-Root Diffusion)
 // JDP：跳跃扩散过程 Jump Diffusion Process
 // HEST：Heston 模型 Heston Model
@@ -49,6 +51,26 @@ let func_make_data_user = 6
 // USER：仅用于随机过程数据测试
 
 class Config_GBM {
+    constructor() {
+        this.rand_rows = 0 // 随机数据行数
+        this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度 // 未使用
+        this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
+        this.price = 0.0 // 初始价格
+        this.sigma = 0.0 // 波动率
+        this.risk_free_rate = 0.0 // 无风险利率
+        this.basis_rate = 0.0 // 股息率或贴水率
+    }
+    
+    ToJson() {
+        return JSON.stringify(this)
+    }
+}
+
+class Config_GBB {
     constructor() {
         this.rand_rows = 0 // 随机数据行数
         this.rand_cols = 0 // 随机数据列数
@@ -196,6 +218,39 @@ function Test_Stochastic_Model_GBM() {
     tasker_test.common_args = config.ToJson()
     
     tasker_test.method_id = func_make_data_gbm
+    
+    let result = kernel.AssignTask(tasker_test) // 同步
+    if(result['return_code'] !== 0) {
+        console.log(result['return_code'], result['return_info'])
+    }
+    else {
+        result = JSON.parse(result['result_data'])
+        console.log('result:', result)
+    }
+}
+
+function Test_Stochastic_Model_GBB() {
+    let config = new Config_GBB()
+    config.rand_rows = 10000 // 随机数据行数
+    config.rand_cols = 250 // 随机数据列数
+    config.dimension = 0 // 随机数据维度 // 未使用
+    config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.runs_size = 10000 // 模拟路径数量
+    config.runs_step = 250 // 价格变动步数
+    config.year_days = 244 // 年交易日数量
+    config.price = 1.0 // 初始价格
+    config.sigma = 0.24 // 波动率
+    config.risk_free_rate = 0.03 // 无风险利率
+    config.basis_rate = 0.0 // 股息率或贴水率
+    
+    let kernel = cyberx.GetKernel()
+    
+    let tasker_test = new tasker.Tasker()
+    tasker_test.plugin_id = 'derivx_stochastic_model'
+    tasker_test.timeout_wait = 3600 // 秒
+    tasker_test.common_args = config.ToJson()
+    
+    tasker_test.method_id = func_make_data_gbb
     
     let result = kernel.AssignTask(tasker_test) // 同步
     if(result['return_code'] !== 0) {
@@ -381,6 +436,7 @@ function Test_Stochastic_Model_USER() {
 
 let kernel = new cyberx.Kernel(new syscfg.SysCfg()) // 全局唯一
 Test_Stochastic_Model_GBM()
+//Test_Stochastic_Model_GBB()
 //Test_Stochastic_Model_CIR()
 //Test_Stochastic_Model_JDP()
 //Test_Stochastic_Model_HEST()
