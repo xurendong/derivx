@@ -1,4 +1,7 @@
 
+2023-06-03 0.5.0:
+ - new 适配 CyberX 0.2.0 版分布式异构计算框架。
+
 2023-04-20 0.4.10:
  - opt 结构 Booster、FCN、Phoenix、Snowball 等模块增加 knock_o_p_rate/need 等敲出上涨参与增强参数。
  - opt 修改随机数据生成按列分配，避免随机数据列数改变带来微小扰动。（暂未更新 CyberX 框架模块）
