@@ -34,16 +34,18 @@ const syscfg = require('./syscfg')
 const tasker = require('./tasker')
 const cyberx = require('cyberx') // cyberx-js
 
-let func_make_data_gbm = 1
-let func_make_data_gbb = 2
-let func_make_data_cir = 3
-let func_make_data_jdp = 4
-let func_make_data_hest = 5
-let func_make_data_sabr = 6
-let func_make_data_user = 7
+let func_make_data_gbm  = 1
+let func_make_data_cgbm = 2
+let func_make_data_gbb  = 3
+let func_make_data_cir  = 4
+let func_make_data_jdp  = 5
+let func_make_data_hest = 6
+let func_make_data_sabr = 7
+let func_make_data_user = 8
 
-// GBM：几何布朗运动 (指数布朗运动) Geometric Brownian Motion
-// GBB：几何布朗桥 (指数布朗桥) Geometric Brownian Bridge
+// GBM：几何 (指数) 布朗运动 Geometric Brownian Motion
+// CGBM：具有相关性的几何 (指数）布朗运动 Correlated Geometric Brownian Motion
+// GBB：几何 (指数) 布朗桥 Geometric Brownian Bridge
 // CIR：CIR 模型 (平方根扩散过程) Cox–Ingersoll–Ross model (Square-Root Diffusion)
 // JDP：跳跃扩散过程 Jump Diffusion Process
 // HEST：Heston 模型 Heston Model
@@ -63,6 +65,28 @@ class Config_GBM {
         this.sigma = 0.0 // 波动率
         this.risk_free_rate = 0.0 // 无风险利率
         this.basis_rate = 0.0 // 股息率或贴水率
+    }
+    
+    ToJson() {
+        return JSON.stringify(this)
+    }
+}
+
+class Config_CGBM {
+    constructor() {
+        this.rand_rows = 0 // 随机数据行数
+        this.rand_cols = 0 // 随机数据列数
+        this.dimension = 0 // 随机数据维度 // 未使用
+        this.rand_seed = [] // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+        this.runs_size = 0 // 模拟路径数量
+        this.runs_step = 0 // 价格变动步数
+        this.year_days = 0 // 年交易日数量
+        this.asset = 0 // 标的数量
+		this.corco = [] // 相关系数矩阵
+        this.price = [] // 初始价格
+        this.sigma = [] // 波动率
+        this.risk_free_rate = [] // 无风险利率
+        this.basis_rate = [] // 股息率或贴水率
     }
     
     ToJson() {
@@ -202,8 +226,8 @@ function Test_Stochastic_Model_GBM() {
     config.rand_cols = 250 // 随机数据列数
     config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
+    config.runs_size = 10000 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 250 // 价格变动步数 // 目前需与 rand_cols 一致
     config.year_days = 244 // 年交易日数量
     config.price = 1.0 // 初始价格
     config.sigma = 0.24 // 波动率
@@ -230,14 +254,52 @@ function Test_Stochastic_Model_GBM() {
     }
 }
 
+function Test_Stochastic_Model_CGBM() {
+    let config = new Config_CGBM()
+    config.rand_rows = 5 // 随机数据行数
+    config.rand_cols = 750 // 随机数据列数
+    config.dimension = 0 // 随机数据维度 // 未使用
+    config.rand_seed = nj.array([0, 1, 2, 3, 4]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
+    config.runs_size = 5 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 750 // 价格变动步数 // 目前需与 rand_cols 一致
+    config.year_days = 244 // 年交易日数量
+    config.asset = 3 // 标的数量
+	config.corco = [[ 1.000,  0.000, -0.999],
+                    [ 0.000,  1.000,  0.000],
+                    [-0.999,  0.000,  1.000]] // 相关系数矩阵
+    config.price = [1.0, 1.5, 2.0] // 初始价格
+    config.sigma = [0.10, 0.15, 0.20] // 波动率
+    config.risk_free_rate = [0.03, 0.03, 0.03] // 无风险利率
+    config.basis_rate = [0.0, 0.0, 0.0] // 股息率或贴水率
+    
+    let kernel = cyberx.GetKernel()
+    
+    let tasker_test = new tasker.Tasker()
+    tasker_test.plugin_id = 'derivx_stochastic_model'
+    tasker_test.timeout_wait = 3600 // 秒
+    tasker_test.distribute_type = 0 // 本地计算任务
+    tasker_test.common_args = config.ToJson()
+    
+    tasker_test.method_id = func_make_data_cgbm
+    
+    let result = kernel.AssignTask(tasker_test) // 同步
+    if(result['return_code'] !== 0) {
+        console.log(result['return_code'], result['return_info'])
+    }
+    else {
+        result = JSON.parse(result['result_data'])
+        console.log('result:', result)
+    }
+}
+
 function Test_Stochastic_Model_GBB() {
     let config = new Config_GBB()
     config.rand_rows = 10000 // 随机数据行数
     config.rand_cols = 250 // 随机数据列数
     config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
+    config.runs_size = 10000 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 250 // 价格变动步数 // 目前需与 rand_cols 一致
     config.year_days = 244 // 年交易日数量
     config.price = 1.0 // 初始价格
     config.sigma = 0.24 // 波动率
@@ -270,8 +332,8 @@ function Test_Stochastic_Model_CIR() {
     config.rand_cols = 250 // 随机数据列数
     config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
+    config.runs_size = 10000 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 250 // 价格变动步数 // 目前需与 rand_cols 一致
     config.year_days = 244 // 年交易日数量
     config.price = 0.05 // 初始价格
     config.sigma = 0.1 // 波动率
@@ -304,8 +366,8 @@ function Test_Stochastic_Model_JDP() {
     config.rand_cols = 250 // 随机数据列数
     config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
+    config.runs_size = 10000 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 250 // 价格变动步数 // 目前需与 rand_cols 一致
     config.year_days = 244 // 年交易日数量
     config.price = 1.0 // 初始价格
     config.sigma = 0.2 // 波动率
@@ -340,8 +402,8 @@ function Test_Stochastic_Model_HEST() {
     config.rand_cols = 250 // 随机数据列数
     config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
+    config.runs_size = 10000 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 250 // 价格变动步数 // 目前需与 rand_cols 一致
     config.year_days = 244 // 年交易日数量
     config.price = 1.0 // 初始价格
     config.sigma = 0.1 // 初始波动率
@@ -377,8 +439,8 @@ function Test_Stochastic_Model_SABR() {
     config.rand_cols = 250 // 随机数据列数
     config.dimension = 0 // 随机数据维度 // 未使用
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
+    config.runs_size = 10000 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 250 // 价格变动步数 // 目前需与 rand_cols 一致
     config.year_days = 244 // 年交易日数量
     config.price = 0.06 // 初始价格
     config.sigma = 0.2 // 初始波动率
@@ -413,8 +475,8 @@ function Test_Stochastic_Model_USER() {
     config.rand_cols = 250 // 随机数据列数
     config.dimension = 624 // 随机数据维度
     config.rand_seed = nj.array([0, 1, 2, 3, 4, 5, 6, 7]).tolist() // 随机数据种子 // 非负整数，有效位数不超逻辑处理器数量
-    config.runs_size = 10000 // 模拟路径数量
-    config.runs_step = 250 // 价格变动步数
+    config.runs_size = 10000 // 模拟路径数量 // 目前是以 rand_rows 为准
+    config.runs_step = 250 // 价格变动步数 // 目前需与 rand_cols 一致
     config.year_days = 244 // 年交易日数量
     config.price = 1.0 // 初始价格
     config.sigma = 0.24 // 波动率
@@ -443,6 +505,7 @@ function Test_Stochastic_Model_USER() {
 
 let kernel = new cyberx.Kernel(new syscfg.SysCfg()) // 全局唯一
 Test_Stochastic_Model_GBM()
+//Test_Stochastic_Model_CGBM()
 //Test_Stochastic_Model_GBB()
 //Test_Stochastic_Model_CIR()
 //Test_Stochastic_Model_JDP()
