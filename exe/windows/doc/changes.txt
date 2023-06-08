@@ -1,4 +1,7 @@
 
+2023-06-08 0.5.1:
+ - new 适配 CyberX 分布式计算网络连接改由用户调用发起。
+
 2023-06-07 0.5.0:
  - new 适配 CyberX 0.2.0 版分布式异构计算框架。
  - new 完成 Stochastic CGBM 具有相关性的几何 (指数）布朗运动 Correlated Geometric Brownian Motion 随机路径生成。
