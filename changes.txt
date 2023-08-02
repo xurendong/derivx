@@ -1,4 +1,7 @@
 
+2023-08-02 0.5.5:
+ - new 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加自然日计算模式。
+
 2023-07-20 0.5.4:
  - opt 结构 Booster、FCN、Phoenix、Snowball 等模块增加 payoff_calc_method 参数，计算 Payoff 时可拆分资金流。
 
