@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<Plugin Name="derivx_vanilla_european" Version="1.0.0" CompatVersion="1.0.0" Experimental="False">
+    <Vendor>X-Lab</Vendor>
+    <Copyright>Copyright 2021-2023 X-Lab All Rights Reserved</Copyright>
+    <License>Commercial Usage And GNU Lesser General Public License Usage</License>
+    <Category>扩展</Category>
+    <Description>香草欧式场外衍生品定价插件</Description>
+    <Url>http://www.universalexchange.com</Url>
+    <DependencyList>
+    </DependencyList>
+    <ArgumentList>
+        <Argument Name="-color" Parameter="blue">用户界面颜色参数</Argument>
+        <Argument Name="-size" Parameter="10.0">对话框大小参数</Argument>
+    </ArgumentList>
+</Plugin>
