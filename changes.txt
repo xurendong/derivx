@@ -1,6 +1,7 @@
 
-2023-08-18 0.5.6:
+2023-08-22 0.5.6:
  - new 完成 Autocall Snowball 定价模块 GPU 版。
+ - opt 优化 Autocall Snowball 定价模块 GPU 版计算性能。
 
 2023-08-02 0.5.5:
  - new 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加自然日计算模式。
