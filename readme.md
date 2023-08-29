@@ -1,19 +1,69 @@
 # DerivX
 V0.5.6-Beta Build 20230825
 
-© 2021-2023 Xu Rendong. All Rights Reserved.
+© 2021-2023 Rendong Xu All Rights Reserved.
 
-### Project Summary
-Derivatives Pricing Engine.
-+ Plain Vanilla European / American options portfolio calculation.
-+ Plain Vanilla European / American option pricing and greek value calculation.
-+ Single Barrier / SharkFin option pricing and greek value calculation.
-+ Exotic Autocall Booster / FCN / Phoenix / Snowball option pricing and greek value calculation.
-+ Stochastic Diffusion Processes and Stochastic Volatility Models.
-+ Interfaces and examples for C++, Python, JavaScript.
-+ Based on CyberX distributed heterogeneous computing framework.
+### 项目概述
+定价引擎特性：
++ 普通欧式和美式香草期权组合计算；
++ 普通欧式和美式香草期权定价及希腊值计算；
++ 单障碍和鲨鱼鳍期权定价及希腊值计算；
++ 助推器、定息票据、凤凰、雪球等自动赎回奇异期权定价及希腊值计算；
++ 方便进行随机扩散过程和随机波动模型研究；
++ 提供适配 C++、Python、JavaScript 等开发语言的接口和示例；
++ 基于 CyberX 高性能分布式异构计算框架灵活构建。
 
-### Install (version >= 0.4.0)
+定价插件简介：
++ derivx_autocall_booster：
+  + 助推器（Booster）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_autocall_booster（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_autocall_booster.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_autocall_booster.js)）
+###
++ derivx_autocall_fixed_coupon_notes：
+  + 定息票据（Fixed Coupon Notes）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_autocall_fixed_coupon_notes（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_autocall_fixed_coupon_notes.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_autocall_fixed_coupon_notes.js)）
+###
++ derivx_autocall_phoenix：
+  + 普通凤凰（Phoenix）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_autocall_phoenix（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_autocall_phoenix.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_autocall_phoenix.js)）
+###
++ derivx_autocall_snowball：
+  + 普通雪球（Snowball）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_autocall_snowball（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_autocall_snowball.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_autocall_snowball.js)）
+###
++ derivx_autocall_snowball_gpu：
+  + 普通雪球（Snowball）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_autocall_snowball_gpu（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_autocall_snowball_gpu.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_autocall_snowball_gpu.js)）
+###
++ derivx_autocall_snowball_stage_coupon：
+  + 早利雪球（Snowball）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_autocall_snowball_stage_coupon（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_autocall_snowball_stage_coupon.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_autocall_snowball_stage_coupon.js)）
+###
++ derivx_barrier_sharkfin：
+  + 鲨鱼鳍（SharkFin）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_barrier_sharkfin（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_barrier_sharkfin.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_barrier_sharkfin.js)）
+###
++ derivx_barrier_single：
+  + 单障碍（Single Barrier）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_barrier_single（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_barrier_single.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_barrier_single.js)）
+###
++ derivx_digital_simple：
+  + 数字（Digital）类型（奇异期权）定价及希腊值计算。
+  + 使用示例：test_derivx_digital_simple（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_digital_simple.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_digital_simple.js)）
+###
++ derivx_stochastic_model：
+  + 部分随机扩散过程和随机波动模型实现及演示。
+  + 使用示例：test_derivx_stochastic_model（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_stochastic_model.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_stochastic_model.js)）
+###
++ derivx_vanilla_american：
+  + 普通美式香草（Plain Vanilla American）类型（普通期权）定价及希腊值计算。
+  + 使用示例：test_derivx_vanilla_american（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_vanilla_american.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_vanilla_american.js)）
+###
++ derivx_vanilla_european：
+  + 普通欧式香草（Plain Vanilla European）类型（普通期权）定价及希腊值计算。
+  + 使用示例：test_derivx_vanilla_european（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_vanilla_european.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_vanilla_european.js)）
+###
+
+### 安装框架（建议最新版本）
 #### C++:
 ```bash
 
@@ -29,7 +79,7 @@ pip install cyberx
 npm install cyberx-js
 ```
 
-### Usage (version >= 0.4.0)
+### 运行示例（建议最新版本）
 #### C++:
 ```c++
 
@@ -81,57 +131,14 @@ DerivX is not dependent on numjs, but if you want to run examples, you'd better 
 npm install numjs
 ```
 
-### Install (version < 0.4.0)
-#### C++:
-```bash
+### 其他说明
++ 目前暂只支持 Windows 环境运行，Linux 后续有时间会支持，MacOS 没有计划。
 
-```
+### 更新日志
+请参考 [更新日志](https://github.com/xurendong/derivx/blob/main/changes.txt) 文件。
 
-#### Python:
-```bash
-pip install derivx
-```
+### 性能测试
+请参考 [性能测试](https://github.com/xurendong/derivx/blob/main/benchmark.md) 文件。
 
-#### JavaScript:
-```bash
-npm install derivx
-```
-
-### Usage (version < 0.4.0)
-#### C++:
-```c++
-
-```
-
-#### Python:
-```python
-import derivx
-print(derivx.Version())
-```
-For more usages please refer to examples in [derivx_py](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py) folder.
-
-DerivX is not dependent on numpy, pandas and matplotlib, but if you want to run examples, you'd better install them with:
-```bash
-pip install numpy pandas matplotlib
-```
-
-#### JavaScript:
-```javascript
-const derivx = require('derivx')
-console.log(derivx.Version())
-```
-For more usages please refer to examples in [derivx_js](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js) folder.
-
-DerivX is not dependent on numjs, but if you want to run examples, you'd better install it with:
-```bash
-npm install git+https://github.com/nicolaspanel/numjs.git
-```
-
-### Changes
-Please refer to [changes](https://github.com/xurendong/derivx/blob/main/changes.txt) file.
-
-### Benchmark
-Please refer to [benchmark](https://github.com/xurendong/derivx/blob/main/benchmark.md) file.
-
-### Contact Information
-QQ: 277195007, WeChat: xrd_ustc, E-mail: xrd@ustc.edu
+### 联系作者
+QQ：277195007，WeChat：xrd_ustc，E-mail：xrd@ustc.edu
