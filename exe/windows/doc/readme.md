@@ -3,8 +3,8 @@ V0.5.6-Beta Build 20230825
 
 ### 项目概述
 定价引擎特性：
-+ 普通欧式和美式香草期权组合计算；
 + 普通欧式和美式香草期权定价及希腊值计算；
++ 普通欧式和美式香草期权组合计算；
 + 单障碍和鲨鱼鳍期权定价及希腊值计算；
 + 助推器、定息票据、凤凰、雪球等自动赎回奇异期权定价及希腊值计算；
 + 方便进行随机扩散过程和随机波动模型研究；
@@ -61,7 +61,7 @@ V0.5.6-Beta Build 20230825
   + 使用示例：test_derivx_vanilla_european（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.6/test_derivx_vanilla_european.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.6/test_derivx_vanilla_european.js)）
 ###
 
-### 安装框架（建议最新版本）
+### 安装框架（建议安装最新版本）
 #### C++:
 ```bash
 
@@ -77,7 +77,7 @@ pip install cyberx
 npm install cyberx-js
 ```
 
-### 运行示例（建议最新版本）
+### 运行示例（建议运行最新版本）
 #### C++:
 ```c++
 
