@@ -1,8 +1,6 @@
 # DerivX
 V0.5.6-Beta Build 20230825
 
-© 2021-2023 Rendong Xu All Rights Reserved.
-
 ### 项目概述
 定价引擎特性：
 + 普通欧式和美式香草期权组合计算；
@@ -142,3 +140,5 @@ npm install numjs
 
 ### 联系作者
 QQ：277195007，WeChat：xrd_ustc，E-mail：xrd@ustc.edu
+
+© 2021-2023 Rendong Xu All Rights Reserved.
