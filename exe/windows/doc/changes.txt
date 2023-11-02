@@ -1,4 +1,8 @@
 
+2023-11-02 0.5.8:
+ - new 增加 Autocall Snowball Rainbow 彩虹雪球结构及其计算示例。
+ - new 增加 Python 3.12 版本适配。
+
 2023-09-08 0.5.7:
  - new 结构 Phoenix、Snowball 等模块增加敲入后限制最大亏损比率参数。
  - new 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加产品结束时延后清算天数参数。
