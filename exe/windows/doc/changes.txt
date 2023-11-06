@@ -1,7 +1,8 @@
 
-2023-11-02 0.5.8:
+2023-11-06 0.5.8:
  - new 增加 Autocall Snowball Rainbow 彩虹雪球结构及其计算示例。
  - new 增加 Python 3.12 版本适配。
+ - opt 默认 cyberx_py 示例所用 Python 版本升级为 3.10 版。
 
 2023-09-08 0.5.7:
  - new 结构 Phoenix、Snowball 等模块增加敲入后限制最大亏损比率参数。
