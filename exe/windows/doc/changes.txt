@@ -1,4 +1,7 @@
 
+2023-11-29 0.5.9:
+ - new 增加 Barrier Airbag 安全气囊结构及其计算示例。
+
 2023-11-20 0.5.8:
  - new 增加 Autocall Snowball Rainbow 彩虹雪球结构及其计算示例。
  - new 增加 Python 3.12 版本适配。
