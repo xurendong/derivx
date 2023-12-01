@@ -43,12 +43,6 @@ func_calc_coupon = 1
 func_calc_payoff = 2
 func_calc_greeks = 3
 
-payoff_basic         = 0x0001 # 资金流-票息等基础
-payoff_margin_pro    = 0x0002 # 资金流-保证金收益
-payoff_option_fee    = 0x0004 # 资金流-期权费收入
-payoff_prefix_rebate = 0x0008 # 资金流-前端返息类
-payoff_suffix_rebate = 0x0010 # 资金流-后端返息类
-
 event_task_finish = threading.Event()
 
 class Config(object):
@@ -245,7 +239,7 @@ def Test_DerivX_Autocall_Fixed_Coupon_Notes():
     config.discount_rebate = False # 是否对返息进行贴现，影响后端返息，False 为不贴现，True 为做贴现
     config.compound_rebate = False # 是否对返息进行复利，影响前端返息，False 为不复利，True 为做复利
     
-    config.payoff_calc_method = payoff_basic | payoff_margin_pro | payoff_option_fee | payoff_prefix_rebate | payoff_suffix_rebate # 资金流计算方式
+    config.payoff_calc_method = 0 # 资金流计算方式
     
     #   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36  
     #  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732
