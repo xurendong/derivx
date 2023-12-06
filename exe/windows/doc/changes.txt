@@ -1,6 +1,7 @@
 
-2023-11-29 0.5.9:
+2023-12-06 0.5.9:
  - new 增加 Barrier Airbag 安全气囊结构及其计算示例。
+ - opt 优化 Barrier 类 Airbag 和 Sharkfin 的 Payoff 结果形式与 Autocall 类一致。
 
 2023-11-20 0.5.8:
  - new 增加 Autocall Snowball Rainbow 彩虹雪球结构及其计算示例。
