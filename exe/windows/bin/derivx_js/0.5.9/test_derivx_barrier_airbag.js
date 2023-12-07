@@ -66,20 +66,20 @@ class Config {
         
         this.notional = 0.0 // 名义本金，目前未使用
         this.trade_long = false // 交易方向
-        this.barrier_type = 0 // 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 # 目前仅实现看涨模式
-        this.s = 0.0 // 初始价格
-        this.k_earn_cap = 0.0 // 行权价，未敲入，收益封顶，大数则无封顶
-        this.k_earn_get = 0.0 // 行权价，未敲入，获得收益
-        this.k_loss_cap = 0.0 // 行权价，有敲入，收益封顶，大数则无封顶
-        this.k_loss_get = 0.0 // 行权价，有敲入，产生损失
-        this.k_loss_flo = 0.0 // 行权价，有敲入，损失保底，为零则无保底，也即不追保比率
+        this.barrier_type = 0 // 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 // 目前仅实现看涨模式
+        this.s = 0.0 // 初始价格，具体价格点位
+        this.k_earn_cap = 0.0 // 行权价比率，非百分比，未敲入，收益封顶，大数则无封顶
+        this.k_earn_get = 0.0 // 行权价比率，非百分比，未敲入，获得收益
+        this.k_loss_cap = 0.0 // 行权价比率，非百分比，有敲入，收益封顶，大数则无封顶
+        this.k_loss_get = 0.0 // 行权价比率，非百分比，有敲入，产生损失
+        this.k_loss_flo = 0.0 // 行权价比率，非百分比，有敲入，损失保底，为零则无保底，也即不追保比率
         this.knock_i_ratio = 0.0 // 敲入比率，非百分比
         this.knock_i_occur = false // 是否已经发生敲入
         this.p_earn_ki_not = 0.0 // 参与率，没有敲入，获得收益
         this.p_earn_ki_yes = 0.0 // 参与率，发生敲入，获得收益
         this.p_loss_ki_yes = 0.0 // 参与率，发生敲入，产生损失，一般与 p_earn_ki_yes 相同
         
-        this.option_fee = 0.0 // 期权费费率，年化，CalcPrice 时此入参不参与计算
+        this.option_fee = 0.0 // 期权费费率，年化，目前未使用
         this.option_fee_interest = 0.0 // 期权费利率
         this.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
         this.is_kop_delay = false // 行权时是立即还是到期支付资金，false 为立即，true 为延期
@@ -200,13 +200,13 @@ async function Test_DerivX_Barrier_Airbag() {
     
     config.notional = 100000.0 // 名义本金，目前未使用
     config.trade_long = false // 交易方向
-    config.barrier_type = g_airbag_uc // 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 # 目前仅实现看涨模式
-    config.s = 100.0 // 初始价格
-    config.k_earn_cap = 1.2 // 行权价，未敲入，收益封顶，大数则无封顶
-    config.k_earn_get = 1.0 // 行权价，未敲入，获得收益
-    config.k_loss_cap = 1.2 // 行权价，有敲入，收益封顶，大数则无封顶
-    config.k_loss_get = 1.0 // 行权价，有敲入，产生损失
-    config.k_loss_flo = 0.6 // 行权价，有敲入，损失保底，为零则无保底，也即不追保比率
+    config.barrier_type = g_airbag_uc // 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 // 目前仅实现看涨模式
+    config.s = 100.0 // 初始价格，具体价格点位
+    config.k_earn_cap = 1.2 // 行权价比率，非百分比，未敲入，收益封顶，大数则无封顶
+    config.k_earn_get = 1.0 // 行权价比率，非百分比，未敲入，获得收益
+    config.k_loss_cap = 1.2 // 行权价比率，非百分比，有敲入，收益封顶，大数则无封顶
+    config.k_loss_get = 1.0 // 行权价比率，非百分比，有敲入，产生损失
+    config.k_loss_flo = 0.6 // 行权价比率，非百分比，有敲入，损失保底，为零则无保底，也即不追保比率
     config.knock_i_ratio = 0.8 // 敲入比率，非百分比
     config.knock_i_occur = false // 是否已经发生敲入
     config.p_earn_ki_not = 1.0 // 参与率，没有敲入，获得收益

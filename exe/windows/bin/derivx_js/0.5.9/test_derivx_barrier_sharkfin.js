@@ -63,34 +63,40 @@ class Config {
         this.runs_step = 0 // 价格变动步数 // InitPath
         this.year_days = 0 // 年交易日数量 // InitPath
         this.sigma = 0.0 // 波动率 // InitPath
-        this.risk_free_rate = 0.0 // 无风险利率 // InitPath
         this.basis_rate = 0.0 // 股息或贴水 // InitPath
+        this.risk_free_rate = 0.0 // 无风险利率 // InitPath
         this.price_limit_ratio = 0.0 // 涨跌停限制幅度 // InitPath
         this.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
         
-        this.s = 0.0 // 标的价格
-        this.h_l = 0.0 // 障碍价格，低
-        this.h_h = 0.0 // 障碍价格，高
-        this.k_l = 0.0 // 行权价格，低
-        this.k_h = 0.0 // 行权价格，高
-        this.x_l = 0.0 // 敲出后需支付的年化资金，低，比如 s = 1.0 x = 0.035
-        this.x_h = 0.0 // 敲出后需支付的年化资金，高，比如 s = 1.0 x = 0.035
-        this.p_l = 0.0 // 参与率，低，未敲出情况下客户对收益的占比要求
-        this.p_h = 0.0 // 参与率，高，未敲出情况下客户对收益的占比要求
-        this.is_kop_delay = false // 敲出后是立即还是延期支付资金，false 为立即，true 为延期，欧式的此参数无效
+        this.notional = 0.0 // 名义本金，目前未使用
+        this.trade_long = false // 交易方向
         this.option_type = 0 // 期权类型
         this.barrier_type = 0 // 障碍类型
-        this.trade_long = false // 交易方向
-        this.option_fee = 0.0 // 期权费费率，目前未使用
+        this.s = 0.0 // 标的价格，具体价格点位
+        this.h_l = 0.0 // 障碍价格比率，非百分比，低
+        this.h_h = 0.0 // 障碍价格比率，非百分比，高
+        this.k_l = 0.0 // 行权价格比率，非百分比，低
+        this.k_h = 0.0 // 行权价格比率，非百分比，高
+        this.x_l = 0.0 // 敲出后需支付的年化资金比率，非百分比，低
+        this.x_h = 0.0 // 敲出后需支付的年化资金比率，非百分比，高
+        this.p_l = 0.0 // 参与率，低，未敲出情况下客户对收益的占比要求
+        this.p_h = 0.0 // 参与率，高，未敲出情况下客户对收益的占比要求
+        
+        this.option_fee = 0.0 // 期权费费率，年化，目前未使用
         this.option_fee_interest = 0.0 // 期权费利率
-        this.consumed_option_fee_rate = 0.0 // 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
-        this.occupied_option_fee_rate = 0.0 // 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
         this.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
+        this.is_kop_delay = false // 敲出后是立即还是延期支付资金，false 为立即，true 为延期，欧式的此参数无效
+        this.margin_rate = 0.0 // 保证金比例，1 为收取全额保证金，0 为不收保证金，目前未使用
+        this.margin_interest = 0.0 // 保证金利率，目前未使用
         this.discount_payoff = false // 是否对票息等收支进行贴现，false 为不贴现，true 为做贴现
+        this.discount_margin = false // 是否对保证金收支进行贴现，false 为不贴现，true 为做贴现，目前未使用
         this.discount_option_fee = false // 是否对期权费收支进行贴现，影响期权费后付及先付时交易占用资金，false 为不贴现，true 为做贴现
         this.compound_option_fee = false // 是否对期权费收支进行复利，影响期权费先付及后付时垫付占用资金，false 为不复利，true 为做复利
         this.extend_end_days = 0 // 产品结束时延后清算天数(交易日)，期间票息和保证金等照算
         this.market_close = false // 是否已经收盘，会影响交易和估值，false 为未收盘，true 为已收盘
+        
+        this.consumed_option_fee_rate = 0.0 // 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
+        this.occupied_option_fee_rate = 0.0 // 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
         
         this.prefix_rebate_ann_rate = 0.0 // 前端返息比率，非百分比（年化）
         this.prefix_rebate_ann_need = false // 是否支付前端返息（年化）
@@ -187,34 +193,40 @@ async function Test_DerivX_Barrier_Sharkfin() {
     config.runs_step = 244 // 价格变动步数 // InitPath
     config.year_days = 244 // 年交易日数量 // InitPath
     config.sigma = 0.16 // 波动率 // InitPath
-    config.risk_free_rate = 0.03 // 无风险利率 // InitPath
     config.basis_rate = 0.06 // 股息或贴水 // InitPath
+    config.risk_free_rate = 0.03 // 无风险利率 // InitPath
     config.price_limit_ratio = 0.1 // 涨跌停限制幅度 // InitPath
     config.price_limit_style = 0 // 涨跌停限制方式，0 不限制，1 超限部分移至下日，2 超限部分直接削掉 // InitPath
     
-    config.s = 1.0 // 标的价格
-    config.h_l = 0.95 // 障碍价格，低
-    config.h_h = 1.05 // 障碍价格，高
-    config.k_l = 0.99 // 行权价格，低
-    config.k_h = 1.01 // 行权价格，高
-    config.x_l = 0.035 // 敲出后需支付的年化资金，低，比如 s = 1.0 x = 0.035
-    config.x_h = 0.035 // 敲出后需支付的年化资金，高，比如 s = 1.0 x = 0.035
-    config.p_l = 1.0 // 参与率，低，未敲出情况下客户对收益的占比要求
-    config.p_h = 1.0 // 参与率，高，未敲出情况下客户对收益的占比要求
-    config.is_kop_delay = true // 敲出后是立即还是延期支付资金，false 为立即，true 为延期，欧式的此参数无效
+    config.notional = 100000.0 // 名义本金，目前未使用
+    config.trade_long = false // 交易方向
     config.option_type = g_option_american // 期权类型
     config.barrier_type = g_sharkfin_ucdp // 障碍类型
-    config.trade_long = false // 交易方向
-    config.option_fee = 0.035 // 期权费费率，CalcPrice 时此入参不参与计算
+    config.s = 1.0 // 标的价格，具体价格点位
+    config.h_l = 0.95 // 障碍价格比率，非百分比，低
+    config.h_h = 1.05 // 障碍价格比率，非百分比，高
+    config.k_l = 0.99 // 行权价格比率，非百分比，低
+    config.k_h = 1.01 // 行权价格比率，非百分比，高
+    config.x_l = 0.035 // 敲出后需支付的年化资金比率，非百分比，低
+    config.x_h = 0.035 // 敲出后需支付的年化资金比率，非百分比，高
+    config.p_l = 1.0 // 参与率，低，未敲出情况下客户对收益的占比要求
+    config.p_h = 1.0 // 参与率，高，未敲出情况下客户对收益的占比要求
+    
+    config.option_fee = 0.035 // 期权费费率，年化，CalcPrice 时此入参不参与计算
     config.option_fee_interest = 0.03 // 期权费利率
-    config.consumed_option_fee_rate = 0.0 // 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
-    config.occupied_option_fee_rate = 0.0 // 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
     config.back_end_load = false // 期权费支付方式，false 为前端，true 为后端
+    config.is_kop_delay = true // 敲出后是立即还是延期支付资金，false 为立即，true 为延期，欧式的此参数无效
+    config.margin_rate = 0.0 // 保证金比例，1 为收取全额保证金，0 为不收保证金，目前未使用
+    config.margin_interest = 0.0 // 保证金利率，目前未使用
     config.discount_payoff = false // 是否对票息等收支进行贴现，false 为不贴现，true 为做贴现
+    config.discount_margin = false // 是否对保证金收支进行贴现，false 为不贴现，true 为做贴现，目前未使用
     config.discount_option_fee = false // 是否对期权费收支进行贴现，影响期权费后付及先付时交易占用资金，false 为不贴现，true 为做贴现
     config.compound_option_fee = false // 是否对期权费收支进行复利，影响期权费先付及后付时垫付占用资金，false 为不复利，true 为做复利
     config.extend_end_days = 0 // 产品结束时延后清算天数(交易日)，期间票息和保证金等照算
     config.market_close = false // 是否已经收盘，会影响交易和估值，false 为未收盘，true 为已收盘
+    
+    config.consumed_option_fee_rate = 0.0 // 对冲交易 消耗 的期权费占比，针对 option_fee 的小数非百分比格式
+    config.occupied_option_fee_rate = 0.0 // 对冲交易 占用 的期权费占比，针对 option_fee 的小数非百分比格式
     
     config.prefix_rebate_ann_rate = 0.0 // 前端返息比率，非百分比（年化）
     config.prefix_rebate_ann_need = false // 是否支付前端返息（年化）
