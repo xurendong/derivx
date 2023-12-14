@@ -1,5 +1,5 @@
 # DerivX
-V0.5.9-Beta Build 20231207
+V0.5.10-Beta Build 20231213
 
 ### 项目概述
 定价引擎特性：
