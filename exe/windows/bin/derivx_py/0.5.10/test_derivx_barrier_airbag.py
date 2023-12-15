@@ -68,7 +68,7 @@ class Config(object):
         self.notional = 0.0 # 名义本金，目前未使用
         self.trade_long = False # 交易方向
         self.barrier_type = 0 # 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 # 目前仅实现看涨模式
-        self.s = 0.0 # 初始价格，具体价格点位
+        self.start_price = 0.0 # 初始价格，具体价格点位
         self.k_earn_cap = 0.0 # 行权价比率，非百分比，未敲入，收益封顶，大数则无封顶
         self.k_earn_get = 0.0 # 行权价比率，非百分比，未敲入，获得收益
         self.k_loss_cap = 0.0 # 行权价比率，非百分比，有敲入，收益封顶，大数则无封顶
@@ -107,6 +107,8 @@ class Config(object):
         self.suffix_rebate_abs_need = False # 是否支付后端返息（绝对）
         self.discount_rebate = False # 是否对返息进行贴现，影响后端返息，False 为不贴现，True 为做贴现
         self.compound_rebate = False # 是否对返息进行复利，影响前端返息，False 为不复利，True 为做复利
+        
+        self.payoff_calc_method = 0 # 资金流计算方式
         
         self.calc_price = [] # 计算价格序列
         self.run_from = 0 # 起始天数，第一天为零
@@ -199,7 +201,7 @@ def Test_DerivX_Barrier_Airbag():
     config.notional = 100000.0 # 名义本金，目前未使用
     config.trade_long = False # 交易方向
     config.barrier_type = g_airbag_uc # 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 # 目前仅实现看涨模式
-    config.s = 100.0 # 初始价格，具体价格点位
+    config.start_price = 100.0 # 初始价格，具体价格点位
     config.k_earn_cap = 1.2 # 行权价比率，非百分比，未敲入，收益封顶，大数则无封顶
     config.k_earn_get = 1.0 # 行权价比率，非百分比，未敲入，获得收益
     config.k_loss_cap = 1.2 # 行权价比率，非百分比，有敲入，收益封顶，大数则无封顶
@@ -238,6 +240,8 @@ def Test_DerivX_Barrier_Airbag():
     config.suffix_rebate_abs_need = False # 是否支付后端返息（绝对）
     config.discount_rebate = False # 是否对返息进行贴现，影响后端返息，False 为不贴现，True 为做贴现
     config.compound_rebate = False # 是否对返息进行复利，影响前端返息，False 为不复利，True 为做复利
+    
+    config.payoff_calc_method = 0 # 资金流计算方式
     
     #   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36
     #  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732

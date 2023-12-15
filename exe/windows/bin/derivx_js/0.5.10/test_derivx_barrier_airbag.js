@@ -67,7 +67,7 @@ class Config {
         this.notional = 0.0 // 名义本金，目前未使用
         this.trade_long = false // 交易方向
         this.barrier_type = 0 // 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 // 目前仅实现看涨模式
-        this.s = 0.0 // 初始价格，具体价格点位
+        this.start_price = 0.0 // 初始价格，具体价格点位
         this.k_earn_cap = 0.0 // 行权价比率，非百分比，未敲入，收益封顶，大数则无封顶
         this.k_earn_get = 0.0 // 行权价比率，非百分比，未敲入，获得收益
         this.k_loss_cap = 0.0 // 行权价比率，非百分比，有敲入，收益封顶，大数则无封顶
@@ -106,6 +106,8 @@ class Config {
         this.suffix_rebate_abs_need = false // 是否支付后端返息（绝对）
         this.discount_rebate = false // 是否对返息进行贴现，影响后端返息，false 为不贴现，true 为做贴现
         this.compound_rebate = false // 是否对返息进行复利，影响前端返息，false 为不复利，true 为做复利
+        
+        this.payoff_calc_method = 0 // 资金流计算方式
         
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
@@ -201,7 +203,7 @@ async function Test_DerivX_Barrier_Airbag() {
     config.notional = 100000.0 // 名义本金，目前未使用
     config.trade_long = false // 交易方向
     config.barrier_type = g_airbag_uc // 障碍类型，g_airbag_uc 看涨，g_airbag_dp 看跌 // 目前仅实现看涨模式
-    config.s = 100.0 // 初始价格，具体价格点位
+    config.start_price = 100.0 // 初始价格，具体价格点位
     config.k_earn_cap = 1.2 // 行权价比率，非百分比，未敲入，收益封顶，大数则无封顶
     config.k_earn_get = 1.0 // 行权价比率，非百分比，未敲入，获得收益
     config.k_loss_cap = 1.2 // 行权价比率，非百分比，有敲入，收益封顶，大数则无封顶
@@ -240,6 +242,8 @@ async function Test_DerivX_Barrier_Airbag() {
     config.suffix_rebate_abs_need = false // 是否支付后端返息（绝对）
     config.discount_rebate = false // 是否对返息进行贴现，影响后端返息，false 为不贴现，true 为做贴现
     config.compound_rebate = false // 是否对返息进行复利，影响前端返息，false 为不复利，true 为做复利
+    
+    config.payoff_calc_method = 0 // 资金流计算方式
     
     //   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36
     //  20,  40,  61,  81, 101, 122, 142, 162, 183, 203, 223, 244, 264, 284, 305, 325, 345, 366, 386, 406, 427, 447, 467, 488, 508, 528, 549, 569, 589, 610, 630, 650, 671, 691, 711, 732

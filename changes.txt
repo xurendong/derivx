@@ -1,6 +1,7 @@
 
-2023-12-13 0.5.10:
+2023-12-15 0.5.10:
  - opt 升级开发编译环境为 VS 2022 C++17。
+ - opt 调整 Barrier 类 Airbag 和 Sharkfin 结构的 Payoff 结果包含期权费。
 
 2023-12-07 0.5.9:
  - new 增加 Barrier Airbag 安全气囊结构及其计算示例。

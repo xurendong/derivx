@@ -72,7 +72,7 @@ class Config {
         this.trade_long = false // 交易方向
         this.option_type = 0 // 期权类型
         this.barrier_type = 0 // 障碍类型
-        this.s = 0.0 // 标的价格，具体价格点位
+        this.start_price = 0.0 // 初始价格，具体价格点位
         this.h_l = 0.0 // 障碍价格比率，非百分比，低
         this.h_h = 0.0 // 障碍价格比率，非百分比，高
         this.k_l = 0.0 // 行权价格比率，非百分比，低
@@ -108,6 +108,8 @@ class Config {
         this.suffix_rebate_abs_need = false // 是否支付后端返息（绝对）
         this.discount_rebate = false // 是否对返息进行贴现，影响后端返息，false 为不贴现，true 为做贴现
         this.compound_rebate = false // 是否对返息进行复利，影响前端返息，false 为不复利，true 为做复利
+        
+        this.payoff_calc_method = 0 // 资金流计算方式
         
         this.calc_price = [] // 计算价格序列
         this.run_from = 0 // 起始天数，第一天为零
@@ -202,7 +204,7 @@ async function Test_DerivX_Barrier_Sharkfin() {
     config.trade_long = false // 交易方向
     config.option_type = g_option_american // 期权类型
     config.barrier_type = g_sharkfin_ucdp // 障碍类型
-    config.s = 100.0 // 标的价格，具体价格点位
+    config.start_price = 100.0 // 初始价格，具体价格点位
     config.h_l = 0.95 // 障碍价格比率，非百分比，低
     config.h_h = 1.05 // 障碍价格比率，非百分比，高
     config.k_l = 0.99 // 行权价格比率，非百分比，低
@@ -238,6 +240,8 @@ async function Test_DerivX_Barrier_Sharkfin() {
     config.suffix_rebate_abs_need = false // 是否支付后端返息（绝对）
     config.discount_rebate = false // 是否对返息进行贴现，影响后端返息，false 为不贴现，true 为做贴现
     config.compound_rebate = false // 是否对返息进行复利，影响前端返息，false 为不复利，true 为做复利
+    
+    config.payoff_calc_method = 0 // 资金流计算方式
     
     let calc_price_u = 110.0 // 价格点上界
     let calc_price_d = 90.0 // 价格点下界
