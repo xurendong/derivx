@@ -1,0 +1,232 @@
+
+2024-06-19 0.5.13:
+ - opt 改进各类期权结构Rho计算方法，区分期货期权和外汇期权。
+
+2024-05-24 0.5.12:
+ - new 结构 Vanilla American 增加基于BAW的隐含波动率、理论价格、希腊值、希腊值曲面等的计算并更新示例。
+ - opt 改进 Vanilla European 的 BT 期货期权 Rho 计算。
+ - opt 改进 Vanilla American 的 BT、BA 期货期权 Rho 计算。
+
+2024-04-02 0.5.11:
+ - new 结构 Airbag 增加看跌模式。
+
+2023-12-15 0.5.10:
+ - opt 升级开发编译环境为 VS 2022 C++17。
+ - opt 调整 Barrier 类 Airbag 和 Sharkfin 结构的 Payoff 结果包含期权费。
+
+2023-12-07 0.5.9:
+ - new 增加 Barrier Airbag 安全气囊结构及其计算示例。
+ - opt 优化 Barrier 类 Airbag 和 Sharkfin 结构的 Payoff 结果形式与 Autocall 类一致。
+ - opt 修改 Sharkfin 结构障碍相关参数形式从价格变为比率。
+
+2023-11-20 0.5.8:
+ - new 增加 Autocall Snowball Rainbow 彩虹雪球结构及其计算示例。
+ - new 增加 Python 3.12 版本适配。
+ - opt 默认 cyberx_py 示例所用 Python 版本升级为 3.10 版。
+
+2023-09-08 0.5.7:
+ - new 结构 Phoenix、Snowball 等模块增加敲入后限制最大亏损比率参数。
+ - new 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加产品结束时延后清算天数参数。
+ - opt 优化 Phoenix、Snowball 等模块计算效率，在敲出情况下不再判断是否有过敲入。
+
+2023-08-25 0.5.6:
+ - new 完成 Autocall Snowball 定价模块 GPU 版。
+ - opt 优化 Autocall Snowball 定价模块 GPU 版计算性能。
+
+2023-08-02 0.5.5:
+ - new 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加自然日计算模式。
+
+2023-07-20 0.5.4:
+ - opt 结构 Booster、FCN、Phoenix、Snowball 等模块增加 payoff_calc_method 参数，计算 Payoff 时可拆分资金流。
+
+2023-06-27 0.5.3:
+ - new 适配 CyberX 0.2.3 版，新增任务取消支持。
+ - new 各类插件模块增加任务取消功能。
+
+2023-06-20 0.5.2:
+ - new 适配 CyberX 0.2.2 版分布式异构计算框架（多节点）。
+ - opt 对 matlib 模块随机数据生成做了一些优化尝试，但未应用。
+
+2023-06-08 0.5.1:
+ - new 适配 CyberX 分布式计算网络连接改由用户调用发起。
+
+2023-06-07 0.5.0:
+ - new 适配 CyberX 0.2.0 版分布式异构计算框架（单节点）。
+ - new 完成 Stochastic CGBM 具有相关性的几何 (指数）布朗运动 Correlated Geometric Brownian Motion 随机路径生成。
+
+2023-04-20 0.4.10:
+ - opt 结构 Booster、FCN、Phoenix、Snowball 等模块增加 knock_o_p_rate/need 等敲出上涨参与增强参数。
+ - opt 修改随机数据生成按列分配，避免随机数据列数改变带来微小扰动。（暂未更新 CyberX 框架模块）
+ - new 完成 Stochastic GBB 几何（指数）布朗桥 Geometric Brownian Bridge 随机路径生成。
+
+2022-12-12 0.4.9:
+ - opt 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加 prefix/suffix_rebate_ann/abs 等前端/后端的年化/绝对返息参数。
+ - opt 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块增加 discount/compound_rebate 等返息贴现/复利参数。
+ - new 允许通过模块插件配置文件对 Greeks 计算所用差分方法进行参数设置。
+ - fix 修正 Booster、FCN、Phoenix、Snowball 等模块后端绝对返息计算差异。
+
+2022-10-31 0.4.8:
+ - new 结构 Autocall 中增加 Fixed Coupon Notes 定息票据定价模块及其示例。
+ - opt 修改 Fixed Coupon Notes 模块红利票息相关参数使用 uexuko_ 作为前缀。
+ - opt 结构 Booster、FCN、Phoenix、Snowball、Sharkfin 等模块简化是否收盘处理代码。
+ - fix 修正简化收盘处理代码导致的一个问题。
+ - fix 结构 Barrier 中 Sharkfin 调整 Payoff 计算为期权费方式，影响 Payoff 和 Greeks 结果。
+ - opt 结构 Barrier 中 Sharkfin 的 Greeks 计算增加初始价格相乘，与其他结构相一致。
+ - new 结构 Phoenix 模块增加 knock_p_ratio 参数，可以使用与敲入价格不同的付息价格。
+
+2022-08-18 0.4.7:
+ - new 结构 Autocall 中增加 Stage Coupon Snowball 阶段票息雪球定价模块，从票息填写便利考虑暂不与普通雪球模块合并。
+ - opt 结构 Booster、Phoenix、Snowball、Sharkfin 等模块增加是否计算贴现的开关参数。
+ - opt 结构 Sharkfin 支持看涨和看跌使用不同的敲出收益和参与率。
+ - fix 修正 Booster、Phoenix、Snowball 等模块中一处自然日序列赋值异常可能导致计算崩溃的问题。
+ - fix 修正 Stage Coupon Snowball 模块中取票息尾数时可能导致崩溃的问题。
+ - new 结构 Booster、Phoenix、Snowball、Sharkfin 等模块增加是否收盘的开关参数，主要用于以盘后固定价格进行估值计算。
+ - opt 增加起始天数和运行天数的参数值合法性校验，便于计算时自动化取值纠错。
+ - opt 结构 Booster、Phoenix 模块增加前端扣费相关参数。
+ - opt 结构 Phoenix 模块增加按次付息或到期付息选择参数。
+ - fix 修正 Booster 模块中一处敲出天数计算错误的问题。
+
+2022-04-20 0.4.6:
+ - opt 结构 Barrier 中 Sharkfin 改进期权费对冲耗损计算。
+ - new 结构 Barrier 中 Sharkfin 增加 consumed_option_fee_rate、occupied_option_fee_rate 参数。
+ - fix 修正 Vanilla European 的 BS Vega 计算结果以波动率变动 1% 为单位，即缩小 100 倍。
+ - fix 修正 Vanilla European 的 BS Theta 计算结果以 1day 为单位，即缩小 365 倍。
+ - fix 修正 Vanilla European 的 BS Rho 计算结果以无风险利率变动 1% 为单位，即缩小 100 倍。
+ - new 结构 Vanilla European 增加基于二叉树方法的隐含波动率、理论价格、希腊值、希腊值曲面等的计算并更新示例。
+ - new 结构 Vanilla American 完成基于二叉树方法的隐含波动率、理论价格、希腊值、希腊值曲面等的计算并更新示例。
+
+2022-04-01 0.4.5:
+ - opt 提升 Booster、Phoenix、Snowball、Sharkfin 路径依赖结构单日期价格点多核计算性能最多可达 40% 左右。
+ - opt 继续优化前述路径依赖结构多核计算性能，Payoff 和 Greeks 计算耗时降幅达 60% 到 80% 且多核效果显著。
+ - fix 修正 Barrier 中 Sharkfin 行权支付年化问题。
+ - opt 结构 Autocall 中 Booster、Phoenix、Snowball 改进保证金收益贴现计算。
+ - new 结构 Autocall 中 Booster、Phoenix、Snowball 增加 use_option_fee、option_fee、option_fee_interest、back_end_load 参数。
+ - opt 结构 Barrier 中 Sharkfin 改进期权费收益贴现计算。
+ - new 结构 Barrier 中 Sharkfin 修改参数 price_rate 为 option_fee，增加 option_fee_interest、back_end_load 参数。
+
+2022-03-21 0.4.4:
+ - opt 任务消息队列由定价模块插件移至 CyberX Kernel 模块。
+ - new 完成 Barrier Sharkfin 定价模块重构并更新示例。
+ - fix 修正部分定价模块插件异常时任务结果未显示错误信息问题。
+ - new 结构 Autocall 中 Booster、Phoenix、Snowball 计算票息时增加可选的自然日相关参数。
+ - new 完成 Barrier Single 定价模块重构并更新示例。
+
+2022-02-20 0.4.3:
+ - new 完成 Digital Simple 定价模块重构并更新示例。
+ - new 完成 Autocall Booster 定价模块重构并更新示例。
+ - new 完成 Autocall Phoenix 定价模块重构并更新示例。
+
+2022-02-16 0.4.2:
+ - new 模块 Vanilla European 增加隐含波动率计算功能并更新示例。
+ - new 完成 Stochastic Model 研究模块重构并更新示例。
+
+2022-02-09 0.4.1:
+ - new 完成 Autocall Snowball 定价模块重构并更新示例。
+
+2022-01-30 0.4.0:
+ - new 调整架构，基于 CyberX 分布式异构计算框架进行重构。
+ - new 完成 Vanilla European 定价模块重构并更新示例。
+
+2022-01-21 0.3.7.1:
+ - fix 修正 Autocall 中 Booster、Phoenix、Snowball 和 Barrier 中 Sharkfin、Single 的 Vega 及 Rho 值放大 100 倍问题。
+
+2021-12-25 0.3.7:
+ - new 鲨鱼鳍结构从单/双障碍中独立出来，改进计算并更新示例。
+ - new 增加 Experiment 类用于数据接口测试。
+ - new 增加鲨鱼鳍结构欧式和美式类型区分。
+
+2021-12-08 0.3.6:
+ - new 完成 Barrier Double 双鲨鱼鳍结构定价功能及其示例。
+ - opt 移除 Barrier Single 中 is_knock 参数，Payoff 改由价格 s 判断计算。
+ - new 增加 Stochastic USER 用于随机过程数据测试。
+ - new 增加拟随机数生成功能用于拟蒙卡定价计算。
+ - new 完成 Barrier Single / Double 希腊值计算及其示例。
+
+2021-11-12 0.3.5.1:
+ - fix 修正 Autocall 中 Booster 的同名异构类导致 Phoenix 和 Snowball 计算异常的问题。
+
+2021-11-10 0.3.5:
+ - opt 标准欧式单障碍增加敲出时资金立即支付和延迟支付的区分。
+ - opt 标准欧式单障碍增加参与率参数并更新示例。
+ - new 增加 Barrier Double 标准欧式双障碍期权结构。
+ - new 增加 Autocall Booster 助推结构。
+ - new 完成 Autocall Booster 助推结构定价功能及其示例。
+
+2021-10-28 0.3.4:
+ - new 构建单障碍欧式期权结构。
+ - fix 修正特定环境下无法动态加载 JavaScript 接口问题。
+ - new 增加对 Python 3.10 的支持。
+ - new 增加 Barrier Single 标准欧式单障碍期权定价功能及其示例。
+
+2021-09-30 0.3.3:
+ - new 完成 Stochastic CIR 平方根扩散过程 Square-Root Diffusion（Cox Ingersoll Ross）随机路径生成。
+ - new 完成 Stochastic JDP 跳跃扩散过程 Jump Diffusion Process 随机路径生成。
+ - new 完成 Stochastic HEST 随机波动率模型 Heston Model 随机路径生成。
+ - new 完成 Stochastic SABR 随机波动率模型 Stochastic Alpha Beta Rho Model 随机路径生成。
+ - opt 完善 Stochastic 类及其示例。
+
+2021-09-22 0.3.2:
+ - new 在 Kernel 中增加 Stochastic 类用于随机过程模型计算。
+ - opt Vanilla 和 Digital 类型入参 sigma 改用 v 简化。
+ - opt 香草组合结构示例允许多个波动率作为入参。
+ - opt 改进 Digital 和 Stochastic 基类结构，完善 Stochastic 类及其示例。
+ - fix 修正参数设置时因为动态类型转换可能导致内存结构异常的问题。
+ - new 完成 Stochastic GBM 几何布朗运动 Geometric Brownian Motion 随机路径生成。
+
+2021-09-03 0.3.1:
+ - new 增加 Digital 类型 CashOrNothing、AssetOrNothing、SuperShare 简单结构。
+ - new 增加 Digital 类型 CashOrNothing、AssetOrNothing、SuperShare 计算示例。
+ - new 增加 Digital 类型 Gap 简单结构和计算示例。
+ - new 增加 engine 模块用于 GPU 计算。
+
+2021-08-20 0.3.0:
+ - new 取消香草价差结构，香草组合结构只做一些示例实现。
+ - new 香草欧式增加价差组合价格计算示例。
+ - new 香草欧式增加牛市价差看涨组合希腊值及其曲面计算示例。
+ - new 增加 Autocall Phoenix 凤凰结构及其计算示例。
+ - new 增加希腊值及其曲面的交易方向参数。
+
+2021-08-16 0.2.7:
+ - new 香草欧式增加价格和时间维度的希腊值曲面计算。
+ - new 构建香草价差结构。
+
+2021-08-12 0.2.6:
+ - opt 优化雪球结构计算效率。
+
+2021-08-10 0.2.5:
+ - opt 调整 Snowball 至 Autocall 大类下。
+ - new 改进随机数据种子输参方式。
+ - opt 优化随机数据和路径数据生成效率。
+
+2021-07-29 0.2.4:
+ - new 改进雪球结构路径生成随机种子模式。
+ - new 改进雪球结构路径可选涨跌停限制方式。
+ - new 核心库改用动态链接方式。
+
+2021-07-21 0.2.3:
+ - new 雪球结构可选路径生成是否使用对偶平滑。
+ - new 使用 Wheel 格式发布 Python 安装包。
+
+2021-07-19 0.2.2:
+ - new 增加 JavaScript 接口与测试。
+
+2021-07-10 0.2.1:
+ - new 增加 Python 接口与测试。
+ - new 增加对各版本 Python 的支持。
+
+2021-07-08 0.2.0:
+ - new 雪球结构改进计算价格点输入方式。
+ - new 雪球结构可选是否已经发生敲入。
+ - new 雪球结构可选是否敲入后不追加保证金。
+ - new 香草欧式价格和希腊值的计算。
+ - opt 优化代码结构，改进异常处理。
+
+2021-06-29 0.1.1:
+ - new 雪球结构敲出比率阶梯递减。
+ - new 雪球结构可选是否有下方敲入障碍。
+ - new 雪球结构可选是否支付 prefix 和 ukiuko 收益。
+
+2021-06-25 0.1.0:
+ - new 定价核心库调用架构。
+ - new 雪球结构参数设置、路径数据、测试代码。
+ - new 雪球结构价值计算、希腊值计算。
