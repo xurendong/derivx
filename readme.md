@@ -1,5 +1,5 @@
 # DerivX
-V0.5.13-Beta Build 20240619
+V0.5.13-Beta Build 20240704
 
 最新版本：[C++](https://github.com/xurendong/derivx/tree/main/exe/windows/bin)、[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13)
 

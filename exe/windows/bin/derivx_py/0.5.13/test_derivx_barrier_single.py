@@ -199,7 +199,7 @@ def Test_DerivX_Barrier_Single():
     calc_price_u = 115.0 # 价格点上界
     calc_price_d = 75.0 # 价格点下界
     calc_price_g = 1.0 # 价格点间隔
-    #calc_price = np.array([65.0, 70.0, 75.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0]).tolist() # 计算价格序列
+    #calc_price = np.array([75.0, 80.0, 85.0, 90.0, 95.0, 100.0, 105.0, 110.0, 115.0]).tolist() # 计算价格序列
     calc_price = np.arange(calc_price_d, calc_price_u + calc_price_g, calc_price_g).tolist() # 含价格点上下界
     
     runs_step = 244 # 价格变动步数

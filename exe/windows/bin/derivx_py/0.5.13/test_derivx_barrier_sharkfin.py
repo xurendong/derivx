@@ -261,7 +261,7 @@ def Test_DerivX_Barrier_Sharkfin():
     calc_price_u = 110.0 # 价格点上界
     calc_price_d = 90.0 # 价格点下界
     calc_price_g = 1.0 # 价格点间隔
-    #config.calc_price = np.array([0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1.00, 1.05]).tolist() # 计算价格序列
+    #config.calc_price = np.array([90.0, 92.0, 94.0, 96.0, 98.0, 100.0, 102.0, 104.0, 106.0, 108.0, 110.0]).tolist() # 计算价格序列
     config.calc_price = np.arange(calc_price_d, calc_price_u + calc_price_g, calc_price_g).tolist() # 含价格点上下界
     
     # 用户不传入则默认与 runs_step、year_days 一致
