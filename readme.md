@@ -1,7 +1,7 @@
 # DerivX
-V0.5.13-Beta Build 20240704
+V0.6.0-Beta Build 20240910
 
-最新版本：[C++](https://github.com/xurendong/derivx/tree/main/exe/windows/bin)、[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13)
+最新版本：[C++](https://github.com/xurendong/derivx/tree/main/exe/windows/bin)、[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0)
 
 ### 项目概述
 定价引擎特性：
@@ -17,75 +17,76 @@ V0.5.13-Beta Build 20240704
 定价插件简介：
 + derivx_autocall_booster：
   + 助推器（Booster）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_autocall_booster（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_autocall_booster.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_autocall_booster.js)）
+  + 使用示例：test_derivx_autocall_booster（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_autocall_booster.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_autocall_booster.js)）
 ###
 + derivx_autocall_fixed_coupon_notes：
   + 定息票据（Fixed Coupon Notes）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_autocall_fixed_coupon_notes（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_autocall_fixed_coupon_notes.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_autocall_fixed_coupon_notes.js)）
+  + 使用示例：test_derivx_autocall_fixed_coupon_notes（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_autocall_fixed_coupon_notes.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_autocall_fixed_coupon_notes.js)）
 ###
 + derivx_autocall_phoenix：
   + 普通凤凰（Phoenix）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_autocall_phoenix（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_autocall_phoenix.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_autocall_phoenix.js)）
+  + 使用示例：test_derivx_autocall_phoenix（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_autocall_phoenix.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_autocall_phoenix.js)）
 ###
 + derivx_autocall_snowball：
   + 普通雪球（Snowball）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_autocall_snowball（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_autocall_snowball.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_autocall_snowball.js)）
+  + 使用示例：test_derivx_autocall_snowball（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_autocall_snowball.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_autocall_snowball.js)）
 ###
 + derivx_autocall_snowball_gpu：
   + 普通雪球（Snowball）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_autocall_snowball_gpu（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_autocall_snowball_gpu.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_autocall_snowball_gpu.js)）
+  + 使用示例：test_derivx_autocall_snowball_gpu（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_autocall_snowball_gpu.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_autocall_snowball_gpu.js)）
 ###
 + derivx_autocall_snowball_stage_coupon：
   + 早利雪球（Snowball）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_autocall_snowball_stage_coupon（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_autocall_snowball_stage_coupon.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_autocall_snowball_stage_coupon.js)）
+  + 使用示例：test_derivx_autocall_snowball_stage_coupon（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_autocall_snowball_stage_coupon.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_autocall_snowball_stage_coupon.js)）
 ###
 + derivx_autocall_snowball_rainbow：
   + 彩虹雪球（Rainbow Snowball）类型（多标的奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_autocall_snowball_rainbow（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_autocall_snowball_rainbow.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_autocall_snowball_rainbow.js)）
+  + 使用示例：test_derivx_autocall_snowball_rainbow（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_autocall_snowball_rainbow.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_autocall_snowball_rainbow.js)）
 ###
 + derivx_barrier_airbag：
   + 安全气囊（Airbag）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_barrier_airbag（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_barrier_airbag.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_barrier_airbag.js)）
+  + 使用示例：test_derivx_barrier_airbag（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_barrier_airbag.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_barrier_airbag.js)）
 ###
 + derivx_barrier_sharkfin：
   + 鲨鱼鳍（SharkFin）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_barrier_sharkfin（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_barrier_sharkfin.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_barrier_sharkfin.js)）
+  + 使用示例：test_derivx_barrier_sharkfin（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_barrier_sharkfin.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_barrier_sharkfin.js)）
 ###
 + derivx_barrier_single：
   + 单障碍（Single Barrier）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_barrier_single（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_barrier_single.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_barrier_single.js)）
+  + 使用示例：test_derivx_barrier_single（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_barrier_single.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_barrier_single.js)）
 ###
 + derivx_digital_simple：
   + 数字（Digital）类型（奇异期权）定价及希腊值计算。
-  + 使用示例：test_derivx_digital_simple（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_digital_simple.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_digital_simple.js)）
+  + 使用示例：test_derivx_digital_simple（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_digital_simple.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_digital_simple.js)）
 ###
 + derivx_stochastic_model：
   + 部分随机扩散过程和随机波动模型实现及演示。
-  + 使用示例：test_derivx_stochastic_model（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_stochastic_model.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_stochastic_model.js)）
+  + 使用示例：test_derivx_stochastic_model（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_stochastic_model.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_stochastic_model.js)）
 ###
 + derivx_vanilla_american：
   + 普通美式香草（Plain Vanilla American）类型（普通期权）定价及希腊值计算。
-  + 使用示例：test_derivx_vanilla_american（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_vanilla_american.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_vanilla_american.js)）
+  + 使用示例：test_derivx_vanilla_american（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_vanilla_american.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_vanilla_american.js)）
 ###
 + derivx_vanilla_european：
   + 普通欧式香草（Plain Vanilla European）类型（普通期权）定价及希腊值计算。
-  + 使用示例：test_derivx_vanilla_european（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_derivx_vanilla_european.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_derivx_vanilla_european.js)）
+  + 使用示例：test_derivx_vanilla_european（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_derivx_vanilla_european.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_derivx_vanilla_european.js)）
 ###
 
 其他示例简介：
 + remote：
   + 分布式计算调用简单演示。
-  + 使用示例：test_remote（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_remote.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_remote.js)）
+  + 使用示例：test_remote（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_remote.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_remote.js)）
 ###
 + remote_derivx_autocall_snowball：
   + 分布式计算调用普通雪球定价及希腊值计算。
-  + 使用示例：test_remote_derivx_autocall_snowball（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.5.13/test_remote_derivx_autocall_snowball.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.5.13/test_remote_derivx_autocall_snowball.js)）
+  + 使用示例：test_remote_derivx_autocall_snowball（[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.0/test_remote_derivx_autocall_snowball.py)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.0/test_remote_derivx_autocall_snowball.js)）
 ###
 
 ### 安装框架（建议安装最新版本）
+Windows 环境需要安装 [The Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) for Visual Studio 2015-2022（Platform：X64，Version >= 14.40.33810.0）。
+
 #### C++:
 ```bash
-
 ```
 
 #### Python:
@@ -100,6 +101,9 @@ npm install cyberx-js
 
 ### 运行示例（建议运行最新版本）
 #### C++:
+Visit folder [bin](https://github.com/xurendong/derivx/tree/main/exe/windows/bin), download all items (not include derivx_js and derivx_py folder) to a folder.
+You can change config files in config folder.
+Double click cyberx.exe or execute ./cyberx.exe in Shell to run as master or worker.
 ```c++
 
 ```
