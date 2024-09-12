@@ -1,7 +1,9 @@
 # DerivX
 V0.6.1-Beta Build 20240910
 
-最新版本：[C++](https://github.com/xurendong/derivx/tree/main/exe/windows/bin)、[Python](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_py/0.6.1)、[JavaScript](https://github.com/xurendong/derivx/tree/main/exe/windows/bin/derivx_js/0.6.1)
+此项目已迁移至：[universal-exchange/derivx](https://github.com/universal-exchange/derivx)
+
+最新版本：[C++](https://github.com/universal-exchange/derivx/tree/main/exe/windows/bin)、[Python](https://github.com/universal-exchange/derivx/tree/main/exe/windows/bin/derivx_py/0.6.1)、[JavaScript](https://github.com/universal-exchange/derivx/tree/main/exe/windows/bin/derivx_js/0.6.1)
 
 ### 项目概述
 定价引擎特性：
