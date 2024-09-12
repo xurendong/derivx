@@ -1,7 +1,7 @@
 # Benchmark
 
 ### Version
-DerivX V0.4.5 to V0.5.13
+DerivX V0.4.5 to V0.6.2
 
 ### Environment:
 | Module | Specification                            |
